@@ -48,6 +48,7 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-particles" id="particles"></div>
+  <div class="hero-content-backdrop" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="hero-badge"> Campo do Tenente · Paraná · Brasil</div>
     <h1 class="hero-title">
@@ -73,7 +74,7 @@
   <p class="countdown-label-top">Contagem regressiva para o evento</p>
   <div class="countdown-grid">
     <div class="count-item">
-      <div class="count-num" id="cd-days">000</div>
+      <div class="count-num" id="cd-days">0</div>
       <span class="count-label">Dias</span>
     </div>
     <div class="count-sep">:</div>
@@ -309,53 +310,38 @@
       <h2 class="section-title">Programação <span class="highlight">2026</span></h2>
     </div>
     <div class="prog-tabs">
-      <button class="prog-tab active" onclick="showTab('dia1',this)">Dia 1 — Qui</button>
-      <button class="prog-tab" onclick="showTab('dia2',this)">Dia 2 — Sex</button>
-      <button class="prog-tab" onclick="showTab('dia3',this)">Dia 3 — Sáb</button>
-      <button class="prog-tab" onclick="showTab('dia4',this)">Dia 4 — Dom</button>
-      <button class="prog-tab" onclick="showTab('dia5',this)">Dia 5 — Seg</button>
+      <button type="button" class="prog-tab active" onclick="showTab('prog-sexta',this)">Sexta · 17/06</button>
+      <button type="button" class="prog-tab" onclick="showTab('prog-sabado',this)">Sábado · 18/06</button>
+      <button type="button" class="prog-tab" onclick="showTab('prog-domingo',this)">Domingo · 19/06</button>
     </div>
-    <div id="dia1" class="prog-content active">
+    <div id="prog-sexta" class="prog-content prog-content--bg prog-content--bg-sexta active">
       <div class="timeline">
-        <div class="tl-item"><div class="tl-time">08:00</div><div class="tl-title">Abertura Oficial do CampoAgro 2026</div><div class="tl-desc">Cerimônia de abertura com autoridades, Prefeito de Campo do Tenente e entidades parceiras.</div><span class="tl-badge">Abertura</span></div>
-        <div class="tl-item"><div class="tl-time">09:00</div><div class="tl-title">Inauguração das Exposições Agropecuárias</div><div class="tl-desc">Entrada dos animais, início dos concursos de raças e julgamentos oficiais.</div><span class="tl-badge">Agropecuária</span></div>
-        <div class="tl-item"><div class="tl-time">10:00</div><div class="tl-title">Palestra: O Futuro do Agronegócio Paranaense</div><div class="tl-desc">Especialistas discutem tendências, tecnologia e perspectivas para o setor.</div><span class="tl-badge">Palestra</span></div>
-        <div class="tl-item"><div class="tl-time">14:00</div><div class="tl-title">Desfile Inaugural de Tratores e Máquinas</div><div class="tl-desc">Desfile de tratores, colheitadeiras e implementos pela área central do evento.</div><span class="tl-badge">Desfile</span></div>
-        <div class="tl-item"><div class="tl-time">18:00</div><div class="tl-title">Show Nacional — Abertura</div><div class="tl-desc">Grande show de abertura com atração nacional confirmada e programação aberta ao público do evento.</div><span class="tl-badge">Show</span></div>
-        <div class="tl-item"><div class="tl-time">22:00</div><div class="tl-title">Encerramento do Primeiro Dia</div><div class="tl-desc">Programação noturna na praça gastronômica e área de expositores.</div></div>
+        <div class="tl-item">
+          <div class="tl-time">17/06</div>
+          <div class="tl-title">Palco principal — atração a confirmar</div>
+          <div class="tl-desc">A programação do show desta noite será divulgada em breve.</div>
+          <span class="tl-badge">Sexta-feira</span>
+        </div>
       </div>
     </div>
-    <div id="dia2" class="prog-content">
+    <div id="prog-sabado" class="prog-content prog-content--bg prog-content--bg-sabado">
       <div class="timeline">
-        <div class="tl-item"><div class="tl-time">08:00</div><div class="tl-title">Rodada de Negócios Agro</div><div class="tl-desc">Matchmaking entre produtores, empresas e investidores do setor.</div><span class="tl-badge">Negócios</span></div>
-        <div class="tl-item"><div class="tl-time">10:00</div><div class="tl-title">Workshop: Agricultura de Precisão</div><div class="tl-desc">Tecnologia, drones, GPS e automação para o produtor rural moderno.</div><span class="tl-badge">Workshop</span></div>
-        <div class="tl-item"><div class="tl-time">13:00</div><div class="tl-title">Concurso Leiteiro Regional</div><div class="tl-desc">Avaliação das melhores raças leiteiras com julgadores credenciados.</div><span class="tl-badge">Concurso</span></div>
-        <div class="tl-item"><div class="tl-time">16:00</div><div class="tl-title">Painel Agricultura Familiar</div><div class="tl-desc">Cooperativismo, PRONAF e políticas públicas para o pequeno produtor.</div><span class="tl-badge">Palestra</span></div>
-        <div class="tl-item"><div class="tl-time">19:00</div><div class="tl-title">Show Nacional — Noite Sertaneja</div><div class="tl-desc">Uma das maiores duplas sertanejas do Brasil em show imperdível.</div><span class="tl-badge">Show</span></div>
+        <div class="tl-item">
+          <div class="tl-time">18/06</div>
+          <div class="tl-title">João Nelore e Texano</div>
+          <div class="tl-desc">Dupla sertaneja em ascensão no agronejo, conhecida por hits como <em>Cowboy 2.0</em> e <em>Tipo Nelore</em>. Show no palco principal.</div>
+          <span class="tl-badge">Show confirmado</span>
+        </div>
       </div>
     </div>
-    <div id="dia3" class="prog-content">
+    <div id="prog-domingo" class="prog-content prog-content--bg prog-content--bg-domingo">
       <div class="timeline">
-        <div class="tl-item"><div class="tl-time">09:00</div><div class="tl-title">Dia da Família no Campo</div><div class="tl-desc">Programação especial para famílias com atividades no espaço kids e tour pelas exposições.</div><span class="tl-badge">Família</span></div>
-        <div class="tl-item"><div class="tl-time">10:00</div><div class="tl-title">Competição Rural — Montaria em Touros</div><div class="tl-desc">Rodeio profissional com competidores de todo o Paraná e Santa Catarina.</div><span class="tl-badge">Rodeio</span></div>
-        <div class="tl-item"><div class="tl-time">14:00</div><div class="tl-title">Workshop: Sustentabilidade no Agro</div><div class="tl-desc">Práticas sustentáveis, bioinsumos, preservação ambiental e certificações.</div><span class="tl-badge">Workshop</span></div>
-        <div class="tl-item"><div class="tl-time">20:00</div><div class="tl-title">Grande Show Nacional — Noite de Sábado</div><div class="tl-desc">A maior atração do evento. Show esperado por toda a região.</div><span class="tl-badge">Show Principal</span></div>
-      </div>
-    </div>
-    <div id="dia4" class="prog-content">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">08:00</div><div class="tl-title">Feira de Sementes e Insumos</div><div class="tl-desc">Exposição especial de sementes, fertilizantes e defensivos agrícolas.</div><span class="tl-badge">Feira</span></div>
-        <div class="tl-item"><div class="tl-time">10:00</div><div class="tl-title">Concurso Gastronomia Rural</div><div class="tl-desc">Competição de pratos típicos da culinária paranaense com produtos da roça.</div><span class="tl-badge">Gastronomia</span></div>
-        <div class="tl-item"><div class="tl-time">15:00</div><div class="tl-title">Evento Cultural — Danças Típicas</div><div class="tl-desc">Apresentações culturais e folclóricas da região.</div><span class="tl-badge">Cultura</span></div>
-        <div class="tl-item"><div class="tl-time">19:00</div><div class="tl-title">Show Nacional — Noite Especial</div><div class="tl-desc">Show especial de domingo com artistas convidados e apresentação de encerramento.</div><span class="tl-badge">Show</span></div>
-      </div>
-    </div>
-    <div id="dia5" class="prog-content">
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-time">09:00</div><div class="tl-title">Dia dos Negócios — Encerramento</div><div class="tl-desc">Última rodada de negócios, assinatura de contratos e balanço do evento.</div><span class="tl-badge">Negócios</span></div>
-        <div class="tl-item"><div class="tl-time">11:00</div><div class="tl-title">Premiação dos Concursos</div><div class="tl-desc">Entrega de troféus e prêmios para os vencedores dos concursos agropecuários.</div><span class="tl-badge">Premiação</span></div>
-        <div class="tl-item"><div class="tl-time">15:00</div><div class="tl-title">Cerimônia de Encerramento</div><div class="tl-desc">Agradecimentos, balanço da edição 2026 e anúncio do CampoAgro 2027.</div><span class="tl-badge">Encerramento</span></div>
-        <div class="tl-item"><div class="tl-time">18:00</div><div class="tl-title">Show de Encerramento</div><div class="tl-desc">Grande festa de encerramento com DJ e artistas regionais.</div><span class="tl-badge">Show</span></div>
+        <div class="tl-item">
+          <div class="tl-time">19/06</div>
+          <div class="tl-title">Luan Pereira</div>
+          <div class="tl-desc">Cantor e compositor, referência no agronejo e no streaming no Brasil. Show de encerramento no palco principal.</div>
+          <span class="tl-badge">Show confirmado</span>
+        </div>
       </div>
     </div>
   </div>

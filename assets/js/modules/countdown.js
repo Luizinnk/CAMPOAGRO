@@ -17,7 +17,7 @@ export function initCountdown(targetDate) {
     const diff = target - new Date();
 
     if (diff <= 0) {
-      setText(ids.days, '000');
+      setText(ids.days, '0');
       setText(ids.hours, '00');
       setText(ids.mins, '00');
       setText(ids.secs, '00');
@@ -29,7 +29,7 @@ export function initCountdown(targetDate) {
     const mins = Math.floor((diff % 3600000) / 60000);
     const secs = Math.floor((diff % 60000) / 1000);
 
-    setText(ids.days, String(days).padStart(3, '0'));
+    setText(ids.days, String(days));
     setText(ids.hours, String(hours).padStart(2, '0'));
     setText(ids.mins, String(mins).padStart(2, '0'));
     setText(ids.secs, String(secs).padStart(2, '0'));

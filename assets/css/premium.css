@@ -16,8 +16,6 @@
   --glass-strong: rgba(255,255,255,0.075);
   --line: rgba(212,160,23,0.16);
   --line-soft: rgba(255,255,255,0.08);
-  --shadow-premium: 0 24px 80px rgba(0,0,0,0.48);
-  --glow-gold: 0 0 42px rgba(212,160,23,0.13);
 }
 
 * { scrollbar-color: rgba(212,160,23,0.45) #050505; }
@@ -66,7 +64,6 @@ nav {
 nav.scrolled {
   background: rgba(5,5,5,0.84);
   border-bottom: 1px solid var(--line);
-  box-shadow: 0 18px 60px rgba(0,0,0,0.38);
 }
 .nav-brand { width: clamp(132px, 12vw, 176px); }
 .nav-links {
@@ -83,7 +80,6 @@ nav.scrolled {
 .nav-cta {
   border-radius: 999px;
   padding: 0.68rem 1.15rem;
-  box-shadow: 0 10px 32px rgba(212,160,23,0.18);
 }
 .hamburger span {
   height: 1px;
@@ -137,7 +133,6 @@ nav.scrolled {
 .hero-title {
   font-size: clamp(4.3rem, 11vw, 9.8rem);
   line-height: 0.82;
-  text-shadow: 0 0 80px rgba(212,160,23,0.12);
 }
 .hero-title .year {
   font-size: clamp(2.2rem, 5vw, 4.5rem);
@@ -170,11 +165,9 @@ button.btn-primary {
 .btn-primary {
   background: linear-gradient(135deg, var(--dourado) 0%, var(--dourado-claro) 100%);
   color: #050505;
-  box-shadow: 0 16px 38px rgba(212,160,23,0.16);
 }
 .btn-primary:hover {
   background: linear-gradient(135deg, var(--dourado-claro), #FFE082);
-  box-shadow: var(--glow-gold);
 }
 .btn-outline {
   border-color: rgba(245,245,245,0.2);
@@ -200,7 +193,6 @@ button.btn-primary {
   padding: clamp(1rem, 2vw, 1.35rem);
   background: rgba(255,255,255,0.045);
   border: 1px solid var(--line);
-  box-shadow: 0 16px 52px rgba(0,0,0,0.25);
   backdrop-filter: blur(16px);
 }
 .count-num {
@@ -264,7 +256,6 @@ footer {
 .form-group textarea {
   background: linear-gradient(180deg, rgba(255,255,255,0.065), rgba(255,255,255,0.025));
   border: 1px solid var(--line-soft);
-  box-shadow: 0 18px 60px rgba(0,0,0,0.22);
   backdrop-filter: blur(14px);
 }
 .stat-card,
@@ -275,7 +266,7 @@ footer {
 .noticia-mini,
 .mapa-container,
 .tratoraco-stat {
-  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
 }
 .stat-card:hover,
 .area-card:hover,
@@ -286,14 +277,11 @@ footer {
 .tratoraco-stat:hover {
   transform: translateY(-4px);
   border-color: rgba(212,160,23,0.34);
-  box-shadow: var(--shadow-premium), var(--glow-gold);
 }
 .sobre-image-main,
 .sobre-image-float {
   border-color: rgba(212,160,23,0.28);
-  box-shadow: var(--shadow-premium);
 }
-.visual-word { text-shadow: 0 0 34px rgba(212,160,23,0.16); }
 
 .tratoraco {
   background:
@@ -308,7 +296,6 @@ footer {
 .memoria-card,
 .memoria-tile {
   border: 1px solid rgba(212,160,23,0.18);
-  box-shadow: var(--shadow-premium);
 }
 .tratoraco-note {
   background: rgba(5,5,5,0.82);
@@ -522,7 +509,6 @@ footer {
   width: min(1080px, 92vw);
   max-height: 78vh;
   border: 1px solid rgba(212,160,23,0.24);
-  box-shadow: var(--shadow-premium), var(--glow-gold);
   background: #050505;
 }
 .media-modal-content img,
