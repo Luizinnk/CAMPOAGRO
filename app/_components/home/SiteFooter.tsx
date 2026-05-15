@@ -1,13 +1,18 @@
+import Image from 'next/image';
+
 export default function SiteFooter() {
   return (
     <footer>
       <div className="container footer-grid">
         <div className="footer-brand">
-          <img
+          <Image
             className="footer-logo"
             src="/assets/img/logo-campoagro.png"
             alt="CampoAgro Campo do Tenente"
-            loading="lazy"
+            width={220}
+            height={72}
+            sizes="160px"
+            quality={85}
           />
           <p>Evento oficial do agro, inovação rural e entretenimento em Campo do Tenente, Paraná.</p>
         </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 export default function LoadingOverlay() {
@@ -26,7 +27,15 @@ export default function LoadingOverlay() {
 
   return (
     <div id="loading" className={hidden ? 'hidden' : undefined} aria-label="Carregando CampoAgro">
-      <img className="loading-logo" src="/assets/img/logo-campoagro.png" alt="CampoAgro Campo do Tenente" />
+      <Image
+        className="loading-logo"
+        src="/assets/img/logo-campoagro.png"
+        alt="CampoAgro Campo do Tenente"
+        width={280}
+        height={90}
+        sizes="280px"
+        quality={85}
+      />
       <div className="loading-bar-wrap">
         <div className="loading-bar" />
       </div>

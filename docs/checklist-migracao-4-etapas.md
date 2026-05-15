@@ -6,7 +6,8 @@ Referência de arquivos atuais relevantes:
 |---------|--------|
 | `app/page.tsx` | Rota `/` — apenas `<HomeLanding />` (sem `<Script>`) |
 | `app/layout.tsx` | Shell (`html`/`body`, metadata, fonts, `globals.css`) |
-| `app/globals.css` | `@import` de `/assets/css/styles.css` e `premium.css` |
+| `app/globals.css` | Importa styles + premium + **etapa4-performance.css** |
+| `app/etapa4-performance.css` | Hero sem PNG duplicado no BG, blur mais leve, `prefers-reduced-motion`, notícia destaque |
 | `app/_components/HomeLanding.tsx` | Orquestra as seções em `home/*.tsx` |
 | `app/_components/home/` | Um TSX por seção da landing (Etapa 2) |
 | `public/index.html` | Opcional hospedagem estática; mantido alinhado; prioridade de edição: TSX |
@@ -23,7 +24,7 @@ Referência de arquivos atuais relevantes:
 | `public/assets/img/` | Imagens (`banner15.png`, `banner2.png`, …) |
 | `next.config.mjs` | `images.remotePatterns` (hoje focado em URLs remotas) |
 | `tailwind.config.ts` / `postcss.config.js` | Tailwind (pouco usado nas rotas `app/` hoje) |
-| `package.json` | Scripts `dev`, `build`, `lint`, `check:images` (este último aponta para `scripts/check-images.mjs` — criar o script se ainda não existir no repo) |
+| `package.json` | Scripts `dev`, `build`, `lint`, `check:images` → `scripts/check-images.mjs` |
 
 Use os checkboxes abaixo conforme for concluindo cada item.
 
@@ -107,15 +108,20 @@ Use os checkboxes abaixo conforme for concluindo cada item.
 
 **Meta:** aliviar GPU/rede; alinhar com Next.
 
-- [ ] Imagens grandes: `banner15.png`, `banner2.png`, `luan-pereira-tvz-2024.png` → formatos mais leves (WebP/AVIF) + `next/image` com `sizes` adequados onde fizer sentido.
-- [ ] Revisar `public/assets/img/` (e, quando `scripts/check-images.mjs` existir, rodar `npm run check:images`) e corrigir referências quebradas.
-- [ ] `next.config.mjs`: revisar `images` (patterns locais vs remotos conforme adoção de `next/image`).
-- [ ] Reduzir uso de `backdrop-filter` onde for aceitável trocar por fundo sólido sem perda visual forte.
-- [ ] CSS: agrupar animações infinitas; desligar ou suavizar com `prefers-reduced-motion` (hero drift, sponsors, particles, WhatsApp, etc.).
-- [ ] Lighthouse / Performance: registrar baseline e meta (LCP, TBT apenas como referência; foco também em comportamento ao rolar GPU).
-- [ ] README ou nota neste doc: como rodar `dev`/`build` e onde fica cada seção após a migração.
+- [x] **`next/image`** na home: hero (`priority` + `sizes`), logos (nav/loading/footer), editorial (`fill`), carrossel Tratoraço, faixa de patrocinadores, galeria (`fill`), modal da galeria, card de notícia em destaque (`fill`).
+- [x] **Hero:** foto principal via `<Image fill>` + `.hero-bg` só com gradientes (sem URL duplicada do PNG em CSS — ver `app/etapa4-performance.css`).
+- [x] **Notícia em destaque:** classe `news-card-featured--optimized` + camada `<Image>`; remove background-image pesado no CSS para esse card.
+- [x] **`scripts/check-images.mjs`** — valida paths `/assets/img/` em `app/` e `public/**/*.html|.css`; comando `npm run check:images`.
+- [x] **Backdrop/blur:** valores mais baixos nos cards repetidos, modal e elementos-chave (mantém vidro, menos custo na GPU).
+- [x] **`prefers-reduced-motion`:** hero drift, sponsors, WhatsApp, loading bar, scroll cue, partículas (complementa `HeroParticles`).
+- [ ] **Lighthouse / métricas:** rodar manualmente quando quiser registrar baseline (LCP tende a ganhar com hero otimizado pelo pipeline do Next).
+- [ ] **README** ampliado no repo (opcional); fluxo mínimo já está neste checklist.
 
-**Critério de pronto:** peso de imagens aceitável; menos jank perceptível ao rolar/abrir localhost; documentação mínima atualizada.
+**Critério de pronto:** assets servidos pelo otimizador do Next onde aplicável; menos blur/agitação por defeito e com respeito à preferência do utilizador.
+
+**Nota:** os ficheiros PNG/JPG originais em `public/assets/img/` mantêm-se; em browsers compatíveis o Next **serve WebP/AVIF** derivados em tempo de pedido/build. Para peso em disco ainda menor no CDN, pode comprimir ou gerar `.webp` à parte mais tarde.
+
+**Status:** concluída para o âmbito definido acima.
 
 ---
 

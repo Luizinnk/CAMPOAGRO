@@ -1,0 +1,125 @@
+/* Etapa 4 — carrega após premium.css (ver globals.css) */
+
+/* Hero: foto via next/image — remove PNG duplicado do background do .hero-bg (gradientes ficam na camada superior) */
+.hero.hero-v5 .hero-bg {
+  background:
+    linear-gradient(90deg, rgba(4, 4, 4, 0.84) 0%, rgba(7, 17, 10, 0.62) 31%, rgba(7, 17, 10, 0.16) 58%, rgba(4, 4, 4, 0.12) 100%),
+    linear-gradient(180deg, rgba(4, 4, 4, 0.14) 0%, rgba(4, 4, 4, 0.04) 46%, rgba(4, 4, 4, 0.86) 100%),
+    radial-gradient(circle at 12% 42%, rgba(212, 166, 58, 0.22), transparent 28rem);
+}
+
+.hero.hero-v5 .hero-bg-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -6;
+  pointer-events: none;
+}
+
+.hero.hero-v5 .hero-bg-photo img {
+  object-fit: cover;
+  filter: saturate(1.02) contrast(1.02);
+}
+
+/* Cards / vidros — blur mais leve que o default premium (menos custo na GPU) */
+.count-item,
+.stat-card,
+.area-card,
+.tl-item,
+.sponsor-tier,
+.news-card:not(.news-card-featured),
+.premium-form,
+.mapa-premium,
+.tratoraco-stat,
+.memory-card,
+.editorial-visual,
+.expo-benefits span {
+  backdrop-filter: blur(10px) saturate(132%);
+}
+
+.hero-badge {
+  backdrop-filter: blur(10px) saturate(132%);
+}
+
+.hero-proof {
+  backdrop-filter: blur(12px) saturate(132%);
+}
+
+.btn-outline {
+  backdrop-filter: blur(8px);
+}
+
+.visual-caption {
+  backdrop-filter: blur(10px) saturate(132%);
+}
+
+.map-zone {
+  backdrop-filter: blur(9px) saturate(130%);
+}
+
+.media-modal {
+  backdrop-filter: blur(8px) saturate(120%);
+}
+
+/* Notícia em destaque com <Image> — tira segundo load do PNG via background CSS */
+.news-card.news-card-featured.news-card-featured--optimized {
+  background-image: none !important;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.news-card-featured__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.news-card.news-card-featured.news-card-featured--optimized::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(4, 4, 4, 0.18), rgba(4, 4, 4, 0.86));
+  pointer-events: none;
+}
+
+.news-card-featured__inner {
+  position: relative;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero.hero-v5 .hero-bg,
+  .hero-bg {
+    animation: none !important;
+  }
+
+  .hero-light-one,
+  .hero-proof {
+    animation: none !important;
+  }
+
+  .sponsor-row,
+  .whatsapp-float {
+    animation: none !important;
+  }
+
+  .loading-bar {
+    animation: none !important;
+    width: 100% !important;
+    opacity: 1 !important;
+  }
+
+  .particle {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .scroll-line {
+    animation: none !important;
+  }
+
+  .loading-logo {
+    animation: none !important;
+  }
+}

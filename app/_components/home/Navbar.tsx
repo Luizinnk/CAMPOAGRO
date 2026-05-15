@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const HASH_LINK_SECTION_IDS = [
@@ -73,7 +74,14 @@ export default function Navbar() {
       aria-label="Navegação principal"
     >
       <a href="#home" className="nav-brand" aria-label="CampoAgro 2026 - início">
-        <img src="/assets/img/logo-campoagro.png" alt="CampoAgro Campo do Tenente" />
+        <Image
+          src="/assets/img/logo-campoagro.png"
+          alt="CampoAgro Campo do Tenente"
+          width={220}
+          height={72}
+          sizes="140px"
+          quality={85}
+        />
       </a>
       <ul className="nav-links">
         <li>

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function SobreSection() {
   return (
     <section className="sobre editorial-section" id="sobre">
@@ -25,7 +27,14 @@ export default function SobreSection() {
           </div>
         </div>
         <div className="editorial-visual reveal">
-          <img src="/assets/img/banner15.png" alt="Família plantando uma muda no campo ao pôr do sol" loading="lazy" />
+          <Image
+            src="/assets/img/banner15.png"
+            alt="Família plantando uma muda no campo ao pôr do sol"
+            fill
+            sizes="(max-width: 900px) 100vw, 55vw"
+            quality={82}
+            className="object-cover"
+          />
           <div className="visual-caption">
             <span>Campo do Tenente</span>
             <strong>Tradição rural com visão de futuro</strong>

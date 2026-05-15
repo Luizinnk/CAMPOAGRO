@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -90,7 +91,14 @@ export default function MemoriasSection() {
             (open.type === 'video' ? (
               <video src={open.src} controls autoPlay playsInline />
             ) : (
-              <img src={open.src} alt={open.title || 'Memória do CampoAgro'} />
+              <Image
+                src={open.src}
+                alt={open.title || 'Memória do CampoAgro'}
+                width={1600}
+                height={1067}
+                sizes="95vw"
+                quality={85}
+              />
             ))}
         </div>
         <div className="media-modal-meta">
@@ -128,7 +136,14 @@ export default function MemoriasSection() {
                 data-category={c.category}
                 onClick={() => setOpen({ src: c.src, title: c.title, category: c.category, type: 'image' })}
               >
-                <img src={c.src} alt={c.title} loading="lazy" />
+                <Image
+                  src={c.src}
+                  alt={c.title}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 22vw"
+                  quality={78}
+                  className="object-cover"
+                />
                 <span>{c.caption}</span>
               </button>
             ))}

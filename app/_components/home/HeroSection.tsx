@@ -1,8 +1,20 @@
+import Image from 'next/image';
+
 import HeroParticles from './HeroParticles';
 
 export default function HeroSection() {
   return (
     <section className="hero hero-v5" id="home" aria-label="CampoAgro 2026">
+      <div className="hero-bg-photo" aria-hidden>
+        <Image
+          src="/assets/img/banner15.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          quality={82}
+        />
+      </div>
       <div className="hero-bg" />
       <div className="hero-grid" />
       <div className="hero-particles" id="particles">

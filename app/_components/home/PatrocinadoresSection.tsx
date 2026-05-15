@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function PatrocinadoresSection() {
   return (
     <section className="patrocinadores" id="patrocinadores">
@@ -15,14 +17,24 @@ export default function PatrocinadoresSection() {
           <div className="sponsor-track">
             <div className="sponsor-row sponsor-logo-row">
               <div className="sponsor-logo-strip">
-                <img
+                <Image
                   src="/assets/img/campoagro-patrocinadores.png"
                   alt="Patrocinadores e apoiadores oficiais do CampoAgro"
-                  loading="lazy"
+                  width={1120}
+                  height={96}
+                  sizes="(max-width: 1200px) 92vw, 1120px"
+                  quality={80}
                 />
               </div>
               <div className="sponsor-logo-strip" aria-hidden="true">
-                <img src="/assets/img/campoagro-patrocinadores.png" alt="" loading="lazy" />
+                <Image
+                  src="/assets/img/campoagro-patrocinadores.png"
+                  alt=""
+                  width={1120}
+                  height={96}
+                  sizes="(max-width: 1200px) 92vw, 1120px"
+                  quality={80}
+                />
               </div>
             </div>
           </div>

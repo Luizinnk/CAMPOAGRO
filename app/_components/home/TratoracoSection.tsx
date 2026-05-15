@@ -1,4 +1,13 @@
+import Image from 'next/image';
+
 export default function TratoracoSection() {
+  const imgs = [
+    { src: '/assets/img/tratoraco/tratoraco-01.png', alt: 'Tratoraço 1' },
+    { src: '/assets/img/tratoraco/tratoraco-02.png', alt: 'Tratoraço 2' },
+    { src: '/assets/img/tratoraco/tratoraco-03.png', alt: 'Tratoraço 3' },
+    { src: '/assets/img/tratoraco/tratoraco-04.png', alt: 'Tratoraço 4' },
+  ] as const;
+
   return (
     <section className="tratoraco-section" id="tratoraco">
       <div className="container tratoraco-layout">
@@ -21,10 +30,17 @@ export default function TratoracoSection() {
           </div>
         </div>
         <div className="tratoraco-carousel reveal" data-tratoraco-track>
-          <img src="/assets/img/tratoraco/tratoraco-01.png" alt="Tratoraço 1" loading="lazy" />
-          <img src="/assets/img/tratoraco/tratoraco-02.png" alt="Tratoraço 2" loading="lazy" />
-          <img src="/assets/img/tratoraco/tratoraco-03.png" alt="Tratoraço 3" loading="lazy" />
-          <img src="/assets/img/tratoraco/tratoraco-04.png" alt="Tratoraço 4" loading="lazy" />
+          {imgs.map(({ src, alt }) => (
+            <Image
+              key={src}
+              src={src}
+              alt={alt}
+              width={720}
+              height={480}
+              sizes="(max-width: 768px) 85vw, 360px"
+              quality={78}
+            />
+          ))}
         </div>
       </div>
     </section>
