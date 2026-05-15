@@ -4,13 +4,13 @@ import ExpositoresSection from './home/ExpositoresSection';
 import HeroSection from './home/HeroSection';
 import LoadingOverlay from './home/LoadingOverlay';
 import MapaSection from './home/MapaSection';
-import MediaModal from './home/MediaModal';
 import MemoriasSection from './home/MemoriasSection';
 import Navbar from './home/Navbar';
 import NoticiasSection from './home/NoticiasSection';
 import NumbersSection from './home/NumbersSection';
 import PatrocinadoresSection from './home/PatrocinadoresSection';
 import ProgramacaoSection from './home/ProgramacaoSection';
+import RevealOnScroll from './home/RevealOnScroll';
 import SiteFooter from './home/SiteFooter';
 import SobreSection from './home/SobreSection';
 import TratoracoSection from './home/TratoracoSection';
@@ -37,7 +37,7 @@ export default function HomeLanding() {
         <NoticiasSection />
       </main>
       <SiteFooter />
-      <MediaModal />
+      <RevealOnScroll />
     </>
   );
 }

@@ -1,9 +1,13 @@
+import HeroParticles from './HeroParticles';
+
 export default function HeroSection() {
   return (
     <section className="hero hero-v5" id="home" aria-label="CampoAgro 2026">
       <div className="hero-bg" />
       <div className="hero-grid" />
-      <div className="hero-particles" id="particles" />
+      <div className="hero-particles" id="particles">
+        <HeroParticles />
+      </div>
       <div className="hero-light hero-light-one" />
       <div className="hero-light hero-light-two" />
       <div className="hero-content reveal">

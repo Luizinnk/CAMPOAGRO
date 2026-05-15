@@ -1,4 +1,20 @@
+'use client';
+
+import clsx from 'clsx';
+import { useEffect, useState } from 'react';
+
+type TabId = 'prog-sexta' | 'prog-sabado' | 'prog-domingo';
+
 export default function ProgramacaoSection() {
+  const [active, setActive] = useState<TabId>('prog-sexta');
+
+  useEffect(() => {
+    const root = document.getElementById(active);
+    root?.querySelectorAll('.reveal').forEach((el) => {
+      el.classList.add('visible');
+    });
+  }, [active]);
+
   return (
     <section className="programacao" id="programacao">
       <div className="container">
@@ -10,17 +26,32 @@ export default function ProgramacaoSection() {
           <p>Uma agenda clara para acompanhar feira, arena, experiências, Tratoraço e grandes atrações.</p>
         </div>
         <div className="prog-tabs reveal" role="tablist" aria-label="Dias da programação">
-          <button type="button" className="prog-tab active" data-tab="prog-sexta">
+          <button
+            type="button"
+            className={clsx('prog-tab', active === 'prog-sexta' && 'active')}
+            aria-selected={active === 'prog-sexta'}
+            onClick={() => setActive('prog-sexta')}
+          >
             Sexta · 17/07
           </button>
-          <button type="button" className="prog-tab" data-tab="prog-sabado">
+          <button
+            type="button"
+            className={clsx('prog-tab', active === 'prog-sabado' && 'active')}
+            aria-selected={active === 'prog-sabado'}
+            onClick={() => setActive('prog-sabado')}
+          >
             Sábado · 18/07
           </button>
-          <button type="button" className="prog-tab" data-tab="prog-domingo">
+          <button
+            type="button"
+            className={clsx('prog-tab', active === 'prog-domingo' && 'active')}
+            aria-selected={active === 'prog-domingo'}
+            onClick={() => setActive('prog-domingo')}
+          >
             Domingo · 19/07
           </button>
         </div>
-        <div id="prog-sexta" className="prog-content active">
+        <div id="prog-sexta" className={clsx('prog-content', active === 'prog-sexta' && 'active')}>
           <div className="timeline">
             <article className="tl-item reveal">
               <div className="tl-time">14h</div>
@@ -52,7 +83,7 @@ export default function ProgramacaoSection() {
             </article>
           </div>
         </div>
-        <div id="prog-sabado" className="prog-content">
+        <div id="prog-sabado" className={clsx('prog-content', active === 'prog-sabado' && 'active')}>
           <div className="timeline">
             <article className="tl-item reveal">
               <div className="tl-time">10h</div>
@@ -84,7 +115,7 @@ export default function ProgramacaoSection() {
             </article>
           </div>
         </div>
-        <div id="prog-domingo" className="prog-content">
+        <div id="prog-domingo" className={clsx('prog-content', active === 'prog-domingo' && 'active')}>
           <div className="timeline">
             <article className="tl-item reveal">
               <div className="tl-time">09h</div>
@@ -110,7 +141,9 @@ export default function ProgramacaoSection() {
               <div className="tl-time">21h</div>
               <div>
                 <h3 className="tl-title">Luan Pereira</h3>
-                <p className="tl-desc">Show de encerramento com um dos grandes nomes do agronejo nacional.</p>
+                <p className="tl-desc">
+                  Show de encerramento com um dos grandes nomes do agronejo nacional.
+                </p>
               </div>
               <span className="tl-badge">Show confirmado</span>
             </article>

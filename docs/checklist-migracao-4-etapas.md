@@ -4,7 +4,7 @@ Referência de arquivos atuais relevantes:
 
 | Caminho | Papel |
 |---------|--------|
-| `app/page.tsx` | Home: `HomeLanding` + `next/script` → `/assets/js/main.js` |
+| `app/page.tsx` | Rota `/` — apenas `<HomeLanding />` (sem `<Script>`) |
 | `app/layout.tsx` | Shell (`html`/`body`, metadata, fonts, `globals.css`) |
 | `app/globals.css` | `@import` de `/assets/css/styles.css` e `premium.css` |
 | `app/_components/HomeLanding.tsx` | Orquestra as seções em `home/*.tsx` |
@@ -71,7 +71,7 @@ Use os checkboxes abaixo conforme for concluindo cada item.
   - [x] `MapaSection.tsx` (`#mapa`)
   - [x] `NoticiasSection.tsx` (`#noticias`)
   - [x] `SiteFooter.tsx`
-  - [x] `MediaModal.tsx` (`.media-modal`)
+  - [x] Modal de mídia integrado em `MemoriasSection.tsx` (portal em `document.body`)
 - [x] Prioridade de edição: TSX em `app/_components/`; `public/index.html` só para espelho estático — evitar divergência.
 - [x] Anchors `id=""` preservados.
 - [ ] Smoke test manual: nav, abas da programação, galeria/modal, scroll (após recarregar o dev server).
@@ -84,20 +84,22 @@ Use os checkboxes abaixo conforme for concluindo cada item.
 
 ## Etapa 3 — Interatividade em React (`"use client"`)
 
-**Meta:** comportamentos hoje em `public/assets/js/modules/*.js` vivem em Client Components onde precisarem de estado/DOM.
+**Meta:** comportamentos em `public/assets/js/modules/*.js` replicados em Client Components na home Next.
 
-- [ ] Loading: substituir lógica de `loading.js` (ex.: estado + timeout ou classe no `layout`).
-- [ ] Navegação / hamburger: portar `navigation.js` *(hoje: listener em `#hamburger` + `navigation.js`; sem `onclick` no JSX)*.
-- [ ] Programação: portar `program-tabs.js` *(hoje: delegação + `data-tab`; `window.showTab` ainda no módulo)*.
-- [ ] Countdown: portar `countdown.js` com cleanup do intervalo no unmount.
-- [ ] Reveal on scroll: portar ou substituir `reveal.js` (observer em `useEffect` ou biblioteca já alinhada ao projeto).
-- [ ] Galeria / modal: portar `memories.js`.
-- [ ] Partículas: portar `particles.js` (montagem só no cliente).
-- [ ] Opcional mas recomendado: respeitar `prefers-reduced-motion` antes de inicializar animações/partículas.
-- [ ] Remover `<script type="module" src="assets/js/main.js">` da fonte React (equivalentes já cobertos por componentes cliente).
-- [ ] Se `public/index.html` não for mais a home servida pelo Next: documentar papel restante (ex.: apenas backup) ou remover após migração completa.
+- [x] Loading: `LoadingOverlay.tsx` (`load` + timeout, classe `hidden`).
+- [x] Navegação: `Navbar.tsx` (scroll `scrolled`, `menu-open`, spy de seção, hash + `scrollIntoView` suave).
+- [x] Programação: `ProgramacaoSection.tsx` (`useState` nas abas).
+- [x] Countdown: `CountdownSection.tsx` (`setInterval` + cleanup; zera e limpa após o horário do evento).
+- [x] Reveal: `RevealOnScroll.tsx` (`IntersectionObserver`, desconecta no unmount).
+- [x] Galeria / modal: `MemoriasSection.tsx` (estado + `createPortal`; overlay, Escape, lock de scroll).
+- [x] Partículas: `HeroParticles.tsx` (só cliente; desliga com `prefers-reduced-motion`).
+- [x] `prefers-reduced-motion` aplicado às partículas.
+- [x] Removido `next/script` / `main.js` de `app/page.tsx`.
+- [x] `public/index.html`: continua com `<script type="module" src="/assets/js/main.js">` para **deploy estático** que não passa pelo Next; a home em `/` não usa mais esses módulos.
 
-**Critério de pronto:** interações funcionam só com bundles Next; não dependência da home em `main.js`.
+**Critério de pronto:** interações na rota `/` só com bundle Next.
+
+**Status:** concluída para a app Next. Módulos em `public/assets/js/` permanecem para `index.html` opcional.
 
 ---
 
