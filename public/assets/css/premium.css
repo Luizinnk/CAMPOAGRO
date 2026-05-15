@@ -750,3 +750,183 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* Reestrutura CampoAgro - identidade baseada na logo */
+:root {
+  --verde: #0b3d16;
+  --verde-medio: #176b22;
+  --verde-claro: #39d300;
+  --dourado: #ffb400;
+  --dourado-claro: #ffd76a;
+  --preto: #030402;
+  --preto-fosco: #071006;
+  --cinza-escuro: #0d160c;
+  --cinza: #152414;
+  --branco: #f8f8f2;
+  --texto-sec: #aeb7a6;
+  --line: rgba(255, 180, 0, 0.22);
+}
+
+body {
+  background:
+    radial-gradient(circle at 14% 4%, rgba(57, 211, 0, 0.15), transparent 30rem),
+    radial-gradient(circle at 82% 16%, rgba(255, 180, 0, 0.12), transparent 25rem),
+    linear-gradient(180deg, #030402 0%, #071006 42%, #030402 100%);
+}
+
+.nav-brand { width: clamp(150px, 14vw, 212px); }
+.nav-links { gap: clamp(0.7rem, 1.25vw, 1.35rem); }
+.nav-links a { font-size: 0.72rem; }
+
+.hero-bg {
+  background:
+    linear-gradient(90deg, rgba(3,4,2,0.18) 0%, rgba(3,4,2,0.04) 48%, rgba(3,4,2,0.56) 100%),
+    linear-gradient(180deg, rgba(3,4,2,0.08) 0%, rgba(3,4,2,0.22) 52%, #030402 100%),
+    url('../img/campoagro-hero-topo.png') center center / cover no-repeat,
+    radial-gradient(circle at 50% 42%, rgba(57,211,0,0.18), transparent 36rem),
+    #030402;
+}
+.hero-title .gold,
+.section-title .highlight { color: var(--dourado); }
+.hero-tagline { color: var(--dourado-claro); }
+
+.expo-highlights {
+  padding: 0 1.5rem 4.5rem;
+  margin-top: -2.5rem;
+  position: relative;
+  z-index: 5;
+}
+.expo-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.expo-card {
+  min-height: 158px;
+  padding: 1.25rem;
+  color: var(--branco);
+  text-decoration: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.085), rgba(255,255,255,0.026));
+  border: 1px solid rgba(255,180,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+.expo-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(57,211,0,0.42);
+  background: linear-gradient(180deg, rgba(57,211,0,0.14), rgba(255,180,0,0.055));
+}
+.expo-card span,
+.show-card span {
+  color: var(--dourado-claro);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.expo-card strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.7rem, 2.7vw, 2.35rem);
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+}
+.expo-card small {
+  color: var(--texto-sec);
+  line-height: 1.55;
+}
+
+.shows-section {
+  background:
+    radial-gradient(circle at 82% 20%, rgba(255,180,0,0.12), transparent 24rem),
+    linear-gradient(180deg, rgba(13,22,12,0.82), rgba(3,4,2,0.96));
+}
+.shows-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.55fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: end;
+  margin-bottom: 2.2rem;
+}
+.shows-header p { color: var(--texto-sec); line-height: 1.8; }
+.shows-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 0.86fr;
+  gap: 1rem;
+}
+.show-card {
+  position: relative;
+  min-height: 440px;
+  overflow: hidden;
+  border: 1px solid rgba(255,180,0,0.24);
+  background: rgba(255,255,255,0.04);
+  display: flex;
+  align-items: flex-end;
+}
+.show-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.08) contrast(1.04);
+}
+.show-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 24%, rgba(0,0,0,0.86) 100%);
+}
+.show-card > div {
+  position: relative;
+  z-index: 1;
+  padding: 1.4rem;
+}
+.show-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 0.92;
+  margin: 0.35rem 0;
+}
+.show-card p { color: rgba(255,255,255,0.74); line-height: 1.65; }
+.show-card-soon {
+  background:
+    linear-gradient(135deg, rgba(11,61,22,0.92), rgba(3,4,2,0.96)),
+    radial-gradient(circle at top, rgba(255,180,0,0.18), transparent 18rem);
+}
+.show-card-soon a { color: var(--dourado-claro); font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; }
+
+.sponsor-tier-featured { overflow: hidden; }
+.sponsor-track {
+  border: 1px solid rgba(255,180,0,0.18);
+  background: linear-gradient(90deg, rgba(3,4,2,0.96), rgba(13,61,22,0.72), rgba(3,4,2,0.96));
+}
+.sponsor-logo-row { gap: 0; align-items: center; }
+.sponsor-logo-strip {
+  flex: 0 0 auto;
+  min-width: 980px;
+  padding: clamp(1rem, 2vw, 1.45rem) clamp(1.25rem, 3vw, 2.25rem);
+}
+.sponsor-logo-strip img {
+  display: block;
+  width: min(92vw, 1120px);
+  height: auto;
+  max-height: 96px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 26px rgba(0,0,0,0.45));
+}
+
+@media (max-width: 980px) {
+  .expo-highlights-grid,
+  .shows-grid { grid-template-columns: 1fr 1fr; }
+  .shows-header { grid-template-columns: 1fr; }
+  .show-card-soon { grid-column: span 2; min-height: 260px; }
+}
+@media (max-width: 640px) {
+  .expo-highlights { margin-top: 0; padding-top: 2rem; }
+  .expo-highlights-grid,
+  .shows-grid { grid-template-columns: 1fr; }
+  .show-card,
+  .show-card-soon { min-height: 340px; grid-column: auto; }
+}
