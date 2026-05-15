@@ -7,7 +7,8 @@ Referência de arquivos atuais relevantes:
 | `app/page.tsx` | Home: `HomeLanding` + `next/script` → `/assets/js/main.js` |
 | `app/layout.tsx` | Shell (`html`/`body`, metadata, fonts, `globals.css`) |
 | `app/globals.css` | `@import` de `/assets/css/styles.css` e `premium.css` |
-| `app/_components/HomeLanding.tsx` | Landing inteira por enquanto (fatiar na Etapa 2) |
+| `app/_components/HomeLanding.tsx` | Orquestra as seções em `home/*.tsx` |
+| `app/_components/home/` | Um TSX por seção da landing (Etapa 2) |
 | `public/index.html` | Opcional hospedagem estática; mantido alinhado; prioridade de edição: TSX |
 | `public/assets/css/styles.css` | Estilos base |
 | `public/assets/css/premium.css` | Estilos premium (blur, hero, cards) |
@@ -50,32 +51,34 @@ Use os checkboxes abaixo conforme for concluindo cada item.
 
 ## Etapa 2 — Componentização por seções
 
-**Meta:** `app/page.tsx` só compõe seções; cada bloco tem um arquivo próprio.
+**Meta:** composição apenas por imports de seções (`HomeLanding.tsx` delega para `home/*`); `app/page.tsx` permanece focado na rota (ex.: `<Script>` + `<HomeLanding />`).
 
-- [ ] Criar pasta (sugestão) `components/home/` ou `app/_components/home/`. *(parcial: existe `app/_components/` com `HomeLanding.tsx` monolítico — fatiar nos itens abaixo)*
-- [ ] Extrair seções para componentes nomeados (exemplos alinhados ao `index.html`):
-  - [ ] Loading overlay (`#loading`)
-  - [ ] WhatsApp flutuante
-  - [ ] Navbar (`#navbar`)
-  - [ ] Hero (`#home`)
-  - [ ] Countdown (`#cd-*`)
-  - [ ] Sobre / editorial (`#sobre`)
-  - [ ] Números (`#numeros`)
-  - [ ] Programação (`#programacao`)
-  - [ ] Áreas (`#areas`)
-  - [ ] Galeria (`#memorias`)
-  - [ ] Tratoraço (`#tratoraco`)
-  - [ ] Patrocinadores (`#patrocinadores`)
-  - [ ] Expositores (`#expositores` + formulário)
-  - [ ] Mapa (`#mapa`)
-  - [ ] Notícias (`#noticias`)
-  - [ ] Footer
-  - [ ] Modal de mídia (`.media-modal`)
-- [ ] Para cada seção migrada: parar de editar o mesmo bloco em `public/index.html` (ou remover o trecho migrado quando a etapa 3 estiver pronta).
-- [ ] Manter anchors `id=""` estáveis para links internos (`#programacao`, etc.).
-- [ ] Smoke test: scroll + cliques nos links do rodapé e da nav.
+- [x] Criar pasta `app/_components/home/`.
+- [x] Extrair seções para componentes nomeados:
+  - [x] `LoadingOverlay.tsx` (`#loading`)
+  - [x] `WhatsAppFloat.tsx`
+  - [x] `Navbar.tsx` (`#navbar`)
+  - [x] `HeroSection.tsx` (`#home`)
+  - [x] `CountdownSection.tsx` (`#cd-*`)
+  - [x] `SobreSection.tsx` (`#sobre`)
+  - [x] `NumbersSection.tsx` (`#numeros`)
+  - [x] `ProgramacaoSection.tsx` (`#programacao`)
+  - [x] `AreasSection.tsx` (`#areas`)
+  - [x] `MemoriasSection.tsx` (`#memorias`)
+  - [x] `TratoracoSection.tsx` (`#tratoraco`)
+  - [x] `PatrocinadoresSection.tsx` (`#patrocinadores`)
+  - [x] `ExpositoresSection.tsx` (`#expositores` + formulário)
+  - [x] `MapaSection.tsx` (`#mapa`)
+  - [x] `NoticiasSection.tsx` (`#noticias`)
+  - [x] `SiteFooter.tsx`
+  - [x] `MediaModal.tsx` (`.media-modal`)
+- [x] Prioridade de edição: TSX em `app/_components/`; `public/index.html` só para espelho estático — evitar divergência.
+- [x] Anchors `id=""` preservados.
+- [ ] Smoke test manual: nav, abas da programação, galeria/modal, scroll (após recarregar o dev server).
 
-**Critério de pronto:** `app/page.tsx` curto (~só imports + ordenação das seções); visual equivalente ao anterior.
+**Critério de pronto:** `HomeLanding.tsx` só importa e ordena seções; cada seção em arquivo dedicado em `home/`.
+
+**Status:** estrutura concluída; validar comportamento no browser (checkbox acima).
 
 ---
 
@@ -84,8 +87,8 @@ Use os checkboxes abaixo conforme for concluindo cada item.
 **Meta:** comportamentos hoje em `public/assets/js/modules/*.js` vivem em Client Components onde precisarem de estado/DOM.
 
 - [ ] Loading: substituir lógica de `loading.js` (ex.: estado + timeout ou classe no `layout`).
-- [ ] Navegação / hamburger: portar `navigation.js` (+ remover `onclick="toggleMenu()"` inline no JSX).
-- [ ] Programação: portar `program-tabs.js` (+ remover `onclick="showTab(...)"` nos botões).
+- [ ] Navegação / hamburger: portar `navigation.js` *(hoje: listener em `#hamburger` + `navigation.js`; sem `onclick` no JSX)*.
+- [ ] Programação: portar `program-tabs.js` *(hoje: delegação + `data-tab`; `window.showTab` ainda no módulo)*.
 - [ ] Countdown: portar `countdown.js` com cleanup do intervalo no unmount.
 - [ ] Reveal on scroll: portar ou substituir `reveal.js` (observer em `useEffect` ou biblioteca já alinhada ao projeto).
 - [ ] Galeria / modal: portar `memories.js`.

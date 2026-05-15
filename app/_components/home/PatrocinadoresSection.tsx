@@ -1,0 +1,34 @@
+export default function PatrocinadoresSection() {
+  return (
+    <section className="patrocinadores" id="patrocinadores">
+      <div className="container">
+        <div className="partners-hero reveal">
+          <div>
+            <div className="section-badge">Parceiros oficiais</div>
+            <h2 className="section-title">Marcas que fortalecem o maior evento agro da região</h2>
+          </div>
+          <a href="#expositores" className="btn-primary">
+            Ver cotas de patrocínio
+          </a>
+        </div>
+        <div className="sponsor-tier sponsor-tier-featured reveal">
+          <div className="sponsor-track">
+            <div className="sponsor-row sponsor-logo-row">
+              <div className="sponsor-logo-strip">
+                <img
+                  src="/assets/img/campoagro-patrocinadores.png"
+                  alt="Patrocinadores e apoiadores oficiais do CampoAgro"
+                  loading="lazy"
+                />
+              </div>
+              <div className="sponsor-logo-strip" aria-hidden="true">
+                <img src="/assets/img/campoagro-patrocinadores.png" alt="" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <p className="partners-cta reveal">Associe sua marca ao maior evento agro da região.</p>
+      </div>
+    </section>
+  );
+}
