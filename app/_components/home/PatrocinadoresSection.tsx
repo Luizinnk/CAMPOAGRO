@@ -14,27 +14,39 @@ export default function PatrocinadoresSection() {
           </a>
         </div>
         <div className="sponsor-tier sponsor-tier-featured reveal">
-          <div className="sponsor-track">
-            <div className="sponsor-row sponsor-logo-row">
-              <div className="sponsor-logo-strip">
-                <Image
-                  src="/img/campoagro-patrocinadores.png"
-                  alt="Patrocinadores e apoiadores oficiais do CampoAgro"
-                  width={1120}
-                  height={96}
-                  sizes="(max-width: 1200px) 92vw, 1120px"
-                  quality={80}
-                />
+          <div className="sponsor-track" aria-label="Patrocinadores em carrossel">
+            {/* Modelo tipo "slides" (como no exemplo Elementor): strip repetida + duplicata aria-hidden */}
+            <div className="sponsor-row sponsor-logo-row" data-cg-sponsor-row>
+              <div className="sponsor-slide" role="group" aria-roledescription="slide" aria-label="Patrocinadores" tabIndex={-1}>
+                <div className="sponsor-logo-strip">
+                  <Image
+                    src="/img/campoagro-patrocinadores.png"
+                    alt="Patrocinadores e apoiadores oficiais do CampoAgro"
+                    width={1120}
+                    height={96}
+                    sizes="(max-width: 1200px) 92vw, 1120px"
+                    quality={80}
+                  />
+                </div>
               </div>
-              <div className="sponsor-logo-strip" aria-hidden="true">
-                <Image
-                  src="/img/campoagro-patrocinadores.png"
-                  alt=""
-                  width={1120}
-                  height={96}
-                  sizes="(max-width: 1200px) 92vw, 1120px"
-                  quality={80}
-                />
+              <div
+                className="sponsor-slide"
+                role="group"
+                aria-roledescription="slide"
+                aria-label="Patrocinadores (duplicado)"
+                aria-hidden="true"
+                tabIndex={-1}
+              >
+                <div className="sponsor-logo-strip" aria-hidden="true">
+                  <Image
+                    src="/img/campoagro-patrocinadores.png"
+                    alt=""
+                    width={1120}
+                    height={96}
+                    sizes="(max-width: 1200px) 92vw, 1120px"
+                    quality={80}
+                  />
+                </div>
               </div>
             </div>
           </div>

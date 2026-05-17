@@ -2125,10 +2125,13 @@ button.btn-primary {
 .sponsor-tier-featured { border-radius: 28px; padding: 1rem; overflow: hidden; }
 .sponsor-track { overflow: hidden; border-radius: 22px; border: 1px solid rgba(212,166,58,.24); background: linear-gradient(90deg, rgba(4,4,4,.96), rgba(13,31,18,.82), rgba(4,4,4,.96)); }
 .sponsor-row { display: flex; width: max-content; animation: sponsorMove 26s linear infinite; }
+.sponsor-row:hover { animation-play-state: paused; }
+.sponsor-slide { flex: 0 0 auto; }
 .sponsor-logo-strip { min-width: 1040px; padding: clamp(1rem, 2vw, 1.5rem) clamp(1.2rem, 3vw, 2.2rem); }
 .sponsor-logo-strip img { width: min(92vw, 1120px); max-height: 98px; object-fit: contain; opacity: .78; filter: grayscale(1) drop-shadow(0 18px 34px rgba(0,0,0,.44)); transition: opacity .35s var(--cg-ease), filter .35s var(--cg-ease), transform .35s var(--cg-ease); }
 .sponsor-track:hover .sponsor-logo-strip img { opacity: 1; filter: grayscale(0) drop-shadow(0 18px 34px rgba(0,0,0,.44)); transform: translateY(-2px); }
 .partners-cta { margin: 1.5rem 0 0; color: var(--cg-muted); text-align: center; }
+
 
 .expositor-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
 .expo-benefits { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.6rem; }
