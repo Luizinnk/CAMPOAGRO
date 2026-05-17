@@ -5,6 +5,132 @@ import { useEffect, useState } from 'react';
 
 type TabId = 'prog-sexta' | 'prog-sabado' | 'prog-domingo';
 
+type ScheduleItem = {
+  time: string;
+  title: string;
+  badge: string;
+};
+
+const SCHEDULE: Record<TabId, ScheduleItem[]> = {
+  'prog-sexta': [
+    {
+      time: '18h',
+      title: 'Abertura do Evento e Confraternização dos expositores no pavilhão de Palestras',
+      badge: 'Oficial',
+    },
+    {
+      time: '19h',
+      title: 'Escolha da garota CAMPOAGRO 2026',
+      badge: 'Concurso',
+    },
+    {
+      time: '20h',
+      title: 'Coffee Break',
+      badge: 'Intervalo',
+    },
+    {
+      time: '21h',
+      title: 'Início das Apresentações no Palco de Show Principal',
+      badge: 'Palco',
+    },
+    {
+      time: '23h',
+      title: 'Show Nacional',
+      badge: 'Show',
+    },
+    {
+      time: '01h',
+      title: 'Fechamento do Parque de Eventos',
+      badge: 'Encerramento',
+    },
+  ],
+  'prog-sabado': [
+    {
+      time: '13h',
+      title: 'Abertura oficial da feira de agronegócios',
+      badge: 'Feira',
+    },
+    {
+      time: '14h',
+      title: 'Abertura do Playground para Crianças',
+      badge: 'Família',
+    },
+    {
+      time: '19h',
+      title: 'Sessão de fotos e autógrafos com João Nelore e Texano - Pavilhão Principal',
+      badge: 'Encontro',
+    },
+    {
+      time: '21h',
+      title: 'Encerramento da feira de agronegócios',
+      badge: 'Feira',
+    },
+    {
+      time: '21h30',
+      title: 'Início das Apresentações no Palco de Show Principal',
+      badge: 'Palco',
+    },
+    {
+      time: '23h30',
+      title: 'Show Nacional com João Nelore e Texano',
+      badge: 'Show confirmado',
+    },
+    {
+      time: '02h',
+      title: 'Fechamento do Parque de Eventos',
+      badge: 'Encerramento',
+    },
+  ],
+  'prog-domingo': [
+    {
+      time: '09h',
+      title: 'Abertura oficial da feira de agronegócios',
+      badge: 'Feira',
+    },
+    {
+      time: '09h30',
+      title: 'Tratoraço 2026 com a Benção dos equipamentos (Saída - Posto M7)',
+      badge: 'Tratoraço',
+    },
+    {
+      time: '12h',
+      title: 'Almoço Costela a Fogo de Chão',
+      badge: 'Gastronomia',
+    },
+    {
+      time: '14h',
+      title: 'Abertura do Playground para Crianças',
+      badge: 'Família',
+    },
+    {
+      time: '19h',
+      title: 'Encerramento da feira de agronegócios',
+      badge: 'Feira',
+    },
+    {
+      time: '20h',
+      title: 'Início das Apresentações no Palco de Show Principal',
+      badge: 'Palco',
+    },
+    {
+      time: '22h',
+      title: 'Show de Encerramento com Luan Pereira',
+      badge: 'Show confirmado',
+    },
+    {
+      time: '00h30',
+      title: 'Fechamento do Parque de Eventos',
+      badge: 'Encerramento',
+    },
+  ],
+};
+
+const TABS: { id: TabId; label: string }[] = [
+  { id: 'prog-sexta', label: 'Sexta · 17/07' },
+  { id: 'prog-sabado', label: 'Sábado · 18/07' },
+  { id: 'prog-domingo', label: 'Domingo · 19/07' },
+];
+
 export default function ProgramacaoSection() {
   const [active, setActive] = useState<TabId>('prog-sexta');
 
@@ -26,129 +152,33 @@ export default function ProgramacaoSection() {
           <p>Uma agenda clara para acompanhar feira, arena, experiências, Tratoraço e grandes atrações.</p>
         </div>
         <div className="prog-tabs reveal" role="tablist" aria-label="Dias da programação">
-          <button
-            type="button"
-            className={clsx('prog-tab', active === 'prog-sexta' && 'active')}
-            aria-selected={active === 'prog-sexta'}
-            onClick={() => setActive('prog-sexta')}
-          >
-            Sexta · 17/07
-          </button>
-          <button
-            type="button"
-            className={clsx('prog-tab', active === 'prog-sabado' && 'active')}
-            aria-selected={active === 'prog-sabado'}
-            onClick={() => setActive('prog-sabado')}
-          >
-            Sábado · 18/07
-          </button>
-          <button
-            type="button"
-            className={clsx('prog-tab', active === 'prog-domingo' && 'active')}
-            aria-selected={active === 'prog-domingo'}
-            onClick={() => setActive('prog-domingo')}
-          >
-            Domingo · 19/07
-          </button>
+          {TABS.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              className={clsx('prog-tab', active === tab.id && 'active')}
+              aria-selected={active === tab.id}
+              onClick={() => setActive(tab.id)}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
-        <div id="prog-sexta" className={clsx('prog-content', active === 'prog-sexta' && 'active')}>
-          <div className="timeline">
-            <article className="tl-item reveal">
-              <div className="tl-time">14h</div>
-              <div>
-                <h3 className="tl-title">Abertura da feira e visitação aos estandes</h3>
-                <p className="tl-desc">
-                  Expositores, máquinas, agricultura familiar, gastronomia e ativações de parceiros.
-                </p>
-              </div>
-              <span className="tl-badge">Feira</span>
-            </article>
-            <article className="tl-item reveal">
-              <div className="tl-time">19h</div>
-              <div>
-                <h3 className="tl-title">Cerimônia oficial CAMPOAGRO 2026</h3>
-                <p className="tl-desc">
-                  Abertura institucional com autoridades, patrocinadores e lideranças do agro regional.
-                </p>
-              </div>
-              <span className="tl-badge">Oficial</span>
-            </article>
-            <article className="tl-item reveal">
-              <div className="tl-time">22h</div>
-              <div>
-                <h3 className="tl-title">Palco principal · atração a confirmar</h3>
-                <p className="tl-desc">Novidades serão publicadas nos canais oficiais do evento.</p>
-              </div>
-              <span className="tl-badge">Show</span>
-            </article>
+        {TABS.map((tab) => (
+          <div key={tab.id} id={tab.id} className={clsx('prog-content', active === tab.id && 'active')}>
+            <div className="timeline">
+              {SCHEDULE[tab.id].map((item) => (
+                <article key={`${tab.id}-${item.time}-${item.title}`} className="tl-item reveal">
+                  <div className="tl-time">{item.time}</div>
+                  <div>
+                    <h3 className="tl-title">{item.title}</h3>
+                  </div>
+                  <span className="tl-badge">{item.badge}</span>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-        <div id="prog-sabado" className={clsx('prog-content', active === 'prog-sabado' && 'active')}>
-          <div className="timeline">
-            <article className="tl-item reveal">
-              <div className="tl-time">10h</div>
-              <div>
-                <h3 className="tl-title">Exposição agropecuária e feira de negócios</h3>
-                <p className="tl-desc">
-                  Demonstrações, networking, estandes comerciais e experiências para toda a família.
-                </p>
-              </div>
-              <span className="tl-badge">Negócios</span>
-            </article>
-            <article className="tl-item reveal">
-              <div className="tl-time">16h</div>
-              <div>
-                <h3 className="tl-title">Tratoraço CampoAgro</h3>
-                <p className="tl-desc">
-                  Desfile de tratores, produtores e famílias celebrando a identidade rural da região.
-                </p>
-              </div>
-              <span className="tl-badge">Tradição</span>
-            </article>
-            <article className="tl-item reveal">
-              <div className="tl-time">22h</div>
-              <div>
-                <h3 className="tl-title">João Nelore e Texano</h3>
-                <p className="tl-desc">Embaixadores do evento no palco principal.</p>
-              </div>
-              <span className="tl-badge">Show confirmado</span>
-            </article>
-          </div>
-        </div>
-        <div id="prog-domingo" className={clsx('prog-content', active === 'prog-domingo' && 'active')}>
-          <div className="timeline">
-            <article className="tl-item reveal">
-              <div className="tl-time">09h</div>
-              <div>
-                <h3 className="tl-title">Programação familiar e experiências do campo</h3>
-                <p className="tl-desc">
-                  Conteúdos, praça gastronômica, áreas temáticas e visitação aos expositores.
-                </p>
-              </div>
-              <span className="tl-badge">Família</span>
-            </article>
-            <article className="tl-item reveal">
-              <div className="tl-time">18h</div>
-              <div>
-                <h3 className="tl-title">Encerramento institucional</h3>
-                <p className="tl-desc">
-                  Celebração dos parceiros, expositores e produtores que fazem o CampoAgro acontecer.
-                </p>
-              </div>
-              <span className="tl-badge">Oficial</span>
-            </article>
-            <article className="tl-item reveal">
-              <div className="tl-time">21h</div>
-              <div>
-                <h3 className="tl-title">Luan Pereira</h3>
-                <p className="tl-desc">
-                  Show de encerramento com um dos grandes nomes do agronejo nacional.
-                </p>
-              </div>
-              <span className="tl-badge">Show confirmado</span>
-            </article>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );

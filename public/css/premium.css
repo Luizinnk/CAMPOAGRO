@@ -1128,7 +1128,7 @@ button.btn-primary {
   border-radius: var(--ca-radius-sm);
   background: rgba(255,255,255,0.055);
   border: 1px solid var(--ca-line);
-  box-shadow: var(--ca-shadow-soft);
+  box-shadow: none;
 }
 .count-num { color: var(--ca-gold); }
 .count-label { color: var(--ca-muted); }
@@ -1152,7 +1152,7 @@ button.btn-primary {
     linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.028)),
     radial-gradient(circle at 22% 0%, rgba(255,180,0,0.055), transparent 16rem);
   border: 1px solid var(--ca-line);
-  box-shadow: var(--ca-shadow-soft);
+  box-shadow: none;
 }
 .expo-card { min-height: 176px; padding: 1.35rem; }
 .expo-card strong { color: #fff; }
@@ -1263,7 +1263,7 @@ button.btn-primary {
   background: linear-gradient(135deg, var(--ca-gold), var(--ca-gold-soft));
   color: #061006;
 }
-.prog-content--bg { border-radius: 24px; box-shadow: var(--ca-shadow); }
+.prog-content--bg { border-radius: 24px; box-shadow: none; }
 
 .sponsor-tier-featured { border-radius: 24px; }
 .sponsor-track { border-radius: 18px; }
@@ -1360,7 +1360,7 @@ footer {
 .nav-brand img,
 .loading-logo,
 .footer-logo {
-  filter: drop-shadow(0 16px 38px rgba(0,0,0,0.42));
+  filter: none;
 }
 
 /* === CampoAgro banner2 correct asset refinements === */
@@ -1496,7 +1496,7 @@ nav.scrolled {
   border-bottom-color: rgba(246,179,25,0.24);
 }
 .nav-brand { width: clamp(148px, 12vw, 210px); min-height: auto; }
-.nav-brand img { filter: drop-shadow(0 12px 26px rgba(0,0,0,0.5)); }
+.nav-brand img { filter: none; }
 .nav-links { align-items: center; gap: clamp(0.8rem, 2vw, 1.7rem); }
 .nav-links a {
   position: relative;
@@ -1657,7 +1657,7 @@ button.btn-primary {
   border-radius: var(--cg-radius);
   background: linear-gradient(180deg, var(--cg-card), var(--cg-card-2)), radial-gradient(circle at 18% 0%, rgba(246,179,25,0.06), transparent 18rem);
   border: 1px solid var(--cg-line);
-  box-shadow: var(--cg-shadow);
+  box-shadow: none;
 }
 .expo-highlights { margin-top: -3.4rem; padding-bottom: clamp(4.5rem, 7vw, 6rem); }
 .expo-card { min-height: 178px; padding: 1.4rem; }
@@ -1730,7 +1730,7 @@ button.btn-primary {
 }
 .prog-tab { border-radius: 999px; border: 0; background: transparent; }
 .prog-tab.active { background: linear-gradient(135deg, var(--cg-gold), var(--cg-gold-2)); color: #061006; }
-.prog-content--bg { border-radius: 26px; box-shadow: var(--cg-shadow); }
+.prog-content--bg { border-radius: 26px; box-shadow: none; }
 .area-card { min-height: 230px; }
 
 .patrocinadores {
@@ -1873,7 +1873,7 @@ section:not(.hero):not(.countdown-section) { position: relative; padding-block: 
 
 #loading { background: radial-gradient(circle at 50% 0%, rgba(212,166,58,.18), transparent 26rem), #040404; }
 #loading p { font-size: .72rem; letter-spacing: .28em; color: rgba(245,245,245,.38); text-transform: uppercase; }
-.loading-logo { width: min(300px, 70vw); filter: drop-shadow(0 24px 60px rgba(0,0,0,.62)); }
+.loading-logo { width: min(300px, 70vw); filter: none; }
 .whatsapp-float {
   right: 24px;
   bottom: 24px;
@@ -1917,7 +1917,7 @@ nav.scrolled {
   box-shadow: 0 16px 54px rgba(0,0,0,.28);
 }
 .nav-brand { width: clamp(156px, 13vw, 226px); min-height: auto; display: block; }
-.nav-brand img { width: 100%; filter: drop-shadow(0 16px 35px rgba(0,0,0,.58)); }
+.nav-brand img { width: 100%; filter: none; }
 .nav-links { justify-content: flex-end; align-items: center; gap: clamp(.7rem, 1.5vw, 1.35rem); }
 .nav-links a {
   position: relative;
@@ -2039,7 +2039,7 @@ button.btn-primary {
 .expo-benefits span {
   border: 1px solid var(--cg-border);
   background: linear-gradient(180deg, rgba(245,245,245,.075), rgba(245,245,245,.032)), radial-gradient(circle at 18% 0%, rgba(212,166,58,.08), transparent 20rem);
-  box-shadow: var(--cg-shadow);
+  box-shadow: none;
   backdrop-filter: blur(16px);
 }
 .count-item { min-width: 0; padding: 1.15rem .75rem; border-radius: 18px; text-align: center; }
@@ -2165,7 +2165,7 @@ button.btn-primary {
 
 footer { padding: 4rem 0 1.5rem; border-top: 1px solid rgba(212,166,58,.16); background: radial-gradient(circle at 18% 0%, rgba(212,166,58,.1), transparent 24rem), #040404; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr .7fr .8fr .9fr; gap: 2rem; }
-.footer-logo { width: min(260px, 80vw); filter: drop-shadow(0 18px 44px rgba(0,0,0,.58)); }
+.footer-logo { width: min(260px, 80vw); filter: none; }
 .footer-brand p,
 footer p { color: var(--cg-muted); line-height: 1.75; }
 footer h3 { margin: 0 0 1rem; color: #fff; font-size: .85rem; letter-spacing: .16em; text-transform: uppercase; }
@@ -2258,4 +2258,27 @@ footer a:hover { color: var(--cg-gold-bright); }
   .zone-main { top: 11rem; }
   .zone-food { top: 21rem; }
   .zone-family { bottom: 1rem; }
+}
+
+/* Tiles/cards — sem drop shadow (borda + fundo glass) */
+.count-item,
+.stat-card,
+.area-card,
+.tl-item,
+.expo-card,
+.sponsor-tier,
+.noticia-destaque,
+.noticia-mini,
+.news-card,
+.memory-card,
+.tratoraco-stat,
+.memoria-stat,
+.prog-content--bg {
+  box-shadow: none;
+}
+
+.nav-brand img,
+.loading-logo,
+.footer-logo {
+  filter: none;
 }
