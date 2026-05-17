@@ -1,11 +1,11 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 export default function TratoracoSection() {
   const imgs = [
-    { src: '/img/tratoraco/tratoraco-01.png', alt: 'Tratoraço 1' },
-    { src: '/img/tratoraco/tratoraco-02.png', alt: 'Tratoraço 2' },
-    { src: '/img/tratoraco/tratoraco-03.png', alt: 'Tratoraço 3' },
-    { src: '/img/tratoraco/tratoraco-04.png', alt: 'Tratoraço 4' },
+    { src: "/img/tratoraco/tratoraco-01.png", alt: "Tratoraço 1" },
+    { src: "/img/tratoraco/tratoraco-02.png", alt: "Tratoraço 2" },
+    { src: "/img/tratoraco/tratoraco-03.png", alt: "Tratoraço 3" },
+    { src: "/img/tratoraco/tratoraco-04.png", alt: "Tratoraço 4" },
   ] as const;
 
   return (
@@ -15,12 +15,13 @@ export default function TratoracoSection() {
           <div className="section-badge">Tratoraço</div>
           <h2 className="section-title">A tradição rural toma a avenida</h2>
           <p>
-            O Tratoraço celebra produtores, famílias e máquinas que movem a economia do campo. Uma experiência visual
-            forte, popular e simbólica dentro do CampoAgro.
+            O Tratoraço celebra produtores, famílias e máquinas que movem a
+            economia do campo. Uma experiência visual forte, popular e simbólica
+            dentro do CampoAgro.
           </p>
           <div className="tratoraco-stats">
             <div className="tratoraco-stat">
-              <strong>+100</strong>
+              <strong>+250</strong>
               <span>tratores esperados</span>
             </div>
             <div className="tratoraco-stat">
