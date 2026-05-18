@@ -2,56 +2,49 @@ import Image from 'next/image';
 
 export default function PatrocinadoresSection() {
   return (
-    <section className="patrocinadores" id="patrocinadores">
+    <section className="patrocinadores premium-sponsors" id="patrocinadores">
       <div className="container">
         <div className="partners-hero reveal">
           <div>
             <div className="section-badge">Parceiros oficiais</div>
-            <h2 className="section-title">Marcas que fortalecem o maior evento agro da região</h2>
+            <h2 className="section-title">
+              Marcas que assinam a força do <span className="highlight">CampoAgro 2026</span>
+            </h2>
           </div>
-          <a href="#expositores" className="btn-primary">
-            Ver cotas de patrocínio
+          <a href="#contato" className="btn-primary">
+            Ver cotas premium
           </a>
         </div>
+
         <div className="sponsor-tier sponsor-tier-featured reveal">
-          <div className="sponsor-track" aria-label="Patrocinadores em carrossel">
-            {/* Modelo tipo "slides" (como no exemplo Elementor): strip repetida + duplicata aria-hidden */}
-            <div className="sponsor-row sponsor-logo-row" data-cg-sponsor-row>
-              <div className="sponsor-slide" role="group" aria-roledescription="slide" aria-label="Patrocinadores" tabIndex={-1}>
-                <div className="sponsor-logo-strip">
-                  <Image
-                    src="/img/campoagro-patrocinadores.png"
-                    alt="Patrocinadores e apoiadores oficiais do CampoAgro"
-                    width={1120}
-                    height={96}
-                    sizes="(max-width: 1200px) 92vw, 1120px"
-                    quality={80}
-                  />
+          <div className="sponsor-track" aria-label="Patrocinadores em movimento">
+            <div className="sponsor-row sponsor-logo-row">
+              {[0, 1].map((item) => (
+                <div
+                  className="sponsor-slide"
+                  role="group"
+                  aria-label={item === 0 ? 'Patrocinadores' : 'Patrocinadores duplicados'}
+                  aria-hidden={item === 1}
+                  key={item}
+                >
+                  <div className="sponsor-logo-strip">
+                    <Image
+                      src="/img/campoagro-patrocinadores.png"
+                      alt={item === 0 ? 'Patrocinadores e apoiadores oficiais do CampoAgro' : ''}
+                      width={1120}
+                      height={96}
+                      sizes="(max-width: 1200px) 92vw, 1120px"
+                      quality={86}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div
-                className="sponsor-slide"
-                role="group"
-                aria-roledescription="slide"
-                aria-label="Patrocinadores (duplicado)"
-                aria-hidden="true"
-                tabIndex={-1}
-              >
-                <div className="sponsor-logo-strip" aria-hidden="true">
-                  <Image
-                    src="/img/campoagro-patrocinadores.png"
-                    alt=""
-                    width={1120}
-                    height={96}
-                    sizes="(max-width: 1200px) 92vw, 1120px"
-                    quality={80}
-                  />
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
-        <p className="partners-cta reveal">Associe sua marca ao maior evento agro da região.</p>
+        <p className="partners-cta reveal">
+          Uma faixa limpa, institucional e de alto prestígio para marcas que querem aparecer sem poluição visual.
+        </p>
       </div>
     </section>
   );

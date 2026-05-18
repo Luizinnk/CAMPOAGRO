@@ -6,31 +6,25 @@ import { useEffect, useRef, useState } from 'react';
 
 const HASH_LINK_SECTION_IDS = [
   'sobre',
-  'programacao',
-  'areas',
-  'memorias',
-  'tratoraco',
-  'patrocinadores',
+  'atracoes',
+  'shows',
   'expositores',
+  'mapa',
+  'memorias',
+  'contato',
 ] as const;
 
-const SECTION_GAP_PX = 12;
-const SPY_TOLERANCE_PX = 16;
+const SECTION_GAP_PX = 14;
+const SPY_TOLERANCE_PX = 18;
 
-/** Linha abaixo do menu fixo (pill ou barra full-width). */
 function getNavScrollOffset(): number {
   const nav = document.getElementById('navbar');
-  if (!nav) return 96;
+  if (!nav) return 94;
   return Math.ceil(nav.getBoundingClientRect().bottom) + SECTION_GAP_PX;
 }
 
-/** Título visível da seção (ignora o padding superior do section). */
 function getSectionAnchor(section: HTMLElement): HTMLElement {
-  return (
-    section.querySelector<HTMLElement>(
-      '.section-head, .partners-hero, .editorial-copy, .tratoraco-copy, .section-badge'
-    ) ?? section
-  );
+  return section.querySelector<HTMLElement>('.section-head, .partners-hero, .editorial-copy, .contact-panel') ?? section;
 }
 
 function scrollToAnchorSection(section: HTMLElement, behavior: ScrollBehavior = 'smooth') {
@@ -71,22 +65,12 @@ export default function Navbar() {
     );
 
     const updateNavState = () => {
-      setScrolled(window.scrollY > 24);
+      setScrolled(window.scrollY > 18);
       if (pendingNavId.current) return;
       setActiveId(findActiveSection(sections));
     };
 
-    const hashId = decodeURIComponent(window.location.hash.slice(1));
-    if (isHashSectionId(hashId)) {
-      const dest = document.getElementById(hashId);
-      if (dest) {
-        setActiveId(hashId);
-        requestAnimationFrame(() => scrollToAnchorSection(dest, 'instant'));
-      }
-    } else {
-      updateNavState();
-    }
-
+    updateNavState();
     window.addEventListener('scroll', updateNavState, { passive: true });
     window.addEventListener('resize', updateNavState, { passive: true });
     return () => {
@@ -116,19 +100,11 @@ export default function Navbar() {
       scrollToAnchorSection(dest);
       setMenuOpen(false);
 
-      let navFinished = false;
-      const finishNav = () => {
-        if (navFinished) return;
-        navFinished = true;
+      window.setTimeout(() => {
         const targetId = pendingNavId.current;
         pendingNavId.current = null;
         if (targetId) setActiveId(targetId);
-      };
-
-      if ('onscrollend' in window) {
-        window.addEventListener('scrollend', finishNav, { once: true });
-      }
-      window.setTimeout(finishNav, 800);
+      }, 760);
 
       try {
         history.replaceState(null, '', href);
@@ -144,7 +120,7 @@ export default function Navbar() {
   return (
     <nav
       id="navbar"
-      className={clsx(scrolled && 'scrolled', menuOpen && 'menu-open')}
+      className={clsx('site-nav-premium header-reference', scrolled && 'scrolled', menuOpen && 'menu-open')}
       aria-label="Navegação principal"
     >
       <a href="#home" className="nav-brand" aria-label="CampoAgro 2026 - início">
@@ -153,52 +129,30 @@ export default function Navbar() {
           alt="CampoAgro Campo do Tenente"
           width={220}
           height={72}
-          sizes="140px"
-          quality={85}
+          sizes="180px"
+          quality={88}
+          priority
         />
       </a>
       <ul className="nav-links">
-        <li>
-          <a href="#sobre" className={activeId === 'sobre' ? 'active' : undefined}>
-            Evento
-          </a>
-        </li>
-        <li>
-          <a href="#programacao" className={activeId === 'programacao' ? 'active' : undefined}>
-            Programação
-          </a>
-        </li>
-        <li>
-          <a href="#areas" className={activeId === 'areas' ? 'active' : undefined}>
-            Áreas
-          </a>
-        </li>
-        <li>
-          <a href="#memorias" className={activeId === 'memorias' ? 'active' : undefined}>
-            Galeria
-          </a>
-        </li>
-        <li>
-          <a href="#tratoraco" className={activeId === 'tratoraco' ? 'active' : undefined}>
-            Tratoraço
-          </a>
-        </li>
-        <li>
-          <a href="#patrocinadores" className={activeId === 'patrocinadores' ? 'active' : undefined}>
-            Parceiros
-          </a>
-        </li>
-        <li>
-          <a href="#expositores" className={activeId === 'expositores' ? 'active' : undefined}>
-            Expositores
-          </a>
-        </li>
-        <li>
-          <a href="https://www.instagram.com/campoagrooficial/" className="nav-cta" target="_blank" rel="noopener">
-            Instagram
-          </a>
-        </li>
+        {[
+          ['sobre', 'O evento'],
+          ['atracoes', 'Atrações'],
+          ['expositores', 'Expositores'],
+          ['mapa', 'Mapa'],
+          ['memorias', 'Notícias'],
+          ['contato', 'Contato'],
+        ].map(([id, label]) => (
+          <li key={id}>
+            <a href={`#${id}`} className={activeId === id ? 'active' : undefined}>
+              {label}
+            </a>
+          </li>
+        ))}
       </ul>
+      <a href="#contato" className="nav-buy">
+        Comprar ingresso
+      </a>
       <button
         className="hamburger"
         id="hamburger"

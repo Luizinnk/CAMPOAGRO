@@ -1,4 +1,4 @@
-/* Verifica referências /img/ em app/ e .css em public/ */
+/* Verifica referencias /img/ em app/ e .css em public/. */
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { extname, join } from 'node:path';
 
@@ -20,11 +20,13 @@ function collectImgRefs(content) {
   let m;
   while ((m = abs.exec(content)) !== null) {
     const p = m[0].split('?')[0].split('#')[0];
+    if (p.includes('${')) continue;
     refs.add(p);
   }
   const rel = /\.\.\/img\/([^\s"'`)]+)/g;
   while ((m = rel.exec(content)) !== null) {
     const file = m[1].split('?')[0].split('#')[0];
+    if (file.includes('${')) continue;
     refs.add(`/img/${file}`);
   }
   return refs;
@@ -49,4 +51,4 @@ if (missing.length) {
   process.exit(1);
 }
 
-console.log(`check-images: OK (${allRefs.size} referências únicas).`);
+console.log(`check-images: OK (${allRefs.size} referencias unicas).`);

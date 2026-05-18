@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function SiteFooter() {
   return (
-    <footer>
+    <footer className="premium-footer">
       <div className="container footer-grid">
         <div className="footer-brand">
           <Image
@@ -11,22 +11,23 @@ export default function SiteFooter() {
             alt="CampoAgro Campo do Tenente"
             width={220}
             height={72}
-            sizes="160px"
-            quality={85}
+            sizes="180px"
+            quality={88}
           />
-          <p>Evento oficial do agro, inovação rural e entretenimento em Campo do Tenente, Paraná.</p>
+          <p>Evento oficial do agro, inovação rural, negócios e entretenimento em Campo do Tenente, Paraná.</p>
         </div>
         <div>
-          <h3>Evento</h3>
+          <h3>Experiência</h3>
           <a href="#sobre">Sobre</a>
-          <a href="#programacao">Programação</a>
+          <a href="#atracoes">Atrações</a>
+          <a href="#shows">Shows</a>
           <a href="#areas">Áreas</a>
-          <a href="#mapa">Mapa</a>
         </div>
         <div>
           <h3>Participe</h3>
-          <a href="#patrocinadores">Patrocinadores</a>
           <a href="#expositores">Expositores</a>
+          <a href="#patrocinadores">Patrocinadores</a>
+          <a href="#contato">Contato</a>
           <a href="https://www.instagram.com/campoagrooficial/" target="_blank" rel="noopener">
             Instagram oficial
           </a>
@@ -36,7 +37,7 @@ export default function SiteFooter() {
           <p>
             17 a 19 de julho de 2026
             <br />
-            Campo do Tenente · PR
+            Campo do Tenente - PR
           </p>
         </div>
       </div>

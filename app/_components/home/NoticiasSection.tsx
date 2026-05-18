@@ -12,7 +12,7 @@ export default function NoticiasSection() {
           <article className="news-card news-card-featured reveal news-card-featured--optimized">
             <div className="news-card-featured__media" aria-hidden>
               <Image
-                src="/img/valtrabanner.png"
+                src="/img/banner15.png"
                 alt=""
                 fill
                 sizes="(max-width: 960px) 100vw, min(560px, 50vw)"

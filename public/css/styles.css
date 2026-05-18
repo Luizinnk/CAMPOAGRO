@@ -160,7 +160,7 @@ nav.scrolled {
   height: min(78vh, 44rem);
   z-index: 1;
   pointer-events: none;
-  background: url('../img/valtrabanner.png') center center / cover no-repeat;
+  background: url('../img/banner15.png') center center / cover no-repeat;
   border-radius: 4px;
 }
 .hero-content-backdrop::after {

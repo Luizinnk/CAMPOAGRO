@@ -1,45 +1,62 @@
-import Image from 'next/image';
+const STATS = [
+  ['+20 mil', 'visitantes esperados'],
+  ['+100', 'expositores e marcas'],
+  ['3 dias', 'de programação oficial'],
+  ['+10', 'experiências e ativações'],
+];
+
+const PILLARS = [
+  {
+    title: 'Negócios do agro',
+    text: 'Ambiente para marcas, produtores e lideranças criarem conexões comerciais reais.',
+  },
+  {
+    title: 'Tecnologia rural',
+    text: 'Máquinas, soluções, inovação aplicada e vitrines para o futuro do campo.',
+  },
+  {
+    title: 'Experiência familiar',
+    text: 'Gastronomia, shows, arena, agricultura familiar e espaços de convivência.',
+  },
+];
 
 export default function SobreSection() {
   return (
-    <section className="sobre editorial-section" id="sobre">
-      <div className="container editorial-grid">
+    <section className="sobre premium-about" id="sobre">
+      <div className="container premium-about-grid">
         <div className="editorial-copy reveal">
           <div className="section-badge">Sobre o evento</div>
           <h2 className="section-title">
-            Uma vitrine premium para a força do <span className="highlight">agro brasileiro</span>
+            Uma vitrine nacional para a força do <span className="highlight">agro brasileiro</span>
           </h2>
           <p>
-            O CampoAgro 2026 conecta produtores, empresas, famílias, tecnologia, cultura rural e entretenimento em
-            uma experiência de alto impacto para Campo do Tenente e toda a região.
+            O CampoAgro 2026 posiciona Campo do Tenente no mapa dos grandes encontros agropecuários,
+            unindo negócios, inovação, tradição rural e entretenimento em uma jornada premium.
           </p>
           <p>
-            A proposta é unir feira de negócios, exposição agropecuária, máquinas, agricultura familiar, gastronomia,
-            conteúdo técnico e shows em um fluxo organizado, elegante e fácil de navegar.
+            Cada seção do site foi reorganizada para vender a escala do evento: do primeiro impacto
+            cinematográfico à jornada de expositores, patrocinadores, shows, mapa e galeria.
           </p>
-          <div className="editorial-tags" aria-label="Pilares do evento">
-            <span>Negócios</span>
-            <span>Tecnologia</span>
-            <span>Agricultura familiar</span>
-            <span>Máquinas</span>
-            <span>Shows</span>
-            <span>Gastronomia</span>
-          </div>
         </div>
-        <div className="editorial-visual reveal">
-          <Image
-            src="/img/valtrabanner.png"
-            alt="Família plantando uma muda no campo ao pôr do sol"
-            fill
-            sizes="(max-width: 900px) 100vw, 55vw"
-            quality={82}
-            className="object-cover"
-          />
-          <div className="visual-caption">
-            <span>Campo do Tenente</span>
-            <strong>Tradição rural com visão de futuro</strong>
-          </div>
+
+        <div className="about-stat-stack reveal" aria-label="Números do evento">
+          {STATS.map(([value, label]) => (
+            <article className="about-stat" key={label}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </article>
+          ))}
         </div>
+      </div>
+
+      <div className="container about-pillars reveal">
+        {PILLARS.map((pillar, index) => (
+          <article className="about-pillar" key={pillar.title}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{pillar.title}</h3>
+            <p>{pillar.text}</p>
+          </article>
+        ))}
       </div>
     </section>
   );

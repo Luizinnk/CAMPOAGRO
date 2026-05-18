@@ -1977,7 +1977,7 @@ nav.scrolled {
     linear-gradient(90deg, rgba(4,4,4,.84) 0%, rgba(7,17,10,.62) 31%, rgba(7,17,10,.16) 58%, rgba(4,4,4,.12) 100%),
     linear-gradient(180deg, rgba(4,4,4,.14) 0%, rgba(4,4,4,.04) 46%, rgba(4,4,4,.86) 100%),
     radial-gradient(circle at 12% 42%, rgba(212,166,58,.22), transparent 28rem),
-    url('../img/valtrabanner.png') center center / cover no-repeat;
+    url('../img/banner15.png') center center / cover no-repeat;
 }
 .hero-grid { position: absolute; inset: 0; z-index: -3; opacity: .24; background-image: linear-gradient(rgba(212,166,58,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,166,58,.08) 1px, transparent 1px); background-size: 90px 90px; mask-image: linear-gradient(180deg, transparent, #000 16%, #000 72%, transparent); }
 .hero-particles { position: absolute; inset: 0; z-index: -2; pointer-events: none; }
@@ -2197,7 +2197,7 @@ button.btn-primary {
 
 .news-grid { display: grid; grid-template-columns: 1.3fr .85fr .85fr; gap: 1rem; align-items: stretch; }
 .news-card { border-radius: 24px; padding: 1.35rem; min-height: 260px; display: flex; flex-direction: column; justify-content: flex-end; transition: transform .34s var(--cg-ease), border-color .34s var(--cg-ease); }
-.news-card-featured { min-height: 340px; background: linear-gradient(180deg, rgba(4,4,4,.18), rgba(4,4,4,.86)), url('../img/valtrabanner.png') center / cover no-repeat; }
+.news-card-featured { min-height: 340px; background: linear-gradient(180deg, rgba(4,4,4,.18), rgba(4,4,4,.86)), url('../img/banner15.png') center / cover no-repeat; }
 .news-card span { color: var(--cg-gold-bright); font-size: .72rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
 .news-card h3 { margin: .7rem 0; color: #fff; font-size: clamp(1.2rem, 2vw, 2rem); line-height: 1.1; }
 .news-card p { color: var(--cg-muted); line-height: 1.7; }

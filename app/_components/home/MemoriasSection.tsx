@@ -13,32 +13,36 @@ type MediaOpen = {
 };
 
 const CARDS: Array<{
-  variant: 'tall' | 'wide' | '';
+  variant: 'hero' | 'portrait' | 'spotlight' | 'wide' | 'compact';
   src: string;
   title: string;
   category: string;
   caption: string;
+  detail: string;
 }> = [
   {
-    variant: 'tall',
-    src: '/img/valtrabanner.png',
+    variant: 'hero',
+    src: '/img/banner15.png',
     title: 'Semente do futuro',
-    category: 'CAMPOAGRO 2026',
-    caption: 'Semente do futuro',
+    category: 'CampoAgro 2026',
+    caption: 'Família, terra e futuro',
+    detail: 'Imagem principal da edição, com a essência do evento.',
   },
   {
-    variant: '',
+    variant: 'portrait',
     src: '/img/joao-nelore-texano.jpg',
     title: 'João Nelore e Texano',
     category: 'Shows',
-    caption: 'Shows nacionais',
+    caption: 'Encontro com o público',
+    detail: 'Atração voltada para energia de palco e entretenimento.',
   },
   {
-    variant: '',
+    variant: 'spotlight',
     src: '/img/luan-pereira-tvz-2024.png',
     title: 'Luan Pereira',
     category: 'Palco CampoAgro',
     caption: 'Arena principal',
+    detail: 'Um card de destaque para show nacional e chamada visual.',
   },
   {
     variant: 'wide',
@@ -46,6 +50,15 @@ const CARDS: Array<{
     title: 'Tratoraço',
     category: 'Tradição rural',
     caption: 'Tradição em movimento',
+    detail: 'Máquinas, produtores e identidade rural na avenida.',
+  },
+  {
+    variant: 'compact',
+    src: '/img/banner2.png',
+    title: 'Feira e negócios',
+    category: 'Experiência',
+    caption: 'Conexões do agro',
+    detail: 'Espaço para marcas, produtores e oportunidades.',
   },
 ];
 
@@ -113,23 +126,20 @@ export default function MemoriasSection() {
     <>
       <section className="memorias-section" id="memorias">
         <div className="container">
-          <div className="section-head reveal">
-            <div className="section-badge">Galeria e memórias</div>
-            <h2 className="section-title">
-              Momentos que contam a história do <span className="highlight">CampoAgro</span>
-            </h2>
+          <div className="section-head memorias-head reveal">
+            <div>
+              <div className="section-badge">Galeria e memórias</div>
+              <h2 className="section-title">
+                Momentos que contam a história do <span className="highlight">CampoAgro</span>
+              </h2>
+            </div>
           </div>
-          <div className="masonry-gallery">
+          <div className="masonry-gallery memory-gallery-v2">
             {CARDS.map((c) => (
               <button
                 key={c.src}
                 type="button"
-                className={clsx(
-                  'memory-card',
-                  'reveal',
-                  c.variant === 'tall' && 'tall',
-                  c.variant === 'wide' && 'wide'
-                )}
+                className={clsx('memory-card', 'reveal', `memory-card--${c.variant}`)}
                 data-media-type="image"
                 data-src={c.src}
                 data-title={c.title}
@@ -140,11 +150,15 @@ export default function MemoriasSection() {
                   src={c.src}
                   alt={c.title}
                   fill
-                  sizes="(max-width: 768px) 50vw, 22vw"
-                  quality={78}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  quality={82}
                   className="object-cover"
                 />
-                <span>{c.caption}</span>
+                <span className="memory-category">{c.category}</span>
+                <span className="memory-content">
+                  <strong>{c.caption}</strong>
+                  <small>{c.detail}</small>
+                </span>
               </button>
             ))}
           </div>
