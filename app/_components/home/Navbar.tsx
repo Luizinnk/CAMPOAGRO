@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import { Instagram } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
@@ -152,12 +153,16 @@ export default function Navbar() {
       </ul>
       <a
         href="https://www.instagram.com/campoagrooficial/"
-        className="nav-buy"
+        className="nav-buy nav-instagram"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram oficial CampoAgro (abre em nova aba)"
       >
-        Instagram
+        <Instagram className="nav-instagram-icon" aria-hidden />
+        <span className="nav-instagram-sep" aria-hidden>
+          |
+        </span>
+        <span>Instagram</span>
       </a>
       <button
         className="hamburger"
