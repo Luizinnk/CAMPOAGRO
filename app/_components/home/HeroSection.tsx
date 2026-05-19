@@ -4,7 +4,11 @@ import HeroParticles from "./HeroParticles";
 
 export default function HeroSection() {
   return (
-    <section className="hero hero-v5 hero-campaign hero-reference" id="home" aria-label="CampoAgro 2026">
+    <section
+      className="hero hero-v5 hero-campaign hero-reference"
+      id="home"
+      aria-label="CampoAgro 2026"
+    >
       <div className="hero-bg-photo" aria-hidden>
         <Image
           src="/img/banner15.png"
@@ -25,16 +29,21 @@ export default function HeroSection() {
 
       <div className="hero-layout">
         <div className="hero-content reveal">
-          <div className="hero-badge">17 a 19 de julho de 2026 - Campo do Tenente - PR</div>
+          <div className="hero-badge">
+            17 a 19 de julho de 2026 - Campo do Tenente - PR
+          </div>
           <h1 className="hero-title hero-title-stacked">
             <span className="year">3ª edição</span>
             <span>CAMPO</span>
             <span className="gold">AGRO</span>
             <span>2026</span>
           </h1>
-          <p className="hero-tagline">Plantando na terra, a semente do futuro.</p>
+          <p className="hero-tagline">
+            Plantando na terra a semente do futuro.
+          </p>
           <p className="hero-sub">
-            O maior encontro do agronegócio, inovação rural e entretenimento da região.
+            O maior encontro do agronegócio, inovação rural e entretenimento da
+            região.
           </p>
           <div className="hero-meta" aria-label="Destaques do evento">
             <span>Feira agro</span>
@@ -50,7 +59,6 @@ export default function HeroSection() {
             </a>
           </div>
         </div>
-
       </div>
 
       <div className="hero-scroll" aria-hidden="true">
