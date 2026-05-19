@@ -42,11 +42,11 @@ export default function HeroSection() {
             <span>Tratoraço</span>
           </div>
           <div className="hero-buttons">
-            <a href="#atracoes" className="btn-primary">
-              Ver programação
-            </a>
-            <a href="?interesse=ingresso#expositores" className="btn-outline">
+            <a href="?interesse=ingresso#expositores" className="btn-primary">
               Comprar ingresso
+            </a>
+            <a href="#atracoes" className="btn-outline">
+              Ver programação
             </a>
           </div>
         </div>

@@ -11,6 +11,7 @@
   --ca-gold: #d4a63a;
   --ca-gold-bright: #ffdc84;
   --ca-green: #102315;
+  --ca-green-bright: #38d000;
   --ca-text: #f7f2e8;
   --ca-muted: rgba(247, 242, 232, .68);
   --ca-radius: 22px;
@@ -636,7 +637,8 @@ button.btn-primary {
 }
 
 .hero-reference .hero-title-stacked .gold {
-  color: #ffd451 !important;
+  color: var(--ca-green-bright) !important;
+  text-shadow: 0 0 42px rgba(56, 208, 0, 0.35);
 }
 
 .hero-reference .hero-tagline {
