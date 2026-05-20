@@ -141,7 +141,7 @@ export default function Navbar() {
           ['atracoes', 'Atrações'],
           ['expositores', 'Expositores'],
           ['mapa', 'Mapa'],
-          ['memorias', 'Notícias'],
+          ['memorias', 'Memória'],
           ['contato', 'Contato'],
         ].map(([id, label]) => (
           <li key={id}>

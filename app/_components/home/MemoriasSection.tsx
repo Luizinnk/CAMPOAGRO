@@ -2,170 +2,135 @@
 
 import clsx from 'clsx';
 import Image from 'next/image';
-import { useCallback, useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { useState } from 'react';
 
-type MediaOpen = {
-  src: string;
-  title: string;
-  category: string;
-  type: 'image' | 'video';
-};
+import InfoModal, { type InfoModalContent } from './InfoModal';
+import SectionHeader from './SectionHeader';
 
 const CARDS: Array<{
-  variant: 'hero' | 'portrait' | 'spotlight' | 'wide' | 'compact';
+  variant: 'featured' | 'small';
   src: string;
   title: string;
   category: string;
-  caption: string;
-  detail: string;
+  summary: string;
+  details: InfoModalContent;
 }> = [
   {
-    variant: 'hero',
-    src: '/img/banner15.png',
-    title: 'Semente do futuro',
-    category: 'CampoAgro 2026',
-    caption: 'Família, terra e futuro',
-    detail: 'Imagem principal da edição, com a essência do evento.',
+    variant: 'featured',
+    src: '/img/memorias/campoagro-2023-palestras.jpg',
+    title: 'O início da história',
+    category: '1ª edição • 2023',
+    summary: 'Palestras, produtores e empresas deram origem ao CampoAgro.',
+    details: {
+      eyebrow: '1ª Festa CampoAgro',
+      title: 'O início da história',
+      description:
+        'A primeira edição da CampoAgro reuniu palestras técnicas, especialistas, produtores rurais e empresas para fortalecer o conhecimento e a conexão do agro em Campo do Tenente.',
+      bullets: ['Palestras técnicas', 'Participação de produtores', 'Apoio de empresas do setor'],
+    },
   },
   {
-    variant: 'portrait',
-    src: '/img/joao-nelore-texano.jpg',
-    title: 'João Nelore e Texano',
-    category: 'Shows',
-    caption: 'Encontro com o público',
-    detail: 'Atração voltada para energia de palco e entretenimento.',
-  },
-  {
-    variant: 'spotlight',
-    src: '/img/luan-pereira-tvz-2024.png',
-    title: 'Luan Pereira',
-    category: 'Palco CampoAgro',
-    caption: 'Arena principal',
-    detail: 'Um card de destaque para show nacional e chamada visual.',
-  },
-  {
-    variant: 'wide',
-    src: '/img/tratoraco/tratoraco-01.png',
-    title: 'Tratoraço',
+    variant: 'small',
+    src: '/img/memorias/campoagro-2023-tratoraco-01.jpg',
+    title: '1º Tratoraço',
     category: 'Tradição rural',
-    caption: 'Tradição em movimento',
-    detail: 'Máquinas, produtores e identidade rural na avenida.',
+    summary: 'Máquinas e produtores na avenida.',
+    details: {
+      eyebrow: 'Tratoraço',
+      title: '1º Tratoraço',
+      description:
+        'O primeiro Tratoraço marcou a identidade rural do evento, levando a força do produtor e das máquinas agrícolas para a programação da cidade.',
+      bullets: ['Desfile de tratores', 'Valorização do produtor rural', 'Celebração da tradição agrícola'],
+    },
   },
   {
-    variant: 'compact',
-    src: '/img/banner2.png',
-    title: 'Feira e negócios',
-    category: 'Experiência',
-    caption: 'Conexões do agro',
-    detail: 'Espaço para marcas, produtores e oportunidades.',
+    variant: 'small',
+    src: '/img/memorias/campoagro-2023-tratoraco-02.jpg',
+    title: 'Campo em movimento',
+    category: '1ª edição',
+    summary: 'Registros da tradição que virou marca.',
+    details: {
+      eyebrow: 'Memória rural',
+      title: 'Campo em movimento',
+      description:
+        'Os registros da primeira edição mostram a força comunitária que ajudou a transformar o CampoAgro em um evento de identidade própria.',
+      bullets: ['Comunidade presente', 'Máquinas agrícolas', 'Orgulho rural'],
+    },
+  },
+  {
+    variant: 'small',
+    src: '/img/memorias/campoagro-2025-banner.jpeg',
+    title: '2ª edição ampliada',
+    category: 'CampoAgro',
+    summary: 'Feira, empresas, shows e programação regional.',
+    details: {
+      eyebrow: '2ª edição',
+      title: '2ª edição ampliada',
+      description:
+        'A segunda edição ampliou a estrutura do evento, reunindo empresas, expositores, shows nacionais e programação para diferentes públicos.',
+      bullets: ['Mais de 50 empresas', 'Shows nacionais', 'Tratoraço e feira de negócios'],
+    },
+  },
+  {
+    variant: 'small',
+    src: '/img/memorias/campoagro-2025-evento.jfif',
+    title: 'Stands e conexões',
+    category: 'Negócios',
+    summary: 'Marcas e visitantes em relacionamento direto.',
+    details: {
+      eyebrow: 'Feira de negócios',
+      title: 'Stands e conexões',
+      description:
+        'A área de expositores fortaleceu o relacionamento entre marcas, produtores e visitantes, ampliando as oportunidades comerciais do evento.',
+      bullets: ['Visibilidade para marcas', 'Contato com público qualificado', 'Ambiente de relacionamento'],
+    },
   },
 ];
 
 export default function MemoriasSection() {
-  const [open, setOpen] = useState<MediaOpen | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
-
-  const close = useCallback(() => setOpen(null), []);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close();
-    };
-    document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
-  }, [open, close]);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [open]);
-
-  const modal = (
-    <div
-      className={clsx('media-modal', open && 'open')}
-      data-media-modal
-      aria-hidden={!open}
-      onClick={(e) => {
-        if (e.target === e.currentTarget) close();
-      }}
-    >
-      <div className="media-modal-panel" role="dialog" aria-modal="true" aria-label="Visualização de mídia">
-        <button type="button" className="media-modal-close" data-media-close aria-label="Fechar" onClick={close}>
-          ×
-        </button>
-        <div className="media-modal-content" data-media-content>
-          {open &&
-            (open.type === 'video' ? (
-              <video src={open.src} controls autoPlay playsInline />
-            ) : (
-              <Image
-                src={open.src}
-                alt={open.title || 'Memória do CampoAgro'}
-                width={1600}
-                height={1067}
-                sizes="95vw"
-                quality={85}
-              />
-            ))}
-        </div>
-        <div className="media-modal-meta">
-          <span data-media-category>{open?.category ?? ''}</span>
-          <strong data-media-title>{open?.title ?? ''}</strong>
-        </div>
-      </div>
-    </div>
-  );
+  const [open, setOpen] = useState<InfoModalContent | null>(null);
 
   return (
-    <>
-      <section className="memorias-section" id="memorias">
-        <div className="container">
-          <div className="section-head memorias-head reveal">
-            <div>
-              <div className="section-badge">Galeria e memórias</div>
-              <h2 className="section-title">
-                Momentos que contam a história do <span className="highlight">CampoAgro</span>
-              </h2>
-            </div>
-          </div>
-          <div className="masonry-gallery memory-gallery-v2">
-            {CARDS.map((c) => (
-              <button
-                key={c.src}
-                type="button"
-                className={clsx('memory-card', 'reveal', `memory-card--${c.variant}`)}
-                data-media-type="image"
-                data-src={c.src}
-                data-title={c.title}
-                data-category={c.category}
-                onClick={() => setOpen({ src: c.src, title: c.title, category: c.category, type: 'image' })}
-              >
-                <Image
-                  src={c.src}
-                  alt={c.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  quality={82}
-                  className="object-cover"
-                />
-                <span className="memory-category">{c.category}</span>
-                <span className="memory-content">
-                  <strong>{c.caption}</strong>
-                  <small>{c.detail}</small>
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
+    <section className="memorias-section" id="memorias">
+      <div className="container">
+        <SectionHeader
+          badge="Memória CampoAgro"
+          className="memorias-head"
+          title={
+            <>
+              A trajetória que prepara a <span className="highlight">3ª edição</span>
+            </>
+          }
+          description="Registros oficiais da primeira edição, do Tratoraço e da expansão do evento, mostrando como o CampoAgro cresceu com produtores, empresas, cidade e público."
+        />
 
-      {mounted ? createPortal(modal, document.body) : null}
-    </>
+        <div className="memory-editorial-grid">
+          {CARDS.map((card) => (
+            <article
+              className={clsx('editorial-card', 'reveal', card.variant === 'featured' && 'editorial-card--featured')}
+              key={card.src}
+            >
+              <Image
+                src={card.src}
+                alt={card.title}
+                fill
+                sizes={card.variant === 'featured' ? '(max-width: 900px) 100vw, 54vw' : '(max-width: 900px) 100vw, 23vw'}
+                quality={84}
+                className="object-cover"
+              />
+              <span className="editorial-category">{card.category}</span>
+              <div className="editorial-card-footer">
+                <strong>{card.title}</strong>
+                <p>{card.summary}</p>
+                <button type="button" onClick={() => setOpen(card.details)}>
+                  Ler mais
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+      <InfoModal content={open} onClose={() => setOpen(null)} />
+    </section>
   );
 }

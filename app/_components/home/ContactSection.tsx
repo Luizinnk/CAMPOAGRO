@@ -8,8 +8,8 @@ export default function ContactSection() {
             Participe do <span className="highlight">CampoAgro 2026</span>
           </h2>
           <p>
-            Para expositores, patrocinadores, imprensa e informações comerciais, fale com a organização e acompanhe
-            os comunicados oficiais.
+            Participe como expositor, patrocinador, parceiro ou visitante. Fale com a organização e acompanhe os
+            comunicados oficiais do evento.
           </p>
           <div className="contact-actions">
             <a href="https://www.instagram.com/campoagrooficial/" className="btn-primary" target="_blank" rel="noopener">

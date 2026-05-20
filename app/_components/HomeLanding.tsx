@@ -30,11 +30,11 @@ export default function HomeLanding() {
         <SobreSection />
         <NumbersSection />
         <AttractionsSection />
+        <AreasSection />
         <ShowsSection />
         <ProgramacaoSection />
         <TratoracoSection />
         <ExpositoresSection />
-        <AreasSection />
         <PatrocinadoresSection />
         <MapaSection />
         <MemoriasSection />

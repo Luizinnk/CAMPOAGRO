@@ -2366,3 +2366,1105 @@ button.btn-primary {
     object-position: 61% center !important;
   }
 }
+
+/* Logo color system reformulation
+   Final theme pass aligned to the CampoAgro mark: corn gold, vivid leaf green,
+   deep black and clean white. Loaded last to normalize older premium layers. */
+:root {
+  --ca-bg: #020401;
+  --ca-bg-soft: #071006;
+  --ca-card: rgba(36, 209, 0, .07);
+  --ca-card-strong: rgba(255, 184, 0, .085);
+  --ca-line: rgba(255, 184, 0, .24);
+  --ca-line-soft: rgba(52, 210, 0, .18);
+  --ca-gold: #ffb800;
+  --ca-gold-bright: #ffd13f;
+  --ca-green: #144d08;
+  --ca-green-bright: #31d000;
+  --ca-green-soft: #72e000;
+  --ca-text: #f7f7f2;
+  --ca-muted: rgba(247, 247, 242, .72);
+  --ca-logo-glow: rgba(49, 208, 0, .18);
+  --ca-gold-glow: rgba(255, 184, 0, .18);
+}
+
+body {
+  color: var(--ca-text);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(49, 208, 0, .09), transparent 30rem),
+    radial-gradient(circle at 88% 8%, rgba(255, 184, 0, .085), transparent 28rem),
+    linear-gradient(180deg, #020401 0%, #061006 48%, #020401 100%) !important;
+}
+
+body::before {
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 184, 0, .055), transparent 32rem),
+    radial-gradient(circle at 10% 46%, rgba(49, 208, 0, .05), transparent 28rem) !important;
+  background-image:
+    radial-gradient(circle at 50% 10%, rgba(255, 184, 0, .055), transparent 32rem),
+    radial-gradient(circle at 10% 46%, rgba(49, 208, 0, .05), transparent 28rem) !important;
+}
+
+.highlight,
+.gold,
+.hero-reference .hero-title-stacked .gold,
+.premium-about .section-title .highlight,
+.premium-sponsors .section-title .highlight,
+.areas-upgrade .section-title .highlight,
+.memorias-section .section-title .highlight {
+  color: transparent !important;
+  background: linear-gradient(135deg, #fff2b1 0%, var(--ca-gold-bright) 28%, var(--ca-gold) 52%, var(--ca-green-bright) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  text-shadow: 0 0 34px rgba(255, 184, 0, .18), 0 0 42px rgba(49, 208, 0, .08) !important;
+}
+
+.section-badge,
+.hero-badge,
+.hero-reference .hero-badge,
+.premium-countdown .countdown-date,
+.areas-upgrade .area-tag,
+.memorias-section .memory-category {
+  border-color: rgba(255, 184, 0, .38) !important;
+  color: var(--ca-gold-bright) !important;
+  background:
+    linear-gradient(135deg, rgba(49, 208, 0, .1), rgba(255, 184, 0, .07)),
+    rgba(2, 4, 1, .54) !important;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, .26), 0 0 24px rgba(49, 208, 0, .06) !important;
+}
+
+.btn-primary,
+button.btn-primary,
+.hero-reference .btn-primary {
+  color: #041001 !important;
+  border: 1px solid rgba(255, 209, 63, .62) !important;
+  background:
+    linear-gradient(135deg, #ffe06a 0%, var(--ca-gold) 52%, #ff9f00 100%) !important;
+  box-shadow: 0 18px 48px rgba(255, 184, 0, .18), 0 0 30px rgba(49, 208, 0, .08) !important;
+}
+
+.btn-primary:hover,
+button.btn-primary:hover,
+.hero-reference .btn-primary:hover {
+  box-shadow: 0 24px 68px rgba(255, 184, 0, .26), 0 0 42px rgba(49, 208, 0, .13) !important;
+}
+
+.btn-outline,
+.hero-reference .btn-outline {
+  color: var(--ca-text) !important;
+  border-color: rgba(49, 208, 0, .36) !important;
+  background:
+    linear-gradient(135deg, rgba(49, 208, 0, .11), rgba(255, 184, 0, .045)),
+    rgba(2, 4, 1, .42) !important;
+}
+
+.btn-outline:hover,
+.hero-reference .btn-outline:hover {
+  border-color: rgba(255, 184, 0, .5) !important;
+  background:
+    linear-gradient(135deg, rgba(49, 208, 0, .16), rgba(255, 184, 0, .09)),
+    rgba(2, 4, 1, .6) !important;
+}
+
+.site-nav-premium,
+.header-reference.site-nav-premium {
+  border-bottom-color: rgba(49, 208, 0, .22) !important;
+  background:
+    linear-gradient(180deg, rgba(2, 4, 1, .82), rgba(2, 4, 1, .34)) !important;
+}
+
+.site-nav-premium.scrolled,
+.header-reference.site-nav-premium.scrolled {
+  border-bottom-color: rgba(255, 184, 0, .22) !important;
+  background:
+    linear-gradient(180deg, rgba(2, 4, 1, .94), rgba(5, 18, 3, .86)) !important;
+}
+
+.site-nav-premium .nav-links a.active,
+.site-nav-premium .nav-links a:hover {
+  color: var(--ca-green-soft) !important;
+}
+
+.hero-reference .hero-bg {
+  background:
+    linear-gradient(90deg, rgba(2,4,1,.9) 0%, rgba(5,20,3,.72) 32%, rgba(5,20,3,.2) 60%, rgba(2,4,1,.04) 100%),
+    linear-gradient(180deg, rgba(2,4,1,.15) 0%, rgba(2,4,1,.05) 48%, rgba(2,4,1,.94) 100%),
+    radial-gradient(circle at 13% 42%, rgba(255, 184, 0, .2), transparent 22rem),
+    radial-gradient(circle at 77% 44%, rgba(49, 208, 0, .11), transparent 28rem) !important;
+}
+
+.hero-reference .hero-tagline,
+.artist-carousel-controls button.active,
+.shows-reference .artist-carousel-controls button.active {
+  color: #041001 !important;
+  background: linear-gradient(135deg, #ffe06a, var(--ca-gold) 58%, #ff9f00) !important;
+}
+
+.premium-about,
+.premium-sponsors,
+.areas-upgrade,
+.shows-reference,
+.premium-countdown,
+.memorias-section,
+.premium-attractions,
+.premium-exhibitors,
+.premium-map-section,
+.premium-contact {
+  background:
+    radial-gradient(circle at 16% 10%, rgba(49, 208, 0, .13), transparent 30rem),
+    radial-gradient(circle at 84% 16%, rgba(255, 184, 0, .13), transparent 28rem),
+    radial-gradient(circle at 50% 104%, rgba(49, 208, 0, .06), transparent 32rem),
+    linear-gradient(180deg, #020401 0%, #071006 48%, #020401 100%) !important;
+}
+
+.about-stat,
+.about-pillar,
+.area-card,
+.attraction-card,
+.showcase-card,
+.sponsor-tier-featured,
+.mapa-premium,
+.memory-card,
+.contact-panel,
+.contact-card,
+.premium-form,
+.premium-countdown .countdown-shell,
+.premium-countdown .count-item,
+.artist-announcement-card {
+  border-color: rgba(255, 184, 0, .22) !important;
+  background:
+    radial-gradient(circle at 14% 0%, rgba(255, 184, 0, .11), transparent 18rem),
+    radial-gradient(circle at 88% 12%, rgba(49, 208, 0, .11), transparent 16rem),
+    linear-gradient(145deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .022)),
+    rgba(2, 7, 2, .62) !important;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, .34), 0 0 34px rgba(49, 208, 0, .05), inset 0 1px 0 rgba(255, 255, 255, .07) !important;
+}
+
+.about-stat:hover,
+.area-card:hover,
+.attraction-card:hover,
+.showcase-card:hover,
+.memory-card:hover,
+.artist-announcement-card:hover {
+  border-color: rgba(255, 184, 0, .42) !important;
+  box-shadow: 0 38px 118px rgba(0, 0, 0, .45), 0 0 52px rgba(255, 184, 0, .1), 0 0 44px rgba(49, 208, 0, .08) !important;
+}
+
+.premium-about .about-stat strong,
+.premium-countdown .count-num,
+.area-icon {
+  color: #fff7dc !important;
+  text-shadow: 0 16px 50px rgba(0, 0, 0, .38), 0 0 24px rgba(255, 184, 0, .16), 0 0 20px rgba(49, 208, 0, .08) !important;
+}
+
+.premium-about .editorial-copy mark {
+  color: #fff8d8 !important;
+  background: linear-gradient(180deg, rgba(255, 184, 0, .18), rgba(49, 208, 0, .12)) !important;
+  box-shadow: inset 0 -1px 0 rgba(49, 208, 0, .32) !important;
+}
+
+.areas-upgrade .area-card--terra { --area-accent: rgba(255, 184, 0, .22); }
+.areas-upgrade .area-card--maquina { --area-accent: rgba(49, 208, 0, .22); }
+.areas-upgrade .area-card--negocios { --area-accent: rgba(255, 184, 0, .22); }
+.areas-upgrade .area-card--show { --area-accent: rgba(255, 184, 0, .18); }
+.areas-upgrade .area-card--familia { --area-accent: rgba(49, 208, 0, .22); }
+.areas-upgrade .area-card--gastro { --area-accent: rgba(255, 184, 0, .2); }
+
+.areas-upgrade .area-line {
+  background: linear-gradient(90deg, var(--ca-green-bright), var(--ca-gold), transparent) !important;
+  box-shadow: 0 0 24px rgba(49, 208, 0, .18), 0 0 18px rgba(255, 184, 0, .16) !important;
+}
+
+.premium-sponsors .sponsor-track {
+  border-color: rgba(49, 208, 0, .2) !important;
+  background:
+    linear-gradient(90deg, rgba(2, 4, 1, .96), rgba(11, 55, 5, .76), rgba(2, 4, 1, .96)) !important;
+}
+
+.premium-sponsors .sponsor-logo-strip:hover img {
+  filter: drop-shadow(0 22px 42px rgba(0, 0, 0, .52)) drop-shadow(0 0 18px rgba(49, 208, 0, .12)) !important;
+}
+
+.memorias-section .memory-content,
+.contact-panel,
+.contact-card {
+  border-color: rgba(49, 208, 0, .2) !important;
+  background:
+    linear-gradient(180deg, rgba(4, 24, 2, .52), rgba(2, 7, 2, .28)) !important;
+}
+
+.count-label,
+.premium-countdown .count-label,
+.memory-content small,
+.area-desc,
+.premium-about .about-stat span,
+.partners-cta,
+.section-lead,
+.editorial-copy p {
+  color: rgba(247, 247, 242, .74) !important;
+}
+
+/* Final clean palette correction: disciplined CampoAgro identity.
+   Dark green/black foundation, white text, vivid logo green as primary accent,
+   corn gold used only for premium highlights. */
+:root {
+  --ca-bg: #020602;
+  --ca-bg-soft: #061406;
+  --ca-surface: rgba(5, 18, 6, .78);
+  --ca-surface-soft: rgba(8, 32, 10, .56);
+  --ca-line: rgba(67, 214, 0, .22);
+  --ca-line-soft: rgba(255, 255, 255, .1);
+  --ca-green: #1f8f00;
+  --ca-green-bright: #39d000;
+  --ca-green-soft: #8be64a;
+  --ca-gold: #f5b400;
+  --ca-gold-bright: #ffd15a;
+  --ca-text: #f7f8f2;
+  --ca-muted: rgba(247, 248, 242, .7);
+}
+
+html,
+body {
+  background: #020602 !important;
+}
+
+body {
+  color: var(--ca-text) !important;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(57, 208, 0, .11), transparent 30rem),
+    radial-gradient(circle at 85% 14%, rgba(245, 180, 0, .07), transparent 24rem),
+    linear-gradient(180deg, #020602 0%, #061406 42%, #020602 100%) !important;
+}
+
+body::before {
+  opacity: .9 !important;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(57, 208, 0, .055), transparent 36rem),
+    linear-gradient(180deg, transparent, rgba(0, 0, 0, .16)) !important;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(57, 208, 0, .055), transparent 36rem),
+    linear-gradient(180deg, transparent, rgba(0, 0, 0, .16)) !important;
+}
+
+.premium-about,
+.premium-attractions,
+.premium-shows,
+.premium-exhibitors,
+.areas-upgrade,
+.premium-sponsors,
+.premium-map-section,
+.memorias-section,
+.premium-contact,
+.premium-countdown {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(57, 208, 0, .1), transparent 28rem),
+    radial-gradient(circle at 84% 10%, rgba(245, 180, 0, .055), transparent 22rem),
+    linear-gradient(180deg, #020602 0%, #061406 50%, #020602 100%) !important;
+}
+
+.highlight,
+.gold,
+.hero-reference .hero-title-stacked .gold,
+.premium-about .section-title .highlight,
+.premium-sponsors .section-title .highlight,
+.areas-upgrade .section-title .highlight,
+.memorias-section .section-title .highlight {
+  color: var(--ca-green-bright) !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  text-shadow: 0 0 28px rgba(57, 208, 0, .2) !important;
+}
+
+.section-title {
+  color: var(--ca-text) !important;
+}
+
+.section-badge,
+.hero-badge,
+.hero-reference .hero-badge,
+.premium-countdown .countdown-date,
+.areas-upgrade .area-tag,
+.memorias-section .memory-category {
+  color: var(--ca-gold-bright) !important;
+  border-color: rgba(245, 180, 0, .34) !important;
+  background: rgba(5, 18, 6, .72) !important;
+  box-shadow: none !important;
+}
+
+.btn-primary,
+button.btn-primary,
+.hero-reference .btn-primary {
+  color: #061406 !important;
+  border-color: rgba(245, 180, 0, .55) !important;
+  background: linear-gradient(135deg, #ffd15a, #f5b400) !important;
+  box-shadow: 0 16px 42px rgba(245, 180, 0, .16) !important;
+}
+
+.btn-outline,
+.hero-reference .btn-outline {
+  color: var(--ca-text) !important;
+  border-color: rgba(57, 208, 0, .35) !important;
+  background: rgba(5, 18, 6, .55) !important;
+  box-shadow: none !important;
+}
+
+.site-nav-premium,
+.header-reference.site-nav-premium {
+  background: linear-gradient(180deg, rgba(2, 6, 2, .88), rgba(2, 6, 2, .42)) !important;
+  border-bottom-color: rgba(57, 208, 0, .18) !important;
+}
+
+.site-nav-premium.scrolled,
+.header-reference.site-nav-premium.scrolled {
+  background: rgba(2, 6, 2, .94) !important;
+}
+
+.hero-reference .hero-bg {
+  background:
+    linear-gradient(90deg, rgba(2, 6, 2, .9) 0%, rgba(6, 20, 6, .7) 34%, rgba(6, 20, 6, .2) 62%, rgba(2, 6, 2, .05) 100%),
+    linear-gradient(180deg, rgba(2, 6, 2, .12) 0%, rgba(2, 6, 2, .04) 48%, rgba(2, 6, 2, .94) 100%),
+    radial-gradient(circle at 13% 42%, rgba(245, 180, 0, .12), transparent 22rem) !important;
+}
+
+.hero-reference .hero-tagline,
+.artist-carousel-controls button.active,
+.shows-reference .artist-carousel-controls button.active {
+  color: #061406 !important;
+  background: var(--ca-gold-bright) !important;
+}
+
+.about-stat,
+.about-pillar,
+.area-card,
+.attraction-card,
+.showcase-card,
+.sponsor-tier-featured,
+.mapa-premium,
+.memory-card,
+.contact-panel,
+.contact-card,
+.premium-form,
+.artist-announcement-card {
+  border-color: rgba(57, 208, 0, .18) !important;
+  background:
+    linear-gradient(180deg, rgba(10, 32, 10, .82), rgba(5, 18, 6, .72)),
+    rgba(5, 18, 6, .78) !important;
+  box-shadow: 0 24px 74px rgba(0, 0, 0, .32) !important;
+}
+
+.about-stat:hover,
+.area-card:hover,
+.attraction-card:hover,
+.showcase-card:hover,
+.memory-card:hover,
+.artist-announcement-card:hover {
+  border-color: rgba(245, 180, 0, .34) !important;
+  box-shadow: 0 34px 96px rgba(0, 0, 0, .42), 0 0 34px rgba(57, 208, 0, .08) !important;
+}
+
+.premium-countdown {
+  padding: clamp(1.35rem, 2.6vw, 2.4rem) 0 !important;
+  border-block: 1px solid rgba(57, 208, 0, .16) !important;
+}
+
+.premium-countdown .countdown-shell {
+  grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr) !important;
+  padding: clamp(1rem, 1.8vw, 1.35rem) !important;
+  border: 1px solid rgba(57, 208, 0, .2) !important;
+  border-radius: 24px !important;
+  background: rgba(5, 18, 6, .78) !important;
+  box-shadow: 0 20px 64px rgba(0, 0, 0, .28) !important;
+  backdrop-filter: blur(14px) saturate(120%) !important;
+}
+
+.premium-countdown .countdown-shell::before,
+.premium-countdown .count-item::before {
+  display: none !important;
+}
+
+.premium-countdown h2 {
+  font-size: clamp(2rem, 3.6vw, 3.8rem) !important;
+  line-height: .95 !important;
+}
+
+.premium-countdown .countdown-date {
+  margin-top: .8rem !important;
+}
+
+.premium-countdown .count-item {
+  min-height: 112px !important;
+  border: 1px solid rgba(255, 255, 255, .1) !important;
+  border-radius: 18px !important;
+  background: rgba(2, 6, 2, .52) !important;
+  box-shadow: none !important;
+}
+
+.premium-countdown .count-num {
+  color: var(--ca-text) !important;
+  font-size: clamp(2.5rem, 4.5vw, 4.2rem) !important;
+  text-shadow: none !important;
+}
+
+.premium-countdown .count-label {
+  color: var(--ca-green-soft) !important;
+}
+
+.attraction-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+.attraction-card {
+  min-height: 390px !important;
+}
+
+.premium-about .editorial-copy mark {
+  color: var(--ca-text) !important;
+  background: rgba(57, 208, 0, .13) !important;
+  box-shadow: inset 0 -1px 0 rgba(57, 208, 0, .35) !important;
+}
+
+.premium-about .about-stat strong,
+.area-icon {
+  color: var(--ca-gold-bright) !important;
+  text-shadow: none !important;
+}
+
+.areas-upgrade .area-line {
+  background: linear-gradient(90deg, var(--ca-green-bright), transparent) !important;
+  box-shadow: none !important;
+}
+
+.premium-sponsors .sponsor-track {
+  background: rgba(2, 6, 2, .72) !important;
+  border-color: rgba(57, 208, 0, .16) !important;
+}
+
+.memorias-section .memory-content {
+  background: rgba(2, 6, 2, .62) !important;
+  border-color: rgba(255, 255, 255, .1) !important;
+}
+
+@media (max-width: 1120px) {
+  .attraction-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .premium-countdown .countdown-shell {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .attraction-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .premium-countdown .countdown-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Premium information architecture pass */
+:root {
+  --ca-bg: #020b05;
+  --ca-bg-soft: #031009;
+  --ca-surface: rgba(6, 20, 9, .82);
+  --ca-surface-2: rgba(11, 42, 18, .58);
+  --ca-green: #1f8f23;
+  --ca-green-bright: #36d100;
+  --ca-gold: #d6a92b;
+  --ca-gold-bright: #f0c94a;
+  --ca-text: #f4f5ef;
+  --ca-muted: #b9c2b1;
+  --ca-line: rgba(214, 169, 43, .28);
+  --ca-line-soft: rgba(255, 255, 255, .1);
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(46, 208, 0, .075), transparent 32rem),
+    radial-gradient(circle at 86% 18%, rgba(214, 169, 43, .07), transparent 24rem),
+    linear-gradient(180deg, #020b05 0%, #031009 46%, #020b05 100%) !important;
+}
+
+.section-title {
+  max-width: 980px !important;
+  font-size: clamp(2.6rem, 6vw, 5.4rem) !important;
+  line-height: .94 !important;
+  letter-spacing: 0 !important;
+  text-wrap: balance;
+}
+
+.hero-reference .hero-title-stacked {
+  font-size: clamp(3.5rem, 8vw, 7rem) !important;
+  line-height: .82 !important;
+}
+
+.section-lead,
+.split-head > p,
+.areas-head > p,
+.memorias-head > p {
+  max-width: 520px;
+  color: var(--ca-muted) !important;
+  font-size: clamp(.98rem, 1.2vw, 1.08rem);
+  line-height: 1.72 !important;
+}
+
+.premium-attractions,
+.areas-upgrade,
+.memorias-section,
+.premium-about,
+.premium-countdown {
+  background:
+    radial-gradient(circle at 14% 12%, rgba(46, 208, 0, .075), transparent 30rem),
+    radial-gradient(circle at 88% 16%, rgba(214, 169, 43, .065), transparent 24rem),
+    linear-gradient(180deg, #020b05 0%, #031009 48%, #020b05 100%) !important;
+}
+
+.attraction-grid--clean,
+.memory-editorial-grid {
+  display: grid;
+  gap: clamp(1rem, 1.6vw, 1.35rem);
+}
+
+.attraction-grid--clean {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+.image-experience-card,
+.editorial-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 410px;
+  border: 1px solid var(--ca-line) !important;
+  border-radius: 24px;
+  background: #061409;
+  box-shadow: 0 24px 74px rgba(0, 0, 0, .32) !important;
+  isolation: isolate;
+  transition: transform .42s var(--ca-ease), border-color .42s var(--ca-ease), box-shadow .42s var(--ca-ease);
+}
+
+.image-experience-card img,
+.editorial-card img {
+  z-index: 0;
+  transition: transform .65s var(--ca-ease), filter .65s var(--ca-ease);
+}
+
+.image-experience-card::after,
+.editorial-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  height: 58%;
+  background: linear-gradient(180deg, transparent 0%, rgba(2, 11, 5, .78) 54%, rgba(2, 11, 5, .96) 100%);
+  pointer-events: none;
+}
+
+.image-experience-card:hover,
+.editorial-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(214, 169, 43, .46) !important;
+  box-shadow: 0 32px 92px rgba(0, 0, 0, .42) !important;
+}
+
+.image-experience-card:hover img,
+.editorial-card:hover img {
+  transform: scale(1.035);
+  filter: saturate(1.04) contrast(1.03);
+}
+
+.image-card-category,
+.editorial-category {
+  position: absolute;
+  z-index: 3;
+  top: 1rem;
+  left: 1rem;
+  max-width: calc(100% - 2rem);
+  padding: .48rem .68rem;
+  border: 1px solid rgba(214, 169, 43, .32);
+  border-radius: 999px;
+  color: var(--ca-gold-bright);
+  background: rgba(2, 11, 5, .66);
+  font-size: .64rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  line-height: 1;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.image-experience-card > b {
+  position: absolute;
+  z-index: 2;
+  top: .75rem;
+  right: 1rem;
+  color: rgba(244, 245, 239, .28);
+  font-family: "Barlow Condensed", "Bebas Neue", Inter, sans-serif;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+.image-card-footer,
+.editorial-card-footer {
+  position: absolute;
+  z-index: 3;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  display: grid;
+  gap: .55rem;
+  text-align: left;
+}
+
+.image-card-footer strong,
+.editorial-card-footer strong {
+  color: var(--ca-text);
+  font-family: "Barlow Condensed", "Bebas Neue", Inter, sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-weight: 900;
+  line-height: .94;
+  text-transform: uppercase;
+}
+
+.image-card-footer p,
+.editorial-card-footer p {
+  display: -webkit-box;
+  max-width: 92%;
+  margin: 0;
+  overflow: hidden;
+  color: rgba(244, 245, 239, .78);
+  font-size: .9rem;
+  line-height: 1.45;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.image-card-footer button,
+.editorial-card-footer button,
+.area-details-btn {
+  width: fit-content;
+  min-height: 38px;
+  border: 1px solid rgba(214, 169, 43, .38);
+  border-radius: 999px;
+  padding: .58rem .82rem;
+  color: var(--ca-gold-bright);
+  background: rgba(2, 11, 5, .58);
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform .25s var(--ca-ease), background .25s var(--ca-ease), color .25s var(--ca-ease);
+}
+
+.image-card-footer button:hover,
+.editorial-card-footer button:hover,
+.area-details-btn:hover {
+  color: #061009;
+  background: var(--ca-gold-bright);
+  transform: translateY(-1px);
+}
+
+.areas-upgrade .area-card {
+  min-height: 245px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 22px !important;
+  background: linear-gradient(180deg, rgba(6, 20, 9, .86), rgba(3, 16, 9, .76)) !important;
+}
+
+.areas-upgrade .area-title {
+  margin-top: 1.25rem !important;
+  font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+  line-height: 1;
+}
+
+.areas-upgrade .area-desc {
+  display: -webkit-box;
+  min-height: 3.2em;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.area-details-btn {
+  margin-top: 1rem;
+}
+
+.memory-editorial-grid {
+  grid-template-columns: minmax(0, 1.22fr) minmax(0, .78fr) minmax(0, .78fr);
+  grid-auto-rows: 255px;
+}
+
+.editorial-card {
+  min-height: 0;
+}
+
+.editorial-card--featured {
+  grid-row: span 2;
+}
+
+.editorial-card--featured .editorial-card-footer strong {
+  font-size: clamp(2rem, 4vw, 3.8rem);
+}
+
+.info-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, .72);
+  backdrop-filter: blur(10px);
+}
+
+.info-modal-panel {
+  position: relative;
+  width: min(100%, 680px);
+  max-height: min(760px, 88vh);
+  overflow: auto;
+  border: 1px solid rgba(214, 169, 43, .32);
+  border-radius: 24px;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  color: var(--ca-text);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(214, 169, 43, .12), transparent 20rem),
+    linear-gradient(180deg, #061409, #020b05);
+  box-shadow: 0 34px 110px rgba(0, 0, 0, .55);
+}
+
+.info-modal-close {
+  position: absolute;
+  top: .8rem;
+  right: .8rem;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 999px;
+  color: var(--ca-text);
+  background: rgba(255, 255, 255, .06);
+  cursor: pointer;
+}
+
+.info-modal-eyebrow {
+  color: var(--ca-gold-bright);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.info-modal-panel h3 {
+  margin: .65rem 0 .9rem;
+  font-family: "Barlow Condensed", "Bebas Neue", Inter, sans-serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: .95;
+  text-transform: uppercase;
+}
+
+.info-modal-panel p,
+.info-modal-panel li {
+  color: var(--ca-muted);
+  line-height: 1.7;
+}
+
+.info-modal-panel ul {
+  display: grid;
+  gap: .55rem;
+  margin: 1.2rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.premium-countdown .countdown-shell {
+  max-width: 1120px;
+}
+
+.premium-countdown .count-item {
+  display: grid;
+  align-content: center;
+}
+
+.premium-map-section .mapa-premium,
+.campoagro-map-frame {
+  border-color: rgba(214, 169, 43, .3) !important;
+  background: #061409 !important;
+}
+
+@media (max-width: 1120px) {
+  .attraction-grid--clean {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .memory-editorial-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .editorial-card--featured {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .split-head,
+  .areas-head,
+  .memorias-head {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .attraction-grid--clean,
+  .areas-grid--premium,
+  .memory-editorial-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .image-experience-card {
+    min-height: 390px;
+  }
+
+  .memory-editorial-grid {
+    grid-auto-rows: 330px;
+  }
+
+  .editorial-card--featured {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .premium-countdown .countdown-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Final polish: calmer hierarchy, lighter surfaces and cleaner information flow. */
+.highlight,
+.gold,
+.hero-reference .hero-title-stacked .gold,
+.premium-about .section-title .highlight,
+.premium-sponsors .section-title .highlight,
+.areas-upgrade .section-title .highlight,
+.memorias-section .section-title .highlight {
+  color: var(--ca-gold-bright) !important;
+  background: none !important;
+  text-shadow: 0 8px 32px rgba(214, 169, 43, .12) !important;
+}
+
+.section-title {
+  margin-bottom: 0 !important;
+}
+
+.site-nav-premium,
+.header-reference.site-nav-premium {
+  min-height: 72px !important;
+  background: rgba(2, 11, 5, .72) !important;
+  border-bottom-color: rgba(255, 255, 255, .08) !important;
+  backdrop-filter: blur(18px) saturate(120%) !important;
+}
+
+.site-nav-premium .nav-brand {
+  width: clamp(132px, 11vw, 174px) !important;
+}
+
+.site-nav-premium .nav-links {
+  justify-content: center !important;
+}
+
+.site-nav-premium .nav-links a {
+  color: rgba(244, 245, 239, .68) !important;
+}
+
+.site-nav-premium .nav-links a.active,
+.site-nav-premium .nav-links a:hover {
+  color: var(--ca-gold-bright) !important;
+}
+
+.nav-instagram {
+  border-color: rgba(214, 169, 43, .34) !important;
+  background: rgba(6, 20, 9, .56) !important;
+}
+
+.premium-countdown,
+.premium-about,
+.premium-attractions,
+.areas-upgrade,
+.shows-reference,
+.premium-exhibitors,
+.premium-sponsors,
+.premium-map-section,
+.memorias-section,
+.premium-contact {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(46, 208, 0, .045), transparent 28rem),
+    radial-gradient(circle at 90% 16%, rgba(214, 169, 43, .045), transparent 24rem),
+    linear-gradient(180deg, #020b05 0%, #031009 50%, #020b05 100%) !important;
+}
+
+.about-stat,
+.about-pillar,
+.area-card,
+.image-experience-card,
+.editorial-card,
+.artist-announcement-card,
+.sponsor-tier-featured,
+.contact-panel,
+.contact-card,
+.premium-form,
+.premium-countdown .countdown-shell,
+.premium-countdown .count-item,
+.campoagro-map-frame {
+  box-shadow: 0 18px 52px rgba(0, 0, 0, .24) !important;
+}
+
+.about-stat:hover,
+.area-card:hover,
+.image-experience-card:hover,
+.editorial-card:hover,
+.artist-announcement-card:hover {
+  box-shadow: 0 24px 68px rgba(0, 0, 0, .32) !important;
+}
+
+.image-experience-card::before,
+.editorial-card::before,
+.artist-announcement-card::before,
+.memory-card::before {
+  opacity: .14 !important;
+}
+
+.image-experience-card::after,
+.editorial-card::after {
+  height: 44% !important;
+  background: linear-gradient(180deg, transparent 0%, rgba(2, 11, 5, .58) 52%, rgba(2, 11, 5, .9) 100%) !important;
+}
+
+.image-card-footer,
+.editorial-card-footer {
+  gap: .45rem !important;
+}
+
+.image-card-footer strong,
+.editorial-card-footer strong,
+.areas-upgrade .area-title {
+  letter-spacing: 0 !important;
+}
+
+.image-card-footer p,
+.editorial-card-footer p,
+.areas-upgrade .area-desc {
+  color: rgba(244, 245, 239, .72) !important;
+}
+
+.image-card-footer button,
+.editorial-card-footer button,
+.area-details-btn {
+  background: rgba(2, 11, 5, .42) !important;
+  backdrop-filter: blur(8px);
+}
+
+.premium-about .about-stat {
+  min-height: 132px !important;
+}
+
+.premium-about .about-stat strong {
+  font-size: clamp(2.2rem, 4.2vw, 3.7rem) !important;
+}
+
+.premium-about .about-stat span {
+  font-size: .72rem !important;
+  letter-spacing: .1em !important;
+}
+
+.areas-upgrade .area-icon {
+  color: rgba(214, 169, 43, .54) !important;
+  font-size: clamp(2.4rem, 4.6vw, 4rem) !important;
+}
+
+.artist-announcement-card {
+  border-radius: 22px !important;
+}
+
+.artist-announcement-card img,
+.artist-announcement-card video {
+  aspect-ratio: 3 / 2 !important;
+}
+
+.map-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin: -1rem 0 1.35rem;
+}
+
+.campoagro-map-frame {
+  border-radius: 22px !important;
+  min-height: min(680px, 72vh) !important;
+}
+
+.campoagro-map-frame iframe {
+  height: min(680px, 72vh) !important;
+}
+
+.info-modal {
+  animation: modalFade .22s ease-out;
+}
+
+.info-modal-panel {
+  box-shadow: 0 24px 88px rgba(0, 0, 0, .5) !important;
+  animation: modalRise .26s var(--ca-ease);
+}
+
+@keyframes modalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalRise {
+  from { opacity: 0; transform: translateY(16px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .info-modal,
+  .info-modal-panel,
+  .image-experience-card,
+  .editorial-card,
+  .area-card,
+  .artist-announcement-card {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 860px) {
+  .site-nav-premium .nav-links {
+    justify-content: start !important;
+  }
+
+  .site-nav-premium .nav-brand {
+    width: 142px !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .section-title {
+    font-size: clamp(2.45rem, 12vw, 4rem) !important;
+  }
+
+  .hero-reference .hero-title-stacked {
+    font-size: clamp(3.7rem, 18vw, 5.6rem) !important;
+  }
+
+  .image-card-footer p,
+  .editorial-card-footer p {
+    -webkit-line-clamp: 1;
+  }
+
+  .map-actions .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+}

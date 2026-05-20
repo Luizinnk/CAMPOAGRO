@@ -1,60 +1,99 @@
-import Image from 'next/image';
+'use client';
+
+import { useState } from 'react';
+
+import ImageExperienceCard from './ImageExperienceCard';
+import InfoModal, { type InfoModalContent } from './InfoModal';
+import SectionHeader from './SectionHeader';
 
 const ATTRACTIONS = [
   {
-    title: 'Arena agro',
-    label: 'Experiência',
-    text: 'Feira, máquinas, animais, tecnologia e relacionamento em uma estrutura pensada para alto fluxo.',
+    title: 'Evento tecnológico',
+    label: 'Inovação',
+    summary: 'Soluções, máquinas e conhecimento aplicados ao campo.',
     src: '/img/banner2.png',
+    details: {
+      eyebrow: 'Inovação no campo',
+      title: 'Evento tecnológico',
+      description:
+        'Um espaço para aproximar produtores, empresas e visitantes das soluções que impulsionam o agronegócio regional.',
+      bullets: ['Máquinas e implementos', 'Soluções para o produtor', 'Conteúdo técnico e demonstrações'],
+    },
+  },
+  {
+    title: 'Visita em stands',
+    label: 'Negócios',
+    summary: 'Marcas, expositores e oportunidades em um ambiente estratégico.',
+    src: '/img/memorias/campoagro-2025-evento.jfif',
+    details: {
+      eyebrow: 'Relacionamento comercial',
+      title: 'Visita em stands',
+      description:
+        'A feira cria um ambiente de contato direto entre público, empresas, produtores e instituições parceiras.',
+      bullets: ['Exposição de marcas', 'Relacionamento com visitantes', 'Geração de oportunidades'],
+      cta: { label: 'Quero expor', href: '#expositores' },
+    },
   },
   {
     title: 'Tratoraço',
     label: 'Tradição',
-    text: 'A força do produtor rural em movimento, com identidade popular e presença visual marcante.',
-    src: '/img/tratoraco/tratoraco-03.png',
+    summary: 'A força do produtor rural em movimento.',
+    src: '/img/memorias/campoagro-2023-tratoraco-01.jpg',
+    details: {
+      eyebrow: 'Identidade rural',
+      title: 'Tratoraço',
+      description:
+        'Uma das marcas do CampoAgro, o Tratoraço valoriza a agricultura, os produtores e a presença das máquinas na cultura local.',
+      bullets: ['Desfile de tratores', 'Participação da comunidade rural', 'Celebração da tradição agrícola'],
+    },
   },
   {
-    title: 'Gastronomia e família',
-    label: 'Convivência',
-    text: 'Praça organizada, produtos locais, agricultura familiar e programação para todos os públicos.',
-    src: '/img/campoagro-hero-topo.png',
+    title: 'Shows nacionais',
+    label: 'Entretenimento',
+    summary: 'Atrações musicais para conectar cidade, campo e família.',
+    src: '/img/luan-pereira-tvz-2024.png',
+    details: {
+      eyebrow: 'Arena de shows',
+      title: 'Shows nacionais',
+      description:
+        'A programação artística amplia a experiência do visitante e transforma o CampoAgro em um encontro completo para toda a região.',
+      bullets: ['Arena principal', 'Atrações musicais', 'Experiência para toda a família'],
+    },
   },
 ];
 
 export default function AttractionsSection() {
+  const [open, setOpen] = useState<InfoModalContent | null>(null);
+
   return (
     <section className="premium-attractions" id="atracoes">
       <div className="container">
-        <div className="section-head split-head reveal">
-          <div>
-            <div className="section-badge">Atrações</div>
-            <h2 className="section-title">
-              Uma jornada completa entre <span className="highlight">campo, tecnologia e espetáculo</span>
-            </h2>
-          </div>
-        </div>
+        <SectionHeader
+          badge="Atrações"
+          title={
+            <>
+              Experiências que conectam <span className="highlight">campo, negócios e entretenimento</span>
+            </>
+          }
+          description="Conheça as principais ativações do CampoAgro 2026: tecnologia, stands, Tratoraço e shows nacionais em uma programação pensada para visitantes, produtores e marcas."
+        />
 
-        <div className="attraction-grid">
+        <div className="attraction-grid attraction-grid--clean">
           {ATTRACTIONS.map((item, index) => (
-            <article className="attraction-card reveal" key={item.title}>
-              <Image
-                src={item.src}
-                alt={item.title}
-                fill
-                sizes="(max-width: 860px) 100vw, 33vw"
-                quality={82}
-                className="object-cover"
-              />
-              <div className="attraction-card-content">
-                <span>{item.label}</span>
-                <strong>{item.title}</strong>
-                <p>{item.text}</p>
-              </div>
-              <b aria-hidden="true">{String(index + 1).padStart(2, '0')}</b>
-            </article>
+            <ImageExperienceCard
+              key={item.title}
+              title={item.title}
+              label={item.label}
+              summary={item.summary}
+              src={item.src}
+              index={index}
+              details={item.details}
+              onOpen={setOpen}
+            />
           ))}
         </div>
       </div>
+      <InfoModal content={open} onClose={() => setOpen(null)} />
     </section>
   );
 }

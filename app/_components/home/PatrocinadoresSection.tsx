@@ -8,7 +8,7 @@ export default function PatrocinadoresSection() {
           <div>
             <div className="section-badge">Parceiros oficiais</div>
             <h2 className="section-title">
-              Marcas que assinam a força do <span className="highlight">CampoAgro 2026</span>
+              Marcas e instituições que fortalecem o <span className="highlight">CampoAgro</span>
             </h2>
           </div>
           <a href="#contato" className="btn-primary">
@@ -43,7 +43,7 @@ export default function PatrocinadoresSection() {
           </div>
         </div>
         <p className="partners-cta reveal">
-          Presença institucional para marcas que querem se posicionar ao lado de um evento agro nacional.
+          Marcas e instituições que impulsionam o desenvolvimento regional e fortalecem a experiência do evento.
         </p>
       </div>
     </section>

@@ -26,16 +26,11 @@ function getCountdownParts(): CountdownParts {
   const target = new Date(TARGET_ISO).getTime();
   const diff = Math.max(target - Date.now(), 0);
 
-  const days = Math.floor(diff / 86400000);
-  const hours = Math.floor((diff % 86400000) / 3600000);
-  const mins = Math.floor((diff % 3600000) / 60000);
-  const secs = Math.floor((diff % 60000) / 1000);
-
   return {
-    days: String(days),
-    hours: pad(hours),
-    mins: pad(mins),
-    secs: pad(secs),
+    days: String(Math.floor(diff / 86400000)),
+    hours: pad(Math.floor((diff % 86400000) / 3600000)),
+    mins: pad(Math.floor((diff % 3600000) / 60000)),
+    secs: pad(Math.floor((diff % 60000) / 1000)),
   };
 }
 
@@ -57,8 +52,8 @@ export default function CountdownSection() {
     <section className="countdown-section premium-countdown" aria-label="Contagem regressiva oficial">
       <div className="container countdown-shell reveal">
         <div className="countdown-copy">
-          <p className="eyebrow">Contagem regressiva oficial</p>
-          <h2>A contagem para o maior evento agro da região já começou</h2>
+          <p className="eyebrow">Abertura oficial</p>
+          <h2>CampoAgro 2026 começa em</h2>
           <span className="countdown-date">17 julho 2026 • 18:00h</span>
         </div>
 

@@ -11,16 +11,16 @@ const STATS = [
 
 const PILLARS = [
   {
-    title: 'Negócios do agro',
-    text: 'Ambiente para marcas, produtores e lideranças criarem conexões comerciais reais.',
+    title: 'Origem',
+    text: 'A CampoAgro nasceu como uma festa técnica e rural para aproximar produtores, especialistas, empresas e comunidade.',
   },
   {
-    title: 'Tecnologia rural',
-    text: 'Máquinas, soluções, inovação aplicada e vitrines para o futuro do campo.',
+    title: 'Crescimento',
+    text: 'A segunda edição ampliou a estrutura com feira, mais de 50 empresas, shows nacionais e Tratoraço.',
   },
   {
-    title: 'Experiência familiar',
-    text: 'Gastronomia, shows, arena, agricultura familiar e espaços de convivência.',
+    title: '2026',
+    text: 'A terceira edição consolida Campo do Tenente como ponto de encontro regional para agro, negócios e entretenimento.',
   },
 ];
 
@@ -49,17 +49,14 @@ function AnimatedStat({ value, prefix, suffix, label }: AnimatedStatProps) {
         return;
       }
 
-      const duration = 1200;
+      const duration = 1100;
       const startedAt = performance.now();
 
       const tick = (now: number) => {
         const progress = Math.min((now - startedAt) / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
         setDisplayValue(Math.round(value * eased));
-
-        if (progress < 1) {
-          frame = requestAnimationFrame(tick);
-        }
+        if (progress < 1) frame = requestAnimationFrame(tick);
       };
 
       frame = requestAnimationFrame(tick);
@@ -102,16 +99,16 @@ export default function SobreSection() {
         <div className="editorial-copy reveal">
           <div className="section-badge">Sobre o evento</div>
           <h2 className="section-title">
-            Uma vitrine nacional para a força do <span className="highlight">agro brasileiro</span>
+            A história do CampoAgro começa com <span className="highlight">produtores, tecnologia e tradição</span>
           </h2>
           <p>
-            O CampoAgro 2026 posiciona Campo do Tenente no mapa dos grandes encontros agropecuários,
-            unindo <mark>negócios</mark>, <mark>inovação</mark>, <mark>tradição rural</mark> e{' '}
-            <mark>entretenimento</mark> em uma jornada premium.
+            A primeira edição, realizada em 2023, reuniu palestras técnicas, especialistas, produtores rurais e
+            empresas do setor para fortalecer a troca de conhecimento no campo.
           </p>
           <p>
-            Cada seção do site foi reorganizada para vender a escala do evento: do primeiro impacto
-            cinematográfico à jornada de expositores, patrocinadores, shows, mapa e galeria.
+            Em sua segunda edição, o evento cresceu com mais de 50 empresas, shows nacionais e o Tratoraço,
+            consolidando uma programação que une <mark>negócios</mark>, <mark>inovação</mark>,{' '}
+            <mark>tradição rural</mark> e <mark>entretenimento</mark>.
           </p>
         </div>
 
