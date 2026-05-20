@@ -43,7 +43,7 @@ export default function PatrocinadoresSection() {
           </div>
         </div>
         <p className="partners-cta reveal">
-          Uma faixa limpa, institucional e de alto prestígio para marcas que querem aparecer sem poluição visual.
+          Presença institucional para marcas que querem se posicionar ao lado de um evento agro nacional.
         </p>
       </div>
     </section>

@@ -3,10 +3,11 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-const LUAN_VIDEO =
-  'https://www.youtube.com/embed/Fbht6qFj9nI?autoplay=1&mute=1&loop=1&playlist=Fbht6qFj9nI&controls=1&rel=0&modestbranding=1';
+const LUAN_VIDEO = '/videos/luan-pereira-voce-e-sua-amiguinha.mp4';
+const JOAO_VIDEO = '/videos/joao-nelore-texano-sabor-cowboy.mp4';
 
 export default function ShowsSection() {
+  const [joaoSlide, setJoaoSlide] = useState<0 | 1>(0);
   const [luanSlide, setLuanSlide] = useState<0 | 1>(0);
 
   return (
@@ -20,15 +21,47 @@ export default function ShowsSection() {
         </div>
 
         <div className="artist-announcement-grid reveal" aria-label="Anúncios dos cantores">
-          <article className="artist-announcement-card">
-            <Image
-              src="/img/joao-nelore-texano-card.png"
-              alt="Anúncio oficial: João Nelore e Texano"
-              width={1536}
-              height={1024}
-              sizes="(max-width: 900px) 100vw, 50vw"
-              quality={90}
-            />
+          <article className="artist-announcement-card artist-announcement-card--carousel">
+            <div className="artist-slide-window">
+              <div className="artist-slide-track" style={{ transform: `translateX(-${joaoSlide * 100}%)` }}>
+                <div className="artist-slide">
+                  <Image
+                    src="/img/joao-nelore-texano-card.png"
+                    alt="Anuncio oficial: Joao Nelore e Texano"
+                    width={1536}
+                    height={1024}
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                    quality={90}
+                  />
+                </div>
+                <div className="artist-slide artist-slide--video">
+                  <video
+                    src={JOAO_VIDEO}
+                    title="Video oficial: Joao Nelore e Texano"
+                    controls
+                    playsInline
+                    preload={joaoSlide === 1 ? 'metadata' : 'none'}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="artist-carousel-controls" aria-label="Carrossel Joao Nelore e Texano">
+              <button
+                type="button"
+                className={joaoSlide === 0 ? 'active' : undefined}
+                onClick={() => setJoaoSlide(0)}
+              >
+                Arte
+              </button>
+              <button
+                type="button"
+                className={joaoSlide === 1 ? 'active' : undefined}
+                onClick={() => setJoaoSlide(1)}
+              >
+                Video
+              </button>
+            </div>
           </article>
 
           <article className="artist-announcement-card artist-announcement-card--carousel">
@@ -37,7 +70,7 @@ export default function ShowsSection() {
                 <div className="artist-slide">
                   <Image
                     src="/img/luan-pereira-card.png"
-                    alt="Anúncio oficial: Luan Pereira"
+                    alt="Anuncio oficial: Luan Pereira"
                     width={1536}
                     height={1024}
                     sizes="(max-width: 900px) 100vw, 50vw"
@@ -45,12 +78,12 @@ export default function ShowsSection() {
                   />
                 </div>
                 <div className="artist-slide artist-slide--video">
-                  <iframe
-                    src={luanSlide === 1 ? LUAN_VIDEO : 'about:blank'}
-                    title="Vídeo oficial: Luan Pereira"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    loading="lazy"
+                  <video
+                    src={LUAN_VIDEO}
+                    title="Video oficial: Luan Pereira"
+                    controls
+                    playsInline
+                    preload={luanSlide === 1 ? 'metadata' : 'none'}
                   />
                 </div>
               </div>
@@ -69,7 +102,7 @@ export default function ShowsSection() {
                 className={luanSlide === 1 ? 'active' : undefined}
                 onClick={() => setLuanSlide(1)}
               >
-                Vídeo
+                Video
               </button>
             </div>
           </article>

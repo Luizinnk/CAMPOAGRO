@@ -1,8 +1,12 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+
 const STATS = [
-  ['+20 mil', 'visitantes esperados'],
-  ['+100', 'expositores e marcas'],
-  ['3 dias', 'de programação oficial'],
-  ['+10', 'experiências e ativações'],
+  { value: 20, prefix: '+', suffix: ' mil', label: 'visitantes esperados' },
+  { value: 100, prefix: '+', suffix: '', label: 'expositores e marcas' },
+  { value: 3, prefix: '', suffix: ' dias', label: 'de programação oficial' },
+  { value: 10, prefix: '+', suffix: '', label: 'experiências e ativações' },
 ];
 
 const PILLARS = [
@@ -20,6 +24,77 @@ const PILLARS = [
   },
 ];
 
+type AnimatedStatProps = {
+  value: number;
+  prefix: string;
+  suffix: string;
+  label: string;
+};
+
+function AnimatedStat({ value, prefix, suffix, label }: AnimatedStatProps) {
+  const ref = useRef<HTMLElement>(null);
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    let frame = 0;
+    let started = false;
+
+    const animate = () => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) {
+        setDisplayValue(value);
+        return;
+      }
+
+      const duration = 1200;
+      const startedAt = performance.now();
+
+      const tick = (now: number) => {
+        const progress = Math.min((now - startedAt) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setDisplayValue(Math.round(value * eased));
+
+        if (progress < 1) {
+          frame = requestAnimationFrame(tick);
+        }
+      };
+
+      frame = requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting || started) return;
+        started = true;
+        animate();
+        observer.disconnect();
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [value]);
+
+  return (
+    <article className="about-stat" ref={ref}>
+      <strong>
+        {prefix}
+        {displayValue}
+        {suffix}
+      </strong>
+      <span>{label}</span>
+    </article>
+  );
+}
+
 export default function SobreSection() {
   return (
     <section className="sobre premium-about" id="sobre">
@@ -31,7 +106,8 @@ export default function SobreSection() {
           </h2>
           <p>
             O CampoAgro 2026 posiciona Campo do Tenente no mapa dos grandes encontros agropecuários,
-            unindo negócios, inovação, tradição rural e entretenimento em uma jornada premium.
+            unindo <mark>negócios</mark>, <mark>inovação</mark>, <mark>tradição rural</mark> e{' '}
+            <mark>entretenimento</mark> em uma jornada premium.
           </p>
           <p>
             Cada seção do site foi reorganizada para vender a escala do evento: do primeiro impacto
@@ -40,11 +116,8 @@ export default function SobreSection() {
         </div>
 
         <div className="about-stat-stack reveal" aria-label="Números do evento">
-          {STATS.map(([value, label]) => (
-            <article className="about-stat" key={label}>
-              <strong>{value}</strong>
-              <span>{label}</span>
-            </article>
+          {STATS.map((stat) => (
+            <AnimatedStat key={stat.label} {...stat} />
           ))}
         </div>
       </div>
