@@ -39,8 +39,27 @@ function getSheetsClient() {
   return google.sheets({ version: 'v4', auth });
 }
 
+/** Data/hora legível na planilha (evita serial 46162,54 com USER_ENTERED + vírgula do pt-BR). */
+function formatLeadTimestamp(date = new Date()): string {
+  const parts = new Intl.DateTimeFormat('pt-BR', {
+    timeZone: 'America/Sao_Paulo',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }).formatToParts(date);
+
+  const get = (type: Intl.DateTimeFormatPartTypes) =>
+    parts.find((p) => p.type === type)?.value ?? '';
+
+  return `${get('day')}/${get('month')}/${get('year')} ${get('hour')}:${get('minute')}:${get('second')}`;
+}
+
 function leadToRow(lead: ExpositorLeadPayload): string[] {
-  const savedAt = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+  const savedAt = formatLeadTimestamp();
   const base = [savedAt, lead.nome, lead.email, lead.telefone];
   const tail = [lead.mensagem ?? '', 'site-campoagro', 'novo'];
 
@@ -66,7 +85,8 @@ export async function appendLeadToGoogleSheets(lead: ExpositorLeadPayload): Prom
   await sheets.spreadsheets.values.append({
     spreadsheetId,
     range: `${name}!${range}`,
-    valueInputOption: 'USER_ENTERED',
+    // RAW: grava o texto da data como exibido (USER_ENTERED convertia "dd/mm/aaaa, hh:mm" em serial)
+    valueInputOption: 'RAW',
     insertDataOption: 'INSERT_ROWS',
     requestBody: { values: [leadToRow(lead)] },
   });

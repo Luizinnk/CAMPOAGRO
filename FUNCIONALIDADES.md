@@ -16,6 +16,13 @@ A landing é servida pela **App Router** do Next (`app/page.tsx` → `HomeLandin
 
 Implementados em React (`"use client"`) nos componentes correspondentes: loading, navegação e menu, contagem regressiva, abas da programação, galeria/modal, partículas do hero e reveal ao scroll — ver Etapa 3 no checklist em `docs/checklist-migracao-4-etapas.md`.
 
+## Verificação local
+
+| Comando | O que valida |
+|---------|----------------|
+| `npm run smoke:home` | Nav (menu + âncoras), carrosséis em `#shows`, modal da galeria |
+| `npm run lighthouse:baseline` | Gera `docs/lighthouse-baseline.md` (requer `npm run dev`) |
+
 ## Legado HTML
 
 O site **não** usa mais `index.html` nem JavaScript vanilla em `public/`; desenvolvimento e produção via `npm run dev` / `npm run build`.

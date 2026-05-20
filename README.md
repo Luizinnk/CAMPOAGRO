@@ -24,6 +24,12 @@ npm start
 
 # 4. Validar imagens referenciadas (`/img/…` em app + CSS)
 npm run check:images
+
+# 5. Smoke test da home (com `npm run dev` ativo)
+npm run smoke:home
+
+# 6. Baseline Lighthouse → docs/lighthouse-baseline.md
+npm run lighthouse:baseline
 ```
 
 ---

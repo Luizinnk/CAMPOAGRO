@@ -66,7 +66,7 @@ Use os checkboxes abaixo conforme for concluindo cada item.
   - [x] Modal de mídia integrado em `MemoriasSection.tsx` (portal em `document.body`)
 - [x] Prioridade de edição: TSX em `app/_components/`; `public/index.html` só para espelho estático — evitar divergência.
 - [x] Anchors `id=""` preservados.
-- [ ] Smoke test manual: nav, abas da programação, galeria/modal, scroll (após recarregar o dev server).
+- [x] Smoke test: `npm run smoke:home` (nav mobile + hash, carrosséis em `#shows`, galeria/modal em `#memorias`). Ver `scripts/smoke-home.mjs`.
 
 **Critério de pronto:** `HomeLanding.tsx` só importa e ordena seções; cada seção em arquivo dedicado em `home/`.
 
@@ -106,7 +106,7 @@ Use os checkboxes abaixo conforme for concluindo cada item.
 - [x] **`scripts/check-images.mjs`** — referências `/img/…` e `url(../img/…)` em CSS; `npm run check:images`.
 - [x] **Backdrop/blur:** valores mais baixos nos cards repetidos, modal e elementos-chave (mantém vidro, menos custo na GPU).
 - [x] **`prefers-reduced-motion`:** hero drift, sponsors, WhatsApp, loading bar, scroll cue, partículas (complementa `HeroParticles`).
-- [ ] **Lighthouse / métricas:** rodar manualmente quando quiser registrar baseline (LCP tende a ganhar com hero otimizado pelo pipeline do Next).
+- [x] **Lighthouse / métricas:** baseline em `docs/lighthouse-baseline.md` (2026-05-20, dev local). Regenerar: `npm run lighthouse:baseline` com `npm run dev` ativo.
 - [ ] **README** ampliado no repo (opcional); fluxo mínimo já está neste checklist.
 
 **Critério de pronto:** assets servidos pelo otimizador do Next onde aplicável; menos blur/agitação por defeito e com respeito à preferência do utilizador.

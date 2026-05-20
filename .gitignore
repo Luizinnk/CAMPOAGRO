@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Lighthouse (manter só o .md versionado)
+/docs/lighthouse-baseline.json
+/docs/lighthouse-baseline.html

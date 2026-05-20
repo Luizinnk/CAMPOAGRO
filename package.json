@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "check:images": "node scripts/check-images.mjs"
+    "check:images": "node scripts/check-images.mjs",
+    "smoke:home": "node scripts/smoke-home.mjs",
+    "lighthouse:baseline": "npx lighthouse@11.7.1 http://localhost:3000 --output=json --output-path=docs/lighthouse-baseline.json --chrome-flags=\"--headless\" --quiet && node scripts/lighthouse-summary.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -25,6 +27,7 @@
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.5",
+    "playwright": "^1.49.0",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.6",
     "typescript": "^5.5.3"
