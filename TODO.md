@@ -1,9 +1,8 @@
-# TODO - Melhorias no setor de Patrocinadores (CampoAgro)
+# TODO - CampoAgro (CAMPOAGRO)
 
-- [ ] Confirmar o layout atual do componente `PatrocinadoresSection.tsx` e entender classes CSS relacionadas (`patrocinadores`, `sponsor-tier`, `sponsor-track`, `sponsor-logo-strip`).
-- [ ] Definir melhorias alinhadas ao exemplo do carrossel (strip repetida, melhor responsividade, animação/pausa, e identidade visual do CAMPOAGRO).
-- [ ] Criar/ajustar CSS adicional em `app/etapa4-performance.css` ou `public/css/premium.css` mantendo estilos existentes.
-- [ ] Atualizar `PatrocinadoresSection.tsx` para usar estrutura mais próxima do “code” do exemplo (incluindo 2 strips com `aria-hidden` e hover/pause).
-- [ ] Garantir acessibilidade (alt correto, aria-label/hidden quando necessário) e respeitar `prefers-reduced-motion`.
-- [ ] Rodar build/test (ex: `npm run lint` e `npm run build`) para confirmar que não quebrou nada.
+- [x] Tentar push para `origin/main`
+- [x] Diagnosticar falha: `RPC failed; HTTP 408` (timeout)
+- [x] Descobrir causa real: GitHub rejeitou por arquivos grandes em `public/videos/*.mp4` ( >100MB )
+- [ ] Implementar Git LFS para os MP4 (recomendado) e reenviar
+- [ ] Confirmar que `origin/main` contém o commit `0c1c199`
 
