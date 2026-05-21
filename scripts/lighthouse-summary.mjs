@@ -47,7 +47,7 @@ ${metricLines.join('\n')}
 
 ## Notas
 
-- **Performance** em dev costuma ser baixa (LCP alto, vídeos em \`/videos/\`, HMR). Comparar de preferência com \`npm run build && npm run start\` ou deploy de preview.
+- **Performance** em dev costuma ser baixa (LCP alto, hero/galeria pesados, HMR). Comparar de preferência com \`npm run build && npm run start\` ou deploy de preview.
 - **PWA** não é meta deste site; pode ignorar.
 - Artefato bruto (opcional, não versionado): \`docs/lighthouse-baseline.json\`.
 `;

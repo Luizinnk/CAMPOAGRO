@@ -1,183 +1,92 @@
 # CampoAgro 2026 · Site Oficial
 
-Site institucional do festival CampoAgro 2026, construído em **Next.js 14 (App Router) + TypeScript** (estilos em CSS legacy; Tailwind configurado mas pouco usado nos TSX).
-
-> Migração do protótipo HTML para uma arquitetura moderna, modular e pronta pra produção.
-
----
+Landing institucional do CampoAgro 2026 em **Next.js 14 (App Router) + TypeScript**, com estilos em CSS legacy (`public/css/` + overrides em `app/`).
 
 ## Documentação
 
 | Documento | Conteúdo |
 |-----------|----------|
-| [`FUNCIONALIDADES.md`](./FUNCIONALIDADES.md) | Onde está cada bloco da home e comandos de verificação |
-| [`docs/ESTRUTURA-PROJETO.md`](./docs/ESTRUTURA-PROJETO.md) | Rotas, ordem das seções, CSS, imagens, `lib/leads/` |
-| [`docs/checklist-migracao-4-etapas.md`](./docs/checklist-migracao-4-etapas.md) | Histórico da migração HTML → Next |
-| [`docs/analytics-guide.md`](./docs/analytics-guide.md) | Microsoft Clarity para a organização do evento |
-| [`docs/lighthouse-baseline.md`](./docs/lighthouse-baseline.md) | Métricas de performance (baseline) |
-| [`IMAGE_GUIDE.md`](./IMAGE_GUIDE.md) | Briefing visual (pode citar `lib/site-data` — **não existe** no projeto atual) |
-
----
+| [`docs/ESTRUTURA-PROJETO.md`](./docs/ESTRUTURA-PROJETO.md) | **Fonte principal** — rotas, seções da home, CSS, imagens, leads, scripts |
+| [`docs/analytics-guide.md`](./docs/analytics-guide.md) | Microsoft Clarity (LGPD) |
+| [`docs/lighthouse-baseline.md`](./docs/lighthouse-baseline.md) | Baseline de performance |
 
 ## Como rodar
 
 Pré-requisitos: **Node.js 18.18+** (idealmente 20+).
 
 ```bash
-# 1. Instalar dependências
 npm install
-
-# 2. Variáveis de ambiente (ver secção abaixo)
-cp .env.example .env.local
-# edite .env.local com os valores reais
-
-# 3. Rodar em desenvolvimento
-npm run dev
-# → http://localhost:3000
-
-# 4. Build de produção
-npm run build
-npm start
-
-# 5. Validar imagens referenciadas (`/img/…` em app + CSS)
-npm run check:images
-
-# 6. Smoke test da home (com `npm run dev` ativo)
-npm run smoke:home
-
-# 7. Baseline Lighthouse → docs/lighthouse-baseline.md
-npm run lighthouse:baseline
+cp .env.example .env.local   # editar com valores reais
+npm run dev                  # http://localhost:3000
+npm run build && npm start   # produção local
+npm run check:images         # valida /img/ referenciados
+npm run smoke:home           # smoke Playwright (dev ativo)
 ```
-
----
 
 ## Variáveis de ambiente
 
-Copie [`.env.example`](./.env.example) para `.env.local` (nunca commite `.env.local`).
+Ver [`.env.example`](./.env.example). Principais:
 
-| Variável | Obrigatória | Uso |
-|----------|-------------|-----|
-| `NEXT_PUBLIC_CLARITY_PROJECT_ID` | Não* | Analytics Clarity (só após consentimento LGPD) |
-| `NEXT_PUBLIC_WHATSAPP_VENDAS` | Não | WhatsApp da equipe (dígitos: DDI + DDD + número) |
-| `RESEND_API_KEY` | Não | E-mail transacional dos leads; sem chave, preview em `data/email-previews/` |
-| `LEADS_EMAIL_FROM` | Não | Remetente do e-mail |
-| `GOOGLE_SHEETS_SPREADSHEET_ID` | Não | Planilha de leads em produção |
-| `GOOGLE_SERVICE_ACCOUNT_JSON_PATH` | Não | Caminho ao JSON da service account (ver comentários no `.env.example`) |
+| Variável | Uso |
+|----------|-----|
+| `NEXT_PUBLIC_CLARITY_PROJECT_ID` | Clarity (após consentimento) |
+| `NEXT_PUBLIC_WHATSAPP_VENDAS` | WhatsApp no float e leads |
+| `RESEND_API_KEY` / `LEADS_EMAIL_FROM` | E-mail de confirmação |
+| `GOOGLE_SHEETS_SPREADSHEET_ID` / `GOOGLE_SERVICE_ACCOUNT_JSON_PATH` | Planilha de leads |
 
-\*Sem Clarity, o site funciona; heatmaps e eventos customizados ficam desativados.
-
-**Produção (Vercel ou similar):** configure as mesmas variáveis no painel do host. Em desenvolvimento, leads do formulário de expositores podem ir para `data/leads-demo.json` (modo demo) até Sheets/Resend estarem configurados.
-
-Detalhes das abas da planilha e credenciais Google: comentários em `.env.example` e [`docs/ESTRUTURA-PROJETO.md`](./docs/ESTRUTURA-PROJETO.md#backend-de-leads-libleads).
-
----
+Sem Sheets/Resend em dev, leads podem ir para `data/leads-demo.json`.
 
 ## Estrutura (resumo)
 
 ```
 app/
 ├── layout.tsx, page.tsx, globals.css
-├── etapa4-performance.css, campoagro-standard.css
-├── _components/HomeLanding.tsx + home/*.tsx    # 14 seções da landing
-├── programacao/page.tsx                        # redirect → /#programacao
-├── api/leads/expositor/route.ts                # POST formulário expositores
-lib/leads/                                      # validação, Sheets, e-mail, demo
-public/
-├── css/styles.css, premium.css                 # servidos em /css/…
-├── img/, videos/                               # assets estáticos
-scripts/                                        # check-images, smoke-home, lighthouse
-docs/                                           # estrutura, migração, analytics, baseline
+├── _components/HomeLanding.tsx      # 8 seções no <main>
+├── _components/home/*.tsx
+├── programacao/page.tsx             # → /#programacao
+├── api/leads/expositor/route.ts
+lib/leads/
+public/css/, public/img/, public/mapa-campoagro.html
+scripts/                             # check-images, smoke-home, lighthouse
+docs/                                # ESTRUTURA, analytics, lighthouse
 ```
 
-Textos e dados estão nos TSX de `app/_components/home/`. Mapa completo: [`docs/ESTRUTURA-PROJETO.md`](./docs/ESTRUTURA-PROJETO.md).
-
-**CSS:** `globals.css` importa `public/css/styles.css`, `public/css/premium.css`, `etapa4-performance.css` e `campoagro-standard.css`. Não consolidar num único ficheiro sem plano.
-
----
+Detalhe de cada seção e âncora: [`docs/ESTRUTURA-PROJETO.md`](./docs/ESTRUTURA-PROJETO.md).
 
 ## Edição rápida
 
-**Imagens** — `public/img/`; URLs em TSX começam por `/img/`. Depois de alterar ficheiros: `npm run check:images`.
-
-**Textos e programação** — TSX em `app/_components/home/` (ex.: `ProgramacaoSection.tsx`, `SobreSection.tsx`).
-
-**Formulário de expositores** — `ExpositoresSection.tsx` → `POST /api/leads/expositor` (já implementado).
-
----
+- **Textos / programação** — TSX em `app/_components/home/` (ex.: `ProgramacaoSection.tsx`, `SobreSection.tsx`)
+- **Imagens locais** — `public/img/`; depois `npm run check:images`
+- **Formulário** — `ExpositoresForm.tsx` → `POST /api/leads/expositor`
 
 ## Identidade visual
 
-**Tipografia (Google Fonts):**
-- **Bebas Neue** → títulos (display)
-- **Fraunces** → taglines / accents
-- **Manrope** → texto corrido
+**Fontes** (`app/layout.tsx`): Bebas Neue, Inter, Barlow, Barlow Condensed.
 
-**Paleta** (`tailwind.config.ts`):
-- `verde` `#0d3d1f` · `verde-medio` `#1a5c30` · `verde-claro` `#2d8a4e`
-- `dourado` `#c9a227` · `dourado-claro` `#e8c547`
-- `preto` `#0a0a0a` · `preto-fosco` `#111111`
-- `cinza-escuro` `#1c1c1c` · `creme` `#faf6ee`
-
-A UI usa sobretudo classes CSS legacy (`.hero`, `.container`); tokens Tailwind (`bg-verde`, `text-dourado`) estão disponíveis mas pouco usados nos TSX.
-
----
+**Paleta** (CSS + `tailwind.config.ts`): verde escuro, dourado, preto fosco — classes legacy `.hero`, `.section-title`, `.highlight`, etc.
 
 ## Deploy
 
-Build padrão Next.js: `npm run build` (saída em `.next/`).
+`npm run build` → Vercel ou host Node com variáveis de `.env.example`.
 
-Recomendado: [Vercel](https://vercel.com) ligado ao repositório GitHub, com variáveis de `.env.example` no painel do projeto. Após o primeiro deploy, adicione a URL de produção no **About** do repositório GitHub (campo *Website*).
+Para métricas fiéis, medir com `npm run build && npm run start` ou preview de produção (dev inflaciona LCP).
 
-Para métricas de performance em ambiente real, prefira `npm run build && npm run start` ou o preview de produção — dev local inflaciona LCP (ver `docs/lighthouse-baseline.md`).
+## Backlog de produto
 
----
+- [ ] `npm install -D sharp && npm run optimize:hero` → trocar hero para `banner15.webp`
+- [ ] Comprimir fotos `tratoraco-2025/` (WebP em lote)
+- [ ] `og-image` em `app/layout.tsx` (1200×630)
+- [ ] Fotos reais nas atrações (substituir Pexels)
+- [ ] Seção de shows quando contratos de artistas estiverem fechados
+- [ ] Reintegrar mapa (`public/mapa-campoagro.html`) na landing, se desejado
 
-## Próximos passos (conteúdo / produto)
+**Já em produção no código:** leads (API + Sheets/Resend opcional), Clarity com consentimento, galeria de memórias, programação por dia.
 
-- [ ] Substituir imagens placeholder por fotos reais das edições anteriores e do parque de exposições
-- [ ] Trocar links `href="#"` dos botões «Comprar» pelos da bilheteria (Sympla, Bilheto, etc.)
-- [ ] Logos reais dos patrocinadores (substituir placeholders por `<Image>` onde faltar)
-- [ ] Adicionar `og-image.jpg` em `public/img/` (1200×630) e referenciar em `app/layout.tsx`
-- [ ] Meta Pixel em `app/layout.tsx` (se a equipe de marketing solicitar)
-- [ ] Página `/expositores` dedicada (opcional)
+## Analytics
 
-**Já feito (não repetir no backlog):** endpoint `POST /api/leads/expositor`, integração opcional Google Sheets + Resend, migração HTML → Next, seção de patrocinadores, Clarity com consentimento LGPD.
+`NEXT_PUBLIC_CLARITY_PROJECT_ID` + guia em [`docs/analytics-guide.md`](./docs/analytics-guide.md).
 
----
-
-## Stack
-
-| Lib | Versão | Uso |
-|-----|--------|-----|
-| `next` | 14.2 | Framework + App Router |
-| `react` | 18.3 | UI |
-| `tailwindcss` | 3.4 | Tokens (UI majoritariamente CSS legacy) |
-| `lucide-react` | 0.414 | Ícones |
-| `clsx` | 2 | Classes condicionais |
-| `googleapis` | — | Google Sheets (leads) |
-| `playwright` | dev | `npm run smoke:home` |
-
----
-
-## Analytics (Microsoft Clarity)
-
-Heatmaps, gravações e eventos customizados, **somente após consentimento LGPD**.
-
-1. Projeto em [clarity.microsoft.com](https://clarity.microsoft.com) → Settings → Setup
-2. ID no `.env.local`: `NEXT_PUBLIC_CLARITY_PROJECT_ID=…`
-
-**Organização do evento:** [`docs/analytics-guide.md`](./docs/analytics-guide.md)
-
-**Novos eventos (dev):**
-```ts
-import { useClarityTrack } from '@/hooks/useClarityTrack';
-
-const track = useClarityTrack();
-track('meu_evento');
-track('expositor_destaque_click', { nome: 'FazendaX' });
-```
-
----
+Eventos customizados: `useClarityTrack()` em `hooks/useClarityTrack.ts`.
 
 ## Licença
 

@@ -14,12 +14,16 @@ export const COUNTDOWN_UNITS: Array<{ key: keyof CountdownParts; label: string }
   { key: 'secs', label: 'Segundos' },
 ];
 
-/** Labels curtas para o contador no hero (melhor leitura em espaço reduzido). */
-export const HERO_COUNTDOWN_UNITS: Array<{ key: keyof CountdownParts; label: string }> = [
-  { key: 'days', label: 'Dias' },
-  { key: 'hours', label: 'Hor' },
-  { key: 'mins', label: 'Min' },
-  { key: 'secs', label: 'Seg' },
+/** Hero: 3 letras por unidade (padrão de contadores compactos; leitura por voz em ariaLabel). */
+export const HERO_COUNTDOWN_UNITS: Array<{
+  key: keyof CountdownParts;
+  label: string;
+  ariaLabel: string;
+}> = [
+  { key: 'days', label: 'Dia', ariaLabel: 'Dias' },
+  { key: 'hours', label: 'Hor', ariaLabel: 'Horas' },
+  { key: 'mins', label: 'Min', ariaLabel: 'Minutos' },
+  { key: 'secs', label: 'Seg', ariaLabel: 'Segundos' },
 ];
 
 function pad(n: number) {

@@ -143,6 +143,10 @@
   backdrop-filter: blur(8px) saturate(120%);
 }
 
+.hero .premium-countdown--hero .count-item {
+  backdrop-filter: none;
+}
+
 .areas-upgrade {
   position: relative;
   background:

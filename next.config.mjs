@@ -20,6 +20,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'ecrie.com.br',
+        port: '',
+        pathname: '/sistema/conteudos/imagem/**',
+      },
     ],
   },
   experimental: {

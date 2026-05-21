@@ -9,6 +9,7 @@
     "lint": "next lint",
     "check:images": "node scripts/check-images.mjs",
     "smoke:home": "node scripts/smoke-home.mjs",
+    "optimize:hero": "node scripts/optimize-hero.mjs",
     "lighthouse:baseline": "npx lighthouse@11.7.1 http://localhost:3000 --output=json --output-path=docs/lighthouse-baseline.json --chrome-flags=\"--headless\" --quiet && node scripts/lighthouse-summary.mjs"
   },
   "dependencies": {
@@ -28,6 +29,7 @@
     "eslint-config-next": "14.2.5",
     "playwright": "^1.49.0",
     "postcss": "^8.4.39",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.6",
     "typescript": "^5.5.3"
   }

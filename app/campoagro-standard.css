@@ -240,7 +240,7 @@ button.btn-primary {
 
 .hero.hero-campaign .hero-tagline {
   width: fit-content;
-  margin: 1.15rem 0 0.8rem !important;
+  margin: 0 0 0.8rem !important;
   padding: 0.34rem 0.78rem !important;
   border-radius: 999px !important;
   color: #091006 !important;
@@ -254,9 +254,10 @@ button.btn-primary {
 
 .hero.hero-campaign .hero-sub {
   max-width: 610px !important;
+  margin: 0 0 1.2rem !important;
   color: rgba(247, 242, 232, 0.86) !important;
   font-size: clamp(1rem, 1.25vw, 1.12rem) !important;
-  line-height: 1.75 !important;
+  line-height: 1.65 !important;
 }
 
 .hero-meta {
@@ -1032,7 +1033,6 @@ button.btn-primary {
 .hero-reference .hero-title-stacked {
   display: grid !important;
   gap: 0 !important;
-  margin: 1.15rem 0 0.8rem !important;
   color: #fff !important;
   font-family: "Barlow Condensed", "Bebas Neue", sans-serif !important;
   font-size: clamp(5.4rem, 11vw, 10.4rem) !important;
@@ -1057,22 +1057,24 @@ button.btn-primary {
 
 .hero-reference .hero-tagline {
   width: fit-content !important;
-  margin: 0 0 0.9rem !important;
   border-radius: 999px !important;
   padding: 0.35rem 0.85rem !important;
   color: #050505 !important;
   background: #ffd451 !important;
-  font-family: Inter, sans-serif !important;
-  font-size: clamp(0.86rem, 1.2vw, 1rem) !important;
-  font-weight: 900 !important;
-  letter-spacing: 0.08em !important;
+  font-family:
+    var(--font-barlow-condensed), "Barlow Condensed", sans-serif !important;
+  font-size: clamp(0.9rem, 1.25vw, 1.05rem) !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  letter-spacing: 0.1em !important;
+  line-height: 1.15 !important;
   text-transform: uppercase !important;
 }
 
 .hero-reference .hero-sub {
-  max-width: 500px !important;
+  max-width: min(34rem, 100%) !important;
   color: rgba(255, 255, 255, 0.9) !important;
-  font-size: 1.03rem !important;
+  font-size: clamp(1rem, 1.25vw, 1.08rem) !important;
 }
 
 .hero-reference .hero-meta span {
@@ -1082,16 +1084,44 @@ button.btn-primary {
   background: rgba(0, 0, 0, 0.16) !important;
 }
 
-/* Contador premium no hero: mesma estilização, shell com largura para os pills */
+/* Hero — pilha vertical: título → tagline → sub → contador → botões */
 .hero-reference .hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
   overflow: visible;
+}
+
+.hero-reference .hero-title-stacked {
+  margin: 0 0 0.65rem !important;
+}
+
+.hero-reference .hero-tagline {
+  margin: 0 0 0.8rem !important;
+}
+
+.hero-reference .hero-sub {
+  margin: 0 0 1.2rem !important;
+  line-height: 1.65 !important;
+}
+
+.hero-reference .hero-sub,
+.hero-reference .hero-tagline {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.hero-reference .hero-meta:empty {
+  display: none !important;
+  margin: 0 !important;
 }
 
 .hero .premium-countdown--hero {
   position: relative;
-  width: min(760px, calc(100vw - clamp(2.4rem, 5vw, 6.8rem)));
-  max-width: none;
-  margin-top: clamp(1rem, 2.4vh, 1.35rem);
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   padding: 0 !important;
   border: 0 !important;
   background: none !important;
@@ -1105,14 +1135,16 @@ button.btn-primary {
 }
 
 .hero .premium-countdown--hero .countdown-shell {
-  grid-template-columns: minmax(9.25rem, 0.58fr) minmax(19.5rem, 1.42fr);
-  align-items: center;
-  gap: clamp(1.1rem, 2.8vw, 1.75rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  gap: clamp(0.9rem, 2vw, 1.15rem);
   padding: clamp(0.75rem, 1.7vw, 0.95rem) clamp(1.05rem, 2.4vw, 1.45rem);
   border-radius: 22px;
   box-shadow:
     0 22px 72px rgba(0, 0, 0, 0.34),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px) saturate(120%) !important;
 }
 
 .hero .premium-countdown--hero .countdown-shell::before {
@@ -1120,9 +1152,11 @@ button.btn-primary {
 }
 
 .hero .premium-countdown--hero .countdown-copy {
+  position: relative;
+  z-index: 0;
   min-width: 0;
-  max-width: 10.5rem;
-  justify-self: start;
+  max-width: none;
+  justify-self: stretch;
 }
 
 .hero .premium-countdown--hero .eyebrow {
@@ -1151,11 +1185,13 @@ button.btn-primary {
 }
 
 .hero .premium-countdown--hero .countdown-grid {
-  justify-self: end;
+  position: relative;
+  z-index: 0;
+  justify-self: stretch;
   width: 100%;
   max-width: 100%;
-  margin-left: auto;
-  grid-template-columns: repeat(4, minmax(5.35rem, 1fr));
+  margin-left: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(0.55rem, 1.4vw, 0.8rem);
 }
 
@@ -1163,10 +1199,12 @@ button.btn-primary {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: center;
-  gap: 0.2rem;
-  min-width: 5.35rem;
-  min-height: clamp(4.5rem, 11vw, 5.25rem);
+  justify-content: flex-start;
+  gap: 0.28rem;
+  min-width: 0;
+  min-height: clamp(5.5rem, 13vw, 6.25rem) !important;
+  animation: none !important;
+  backdrop-filter: none !important;
   padding: clamp(0.5rem, 1.2vw, 0.65rem) clamp(0.5rem, 1.2vw, 0.68rem)
     clamp(0.45rem, 1vw, 0.55rem);
   border-radius: 18px;
@@ -1187,15 +1225,20 @@ button.btn-primary {
   align-items: center;
   justify-content: center;
   min-height: 0;
-  padding: 0.1rem 0.4rem 0;
-  font-size: clamp(1.55rem, 3.2vw, 2rem);
-  line-height: 1;
+  padding: 0.15rem 0.35rem 0;
+  color: #fff6db !important;
+  font-size: clamp(1.55rem, 3.2vw, 2rem) !important;
+  line-height: 1 !important;
   letter-spacing: 0.02em;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
   text-shadow:
     0 8px 28px rgba(0, 0, 0, 0.34),
-    0 0 16px rgba(255, 212, 81, 0.12);
+    0 0 16px rgba(255, 212, 81, 0.12) !important;
+}
+
+.hero .premium-countdown--hero .count-num::after {
+  display: none !important;
 }
 
 .hero .premium-countdown--hero .count-label {
@@ -1203,40 +1246,30 @@ button.btn-primary {
   flex: 0 0 auto;
   width: 100%;
   margin: 0.15rem 0 0;
-  padding: 0.42rem 0.15rem 0.2rem;
-  border-top: 1px solid rgba(255, 212, 81, 0.55);
-  color: var(--ca-green-bright, #9fe85a);
-  font-size: clamp(0.64rem, 1.55vw, 0.72rem);
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  line-height: 1.25;
-  text-shadow: 0 0 18px rgba(143, 232, 90, 0.22);
+  padding: 0.42rem 0.2rem 0.2rem;
+  border-top: 1px solid rgba(57, 208, 0, 0.38);
+  color: var(--ca-green-bright) !important;
+  font-size: clamp(0.62rem, 1.35vw, 0.7rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-align: center;
+  text-shadow: 0 0 36px rgba(57, 208, 0, 0.28) !important;
 }
 
-/* Mobile: texto em cima, timer em 4 colunas abaixo (como seção standalone) */
+/* Hero: timer 2×2 só em telas muito estreitas */
 @media (max-width: 767px) {
-  .hero .premium-countdown--hero {
-    width: 100%;
-  }
-
-  .hero .premium-countdown--hero .countdown-shell {
-    grid-template-columns: 1fr;
-    gap: clamp(0.85rem, 2vw, 1.1rem);
-  }
-
-  .hero .premium-countdown--hero .countdown-copy {
-    max-width: none;
-  }
-
   .hero .premium-countdown--hero .countdown-grid {
-    justify-self: stretch;
-    margin-left: 0;
-    grid-template-columns: repeat(4, minmax(4.75rem, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
 .hero-reference .hero-buttons {
-  margin-top: 1.25rem !important;
+  margin: 1.05rem 0 0 !important;
+  width: 100%;
+  max-width: 100%;
 }
 
 @media (max-width: 480px) {
@@ -1262,8 +1295,9 @@ button.btn-primary {
 
   .hero .premium-countdown--hero .count-label {
     margin-top: 0.4rem !important;
-    padding: 0.6rem 0.2rem 0.45rem !important;
-    font-size: 0.68rem !important;
+    padding: 0.6rem 0.25rem 0.45rem !important;
+    font-size: 0.66rem !important;
+    letter-spacing: 0.07em !important;
   }
 }
 
@@ -1698,14 +1732,11 @@ button.btn-primary {
       rgba(255, 255, 255, 0.045)
     ),
     rgba(3, 6, 4, 0.52);
-  box-shadow:
-    0 22px 70px rgba(0, 0, 0, 0.34),
-    0 0 36px rgba(255, 212, 81, 0.1);
+  box-shadow: none !important;
   backdrop-filter: blur(18px) saturate(128%);
   transition:
     transform 0.38s var(--ca-ease),
-    border-color 0.38s var(--ca-ease),
-    box-shadow 0.38s var(--ca-ease);
+    border-color 0.38s var(--ca-ease);
 }
 
 .premium-sponsors .partners-hero .btn-primary::before {
@@ -1726,9 +1757,7 @@ button.btn-primary {
 .premium-sponsors .partners-hero .btn-primary:hover {
   transform: translateY(-4px);
   border-color: rgba(255, 223, 139, 0.58);
-  box-shadow:
-    0 28px 82px rgba(0, 0, 0, 0.38),
-    0 0 48px rgba(255, 212, 81, 0.16);
+  box-shadow: none !important;
 }
 
 .premium-sponsors .partners-hero .btn-primary:hover::before {
@@ -3285,8 +3314,8 @@ button.btn-primary:hover,
 .contact-panel,
 .contact-card,
 .premium-form,
-.premium-countdown .countdown-shell,
-.premium-countdown .count-item,
+.premium-countdown:not(.premium-countdown--hero) .countdown-shell,
+.premium-countdown:not(.premium-countdown--hero) .count-item,
 .artist-announcement-card {
   border-color: rgba(255, 184, 0, 0.22) !important;
   background:
@@ -3326,7 +3355,7 @@ button.btn-primary:hover,
 }
 
 .premium-about .about-stat strong,
-.premium-countdown .count-num,
+.premium-countdown:not(.premium-countdown--hero) .count-num,
 .area-icon {
   color: #fff7dc !important;
   text-shadow:
@@ -3402,8 +3431,6 @@ button.btn-primary:hover,
   ) !important;
 }
 
-.count-label,
-.premium-countdown .count-label,
 .memory-content small,
 .area-desc,
 .premium-about .about-stat span,
@@ -3613,12 +3640,12 @@ button.btn-primary,
     0 0 34px rgba(57, 208, 0, 0.08) !important;
 }
 
-.premium-countdown {
+.premium-countdown:not(.premium-countdown--hero) {
   padding: clamp(1.35rem, 2.6vw, 2.4rem) 0 !important;
   border-block: 1px solid rgba(57, 208, 0, 0.16) !important;
 }
 
-.premium-countdown .countdown-shell {
+.premium-countdown:not(.premium-countdown--hero) .countdown-shell {
   grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr) !important;
   padding: clamp(1rem, 1.8vw, 1.35rem) !important;
   border: 1px solid rgba(57, 208, 0, 0.2) !important;
@@ -3628,21 +3655,21 @@ button.btn-primary,
   backdrop-filter: blur(14px) saturate(120%) !important;
 }
 
-.premium-countdown .countdown-shell::before,
-.premium-countdown .count-item::before {
+.premium-countdown:not(.premium-countdown--hero) .countdown-shell::before,
+.premium-countdown:not(.premium-countdown--hero) .count-item::before {
   display: none !important;
 }
 
-.premium-countdown h2 {
+.premium-countdown:not(.premium-countdown--hero) h2 {
   font-size: clamp(2rem, 3.6vw, 3.8rem) !important;
   line-height: 0.95 !important;
 }
 
-.premium-countdown .countdown-date {
+.premium-countdown:not(.premium-countdown--hero) .countdown-date {
   margin-top: 0.8rem !important;
 }
 
-.premium-countdown .count-item {
+.premium-countdown:not(.premium-countdown--hero) .count-item {
   min-height: 112px !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 18px !important;
@@ -3650,13 +3677,13 @@ button.btn-primary,
   box-shadow: none !important;
 }
 
-.premium-countdown .count-num {
+.premium-countdown:not(.premium-countdown--hero) .count-num {
   color: var(--ca-text) !important;
   font-size: clamp(2.5rem, 4.5vw, 4.2rem) !important;
   text-shadow: none !important;
 }
 
-.premium-countdown .count-label {
+.premium-countdown:not(.premium-countdown--hero) .count-label {
   color: var(--ca-green-soft) !important;
 }
 
@@ -4146,7 +4173,8 @@ body {
 }
 
 /* Hero "AGRO" — mesmo verde do wordmark na logo do cabeçalho */
-.hero-reference .hero-title-stacked .gold {
+.hero-reference .hero-title-stacked .gold,
+.hero .premium-countdown--hero .count-label {
   color: var(--ca-green-bright) !important;
   background: none !important;
   -webkit-background-clip: initial !important;

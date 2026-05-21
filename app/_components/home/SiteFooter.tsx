@@ -22,7 +22,7 @@ export default function SiteFooter() {
           <h3>Experiência</h3>
           <a href="#sobre">Sobre</a>
           <a href="#atracoes">Atrações</a>
-          <a href="#shows">Shows</a>
+          <a href="#programacao">Programação</a>
           <a href="#areas">Áreas</a>
         </div>
         <div>

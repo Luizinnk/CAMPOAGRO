@@ -1,5 +1,5 @@
 /**
- * Smoke test da home (nav, carrosséis de shows, galeria).
+ * Smoke test da home (nav, galeria de memórias).
  * Requer: dev server em BASE_URL (default http://localhost:3000).
  */
 import { chromium } from 'playwright';
@@ -44,24 +44,18 @@ async function main() {
     const hash = await page.evaluate(() => window.location.hash);
     assert(hash === '#memorias', `Hash esperado #memorias, obtido ${hash || '(vazio)'}`);
 
-    // --- Shows: abas Arte / Vídeo ---
-    await page.locator('#shows').scrollIntoViewIfNeeded();
-    const joaoControls = page.locator('.artist-carousel-controls[aria-label="Carrossel Joao Nelore e Texano"]');
-    const joaoVideoBtn = joaoControls.getByRole('button', { name: 'Video' });
-    await joaoVideoBtn.click();
-    assert(await joaoVideoBtn.evaluate((el) => el.classList.contains('active')), 'Aba Video do carrossel João não ficou ativa');
-
-    // --- Galeria: modal + Escape ---
-    await page.locator('#memorias .memory-card').first().click();
-    const modal = page.locator('.media-modal.open');
-    await modal.waitFor({ state: 'visible', timeout: 5000 });
-    assert(await page.locator('.media-modal-content img').count() > 0, 'Modal sem imagem');
+    // --- Galeria: lightbox + Escape ---
+    await page.locator('#memorias').scrollIntoViewIfNeeded();
+    await page.getByRole('button', { name: 'Ampliar foto' }).click();
+    const lightbox = page.locator('.memory-lightbox');
+    await lightbox.waitFor({ state: 'visible', timeout: 5000 });
+    assert((await lightbox.locator('img').count()) > 0, 'Lightbox sem imagem');
 
     await page.keyboard.press('Escape');
     await page.waitForTimeout(200);
-    assert((await modal.count()) === 0 || !(await modal.first().isVisible()), 'Modal não fechou com Escape');
+    assert(!(await lightbox.isVisible()), 'Lightbox não fechou com Escape');
 
-    console.log('OK smoke-home: nav, shows (carrossel), galeria/modal');
+    console.log('OK smoke-home: nav, galeria/lightbox');
   } catch (err) {
     failures.push(err instanceof Error ? err.message : String(err));
     console.error('FAIL smoke-home:', failures[0]);

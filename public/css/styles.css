@@ -42,7 +42,11 @@ section[id] {
   gap: 2rem;
   transition: opacity 0.8s ease, visibility 0.8s ease;
 }
-#loading.hidden { opacity: 0; visibility: hidden; }
+#loading.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 .loading-logo {
   width: min(520px, 80vw);
   height: auto;

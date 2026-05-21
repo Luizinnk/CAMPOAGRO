@@ -3,3 +3,103 @@
 @import './etapa4-performance.css';
 @import './campoagro-standard.css';
 @import './cookie-banner.css';
+
+/* next/font (app/fonts.ts) — alinha com famílias do CSS legacy */
+body,
+.hero-sub,
+.site-nav-premium .nav-links a,
+.prog-tab,
+.premium-form,
+.footer-grid a,
+.footer-brand p {
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+}
+
+.hero-title,
+.hero-title-stacked,
+.section-title,
+.count-item .count-num,
+.about-stat strong,
+.about-pillar span,
+.memory-content strong,
+.attraction-card-content strong,
+.showcase-content h3,
+.hero-side-panel strong,
+.hero-panel-grid b,
+.contact-card strong {
+  font-family: var(--font-barlow-condensed), 'Barlow Condensed', sans-serif;
+}
+
+.hero-tagline {
+  font-family: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
+}
+
+.section-badge {
+  font-family: var(--font-barlow), Barlow, sans-serif;
+}
+
+.memory-gallery-stage,
+.memory-lightbox-panel {
+  position: relative;
+}
+
+.memory-gallery-stage > span,
+.memory-lightbox-panel > span {
+  position: absolute !important;
+  inset: 0;
+}
+
+.memory-gallery-modal-more {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 0.5rem;
+}
+
+.memory-gallery-modal-more button {
+  border: 1px solid rgba(255, 223, 139, 0.28);
+  border-radius: 999px;
+  padding: 0.65rem 1.1rem;
+  color: #ffe3a0;
+  background: rgba(4, 4, 4, 0.45);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.memory-thumb-strip button {
+  position: relative;
+  overflow: hidden;
+}
+
+.memory-thumb-strip button > span {
+  position: absolute !important;
+  inset: 0;
+}
+
+.memory-gallery-modal-grid button {
+  position: relative;
+  overflow: hidden;
+}
+
+.memory-gallery-modal-grid button > span {
+  position: absolute !important;
+  inset: 0;
+}
+
+/* Contador premium: remove traço legado de styles.css que invade o label */
+.premium-countdown .count-num::after {
+  display: none;
+}
+
+/* Animações reveal: sem blur (blur(8px) no scroll custava GPU e travava a rolagem) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    filter: none !important;
+  }
+
+  .reveal.visible {
+    filter: none !important;
+  }
+}

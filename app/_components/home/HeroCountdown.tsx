@@ -19,8 +19,19 @@ export default function HeroCountdown() {
   const [parts, setParts] = useState<CountdownParts>(INITIAL);
 
   useEffect(() => {
-    setParts(getCountdownParts());
-    const id = window.setInterval(() => setParts(getCountdownParts()), 1000);
+    const tick = () => {
+      const next = getCountdownParts();
+      setParts((prev) =>
+        prev.days === next.days &&
+        prev.hours === next.hours &&
+        prev.mins === next.mins &&
+        prev.secs === next.secs
+          ? prev
+          : next,
+      );
+    };
+    tick();
+    const id = window.setInterval(tick, 1000);
     return () => window.clearInterval(id);
   }, []);
 
@@ -45,7 +56,9 @@ export default function HeroCountdown() {
               <div className="count-num" aria-live={unit.key === 'secs' ? 'off' : undefined}>
                 {parts[unit.key]}
               </div>
-              <span className="count-label">{unit.label}</span>
+              <span className="count-label" aria-label={unit.ariaLabel}>
+                {unit.label}
+              </span>
             </div>
           ))}
         </div>

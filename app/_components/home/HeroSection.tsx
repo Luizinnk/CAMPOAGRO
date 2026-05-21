@@ -18,7 +18,7 @@ export default function HeroSection() {
           fill
           priority
           sizes="100vw"
-          quality={88}
+          quality={72}
         />
       </div>
       <div className="hero-bg" />
@@ -37,18 +37,11 @@ export default function HeroSection() {
             <span className="gold">AGRO</span>
             <span>2026</span>
           </h1>
-          <p className="hero-tagline">
-            Plantando na terra a semente do futuro.
-          </p>
+          <p className="hero-tagline">Plantando na terra a semente do futuro</p>
           <p className="hero-sub">
             O maior encontro do agronegócio, inovação rural e entretenimento da
             região.
           </p>
-          <div className="hero-meta" aria-label="Destaques do evento">
-            <span>Feira agro</span>
-            <span>Shows nacionais</span>
-            <span>Tratoraço</span>
-          </div>
           <HeroCountdown />
           <HeroButtons />
         </div>

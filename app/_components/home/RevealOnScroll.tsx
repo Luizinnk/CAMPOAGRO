@@ -2,22 +2,39 @@
 
 import { useEffect } from 'react';
 
+const STAGGER_MS = 80;
+
 export default function RevealOnScroll() {
   useEffect(() => {
+    const seen = new WeakSet<Element>();
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => entry.target.classList.add('visible'), index * 80);
-          }
+          if (!entry.isIntersecting || entry.target.classList.contains('visible')) return;
+          window.setTimeout(() => entry.target.classList.add('visible'), index * STAGGER_MS);
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '0px 0px -4% 0px' },
     );
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    const observeNew = () => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach((el) => {
+        if (seen.has(el)) return;
+        seen.add(el);
+        observer.observe(el);
+      });
+    };
 
-    return () => observer.disconnect();
+    observeNew();
+
+    const mutation = new MutationObserver(observeNew);
+    mutation.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutation.disconnect();
+    };
   }, []);
 
   return null;
