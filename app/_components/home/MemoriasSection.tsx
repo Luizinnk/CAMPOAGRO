@@ -87,6 +87,7 @@ const OFFICIAL_2023_IMAGES: GalleryImage[] = OFFICIAL_2023_GROUPS.flatMap(
 );
 
 const DRIVE_2025_FILES = [
+  ["1jT5lYu9rMORDMs05CVkg9hFQqsEdzZp0", "_DSC7050.JPG"],
   ["1mvoDqdGuHRiL8htQcMEmaH_knu3Eap5u", "_DSC7036.JPG"],
   ["1UETRxMBMGJDjbLYIQ6JyN8nKsuak2cC1", "_DSC7037.JPG"],
   ["1ZOaxzEUg0LTm-YfJyLTMOZk8Y3NmsPep", "_DSC7038.JPG"],
@@ -100,7 +101,6 @@ const DRIVE_2025_FILES = [
   ["18STLg5tMxT6msj7iOhiS_XrvejnIkLZI", "_DSC7047.JPG"],
   ["1ToWBbYikZn33fAfywuYaYRkOlZNsYQGk", "_DSC7048.JPG"],
   ["1xh9NjTi91JqX51FIh1mHDqyTVdhPMJc-", "_DSC7049.JPG"],
-  ["1jT5lYu9rMORDMs05CVkg9hFQqsEdzZp0", "_DSC7050.JPG"],
   ["1fIcD8EDkPb5JVBaXiSPoAIT0MOZyNxsF", "_DSC7051.JPG"],
   ["1iMcuW7VmXDTcZs6cx_alEhO69EnIPXMi", "_DSC7052.JPG"],
   ["17i-daLJ9_WUPOkG0DIOEGoPv5eTxScOq", "_DSC7053.JPG"],
@@ -139,12 +139,10 @@ const DRIVE_2025_FILES = [
   ["1GBqWQAG-RV4zSkwW0XQsfJI9rO961NRz", "_DSC7086.JPG"],
 ] as const;
 
-const DRIVE_2025_IMAGES: GalleryImage[] = DRIVE_2025_FILES.map(
-  ([, name]) => ({
-    src: `/img/tratoraco-2025/${name}`,
-    alt: `Tratoraço 2025 - ${name}`,
-  }),
-);
+const DRIVE_2025_IMAGES: GalleryImage[] = DRIVE_2025_FILES.map(([, name]) => ({
+  src: `/img/tratoraco-2025/${name}`,
+  alt: `Tratoraço 2025 - ${name}`,
+}));
 
 const GALLERIES: Record<
   GalleryYear,
@@ -167,7 +165,7 @@ const GALLERIES: Record<
   "2025": {
     year: "2025",
     title: "Tratoraço 2025",
-    eyebrow: "Fotos oficiais do Drive",
+    eyebrow: "Registros oficiais da segunda edição",
     description:
       "Segunda edição do evento Tratoraço realizado na cidade de Campo do Tenente, PR.",
     images: DRIVE_2025_IMAGES,

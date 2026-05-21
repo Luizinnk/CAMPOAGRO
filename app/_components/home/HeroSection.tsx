@@ -31,9 +31,6 @@ export default function HeroSection() {
 
       <div className="hero-layout">
         <div className="hero-content reveal">
-          <div className="hero-badge">
-            17 a 19 de julho de 2026 - Campo do Tenente - PR
-          </div>
           <h1 className="hero-title hero-title-stacked">
             <span className="year">3ª edição</span>
             <span>CAMPO</span>
