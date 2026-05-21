@@ -11,7 +11,7 @@ const ATTRACTIONS = [
     title: 'Evento tecnológico',
     label: 'Inovação',
     summary: 'Soluções, máquinas e conhecimento aplicados ao campo.',
-    src: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=1400&q=82',
+    src: 'https://images.pexels.com/photos/37288733/pexels-photo-37288733.jpeg?auto=compress&cs=tinysrgb&w=1400',
     details: {
       eyebrow: 'Inovação no campo',
       title: 'Evento tecnológico',
@@ -24,7 +24,7 @@ const ATTRACTIONS = [
     title: 'Visita em stands',
     label: 'Negócios',
     summary: 'Marcas, expositores e oportunidades em um ambiente estratégico.',
-    src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1400&q=82',
+    src: 'https://images.pexels.com/photos/8112172/pexels-photo-8112172.jpeg?auto=compress&cs=tinysrgb&w=1400',
     details: {
       eyebrow: 'Relacionamento comercial',
       title: 'Visita em stands',
@@ -38,7 +38,7 @@ const ATTRACTIONS = [
     title: 'Tratoraço',
     label: 'Tradição',
     summary: 'A força do produtor rural em movimento.',
-    src: 'https://images.pexels.com/photos/27385146/pexels-photo-27385146.jpeg?auto=compress&cs=tinysrgb&w=1400',
+    src: 'https://images.pexels.com/photos/12670276/pexels-photo-12670276.png?auto=compress&cs=tinysrgb&w=1400',
     details: {
       eyebrow: 'Identidade rural',
       title: 'Tratoraço',
@@ -51,7 +51,7 @@ const ATTRACTIONS = [
     title: 'Shows nacionais',
     label: 'Entretenimento',
     summary: 'Atrações musicais para conectar cidade, campo e família.',
-    src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1400&q=82',
+    src: 'https://images.pexels.com/photos/1387174/pexels-photo-1387174.jpeg?auto=compress&cs=tinysrgb&w=1400',
     details: {
       eyebrow: 'Arena de shows',
       title: 'Shows nacionais',

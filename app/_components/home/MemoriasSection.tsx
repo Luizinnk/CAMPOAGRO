@@ -140,8 +140,8 @@ const DRIVE_2025_FILES = [
 ] as const;
 
 const DRIVE_2025_IMAGES: GalleryImage[] = DRIVE_2025_FILES.map(
-  ([id, name]) => ({
-    src: `https://drive.google.com/uc?export=view&id=${id}`,
+  ([, name]) => ({
+    src: `/img/tratoraco-2025/${name}`,
     alt: `Tratoraço 2025 - ${name}`,
   }),
 );
