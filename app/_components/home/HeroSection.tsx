@@ -1,6 +1,7 @@
 ﻿import Image from "next/image";
 
 import HeroButtons from "./HeroButtons";
+import HeroCountdown from "./HeroCountdown";
 import HeroParticles from "./HeroParticles";
 
 export default function HeroSection() {
@@ -51,6 +52,7 @@ export default function HeroSection() {
             <span>Shows nacionais</span>
             <span>Tratoraço</span>
           </div>
+          <HeroCountdown />
           <HeroButtons />
         </div>
       </div>

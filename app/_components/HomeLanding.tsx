@@ -1,6 +1,5 @@
 import AreasSection from './home/AreasSection';
 import AttractionsSection from './home/AttractionsSection';
-import CountdownSection from './home/CountdownSection';
 import ExpositoresSection from './home/ExpositoresSection';
 import HeroSection from './home/HeroSection';
 import LoadingOverlay from './home/LoadingOverlay';
@@ -24,7 +23,6 @@ export default function HomeLanding() {
       <main>
         <HeroSection />
         <SobreSection />
-        <CountdownSection />
         <NumbersSection />
         <AttractionsSection />
         <ShowsSection />

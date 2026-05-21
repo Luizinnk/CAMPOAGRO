@@ -90,7 +90,7 @@ Edite o TSX da secção em `app/_components/home/` (ex.: `ProgramacaoSection.tsx
 - [ ] Trocar os links `href="#"` dos botões "Comprar" pelos da plataforma de bilheteria (Sympla, Bilheto, etc.)
 - [ ] Adicionar logos reais dos patrocinadores (substituir os textos por `<Image>`)
 - [ ] Adicionar `og-image.jpg` em `public/img/` (1200×630) e referenciar em `app/layout.tsx`
-- [ ] Configurar Google Analytics / Meta Pixel via `app/layout.tsx`
+- [ ] Configurar Meta Pixel via `app/layout.tsx` (se necessário)
 - [ ] Adicionar página `/expositores` separada com mais detalhes (opcional)
 
 ---
@@ -104,6 +104,33 @@ Edite o TSX da secção em `app/_components/home/` (ex.: `ProgramacaoSection.tsx
 | `tailwindcss` | 3.4 | Estilo |
 | `lucide-react` | 0.414 | Ícones (substitui emojis) |
 | `clsx` | 2 | Concatenação condicional de classes |
+
+---
+
+## 📊 Analytics (Microsoft Clarity)
+
+O site usa **Microsoft Clarity** para heatmaps, gravações de sessão e eventos customizados, com consentimento LGPD obrigatório antes de qualquer coleta.
+
+**Setup (uma vez só):**
+1. Crie o projeto em [clarity.microsoft.com](https://clarity.microsoft.com)
+2. Copie o Project ID e adicione no `.env.local`:
+   ```
+   NEXT_PUBLIC_CLARITY_PROJECT_ID=seu_id_aqui
+   ```
+
+**Para a organização do evento:**
+→ [`docs/analytics-guide.md`](./docs/analytics-guide.md) — guia completo de como acessar os relatórios e usar os dados na captação de patrocinadores.
+
+**Para desenvolvedores — adicionar novos eventos:**
+```ts
+// Em qualquer Client Component:
+import { useClarityTrack } from '@/hooks/useClarityTrack';
+
+const track = useClarityTrack();
+track('meu_evento');
+track('expositor_destaque_click', { nome: 'FazendaX' }); // com tag
+```
+O hook verifica o consentimento automaticamente — sem disparo acidental.
 
 ---
 
