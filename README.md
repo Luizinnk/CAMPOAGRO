@@ -6,7 +6,20 @@ Site institucional do festival CampoAgro 2026, construído em **Next.js 14 (App 
 
 ---
 
-## 🚀 Como rodar
+## Documentação
+
+| Documento | Conteúdo |
+|-----------|----------|
+| [`FUNCIONALIDADES.md`](./FUNCIONALIDADES.md) | Onde está cada bloco da home e comandos de verificação |
+| [`docs/ESTRUTURA-PROJETO.md`](./docs/ESTRUTURA-PROJETO.md) | Rotas, ordem das seções, CSS, imagens, `lib/leads/` |
+| [`docs/checklist-migracao-4-etapas.md`](./docs/checklist-migracao-4-etapas.md) | Histórico da migração HTML → Next |
+| [`docs/analytics-guide.md`](./docs/analytics-guide.md) | Microsoft Clarity para a organização do evento |
+| [`docs/lighthouse-baseline.md`](./docs/lighthouse-baseline.md) | Métricas de performance (baseline) |
+| [`IMAGE_GUIDE.md`](./IMAGE_GUIDE.md) | Briefing visual (pode citar `lib/site-data` — **não existe** no projeto atual) |
+
+---
+
+## Como rodar
 
 Pré-requisitos: **Node.js 18.18+** (idealmente 20+).
 
@@ -14,126 +27,158 @@ Pré-requisitos: **Node.js 18.18+** (idealmente 20+).
 # 1. Instalar dependências
 npm install
 
-# 2. Rodar em desenvolvimento
-npm run dev
-# → abre em http://localhost:3000
+# 2. Variáveis de ambiente (ver secção abaixo)
+cp .env.example .env.local
+# edite .env.local com os valores reais
 
-# 3. Build de produção
+# 3. Rodar em desenvolvimento
+npm run dev
+# → http://localhost:3000
+
+# 4. Build de produção
 npm run build
 npm start
 
-# 4. Validar imagens referenciadas (`/img/…` em app + CSS)
+# 5. Validar imagens referenciadas (`/img/…` em app + CSS)
 npm run check:images
 
-# 5. Smoke test da home (com `npm run dev` ativo)
+# 6. Smoke test da home (com `npm run dev` ativo)
 npm run smoke:home
 
-# 6. Baseline Lighthouse → docs/lighthouse-baseline.md
+# 7. Baseline Lighthouse → docs/lighthouse-baseline.md
 npm run lighthouse:baseline
 ```
 
 ---
 
-## Estrutura (resumo real do repositório)
+## Variáveis de ambiente
 
-```
-app/
-├── layout.tsx, page.tsx, globals.css, etapa4-performance.css
-├── _components/HomeLanding.tsx + home/*.tsx   # seções da landing
-├── programacao/page.tsx                      # redirect → /#programacao
-public/
-├── css/styles.css, premium.css               # CSS servido em /css/…
-├── img/                                      # imagens em /img/…
-next.config.mjs, tailwind.config.ts, package.json
-```
+Copie [`.env.example`](./.env.example) para `.env.local` (nunca commite `.env.local`).
 
-Textos e dados hoje estão principalmente nos próprios TSX de `home/`. O ficheiro [`FUNCIONALIDADES.md`](./FUNCIONALIDADES.md) descreve onde está cada bloco.
+| Variável | Obrigatória | Uso |
+|----------|-------------|-----|
+| `NEXT_PUBLIC_CLARITY_PROJECT_ID` | Não* | Analytics Clarity (só após consentimento LGPD) |
+| `NEXT_PUBLIC_WHATSAPP_VENDAS` | Não | WhatsApp da equipe (dígitos: DDI + DDD + número) |
+| `RESEND_API_KEY` | Não | E-mail transacional dos leads; sem chave, preview em `data/email-previews/` |
+| `LEADS_EMAIL_FROM` | Não | Remetente do e-mail |
+| `GOOGLE_SHEETS_SPREADSHEET_ID` | Não | Planilha de leads em produção |
+| `GOOGLE_SERVICE_ACCOUNT_JSON_PATH` | Não | Caminho ao JSON da service account (ver comentários no `.env.example`) |
+
+\*Sem Clarity, o site funciona; heatmaps e eventos customizados ficam desativados.
+
+**Produção (Vercel ou similar):** configure as mesmas variáveis no painel do host. Em desenvolvimento, leads do formulário de expositores podem ir para `data/leads-demo.json` (modo demo) até Sheets/Resend estarem configurados.
+
+Detalhes das abas da planilha e credenciais Google: comentários em `.env.example` e [`docs/ESTRUTURA-PROJETO.md`](./docs/ESTRUTURA-PROJETO.md#backend-de-leads-libleads).
 
 ---
 
-## 🎨 Identidade visual
+## Estrutura (resumo)
 
-**Tipografia (Google Fonts, já configurada):**
-- **Bebas Neue** → títulos massivos (display)
-- **Fraunces** → serif premium pra taglines/accents
-- **Manrope** → texto corrido (body sans)
+```
+app/
+├── layout.tsx, page.tsx, globals.css
+├── etapa4-performance.css, campoagro-standard.css
+├── _components/HomeLanding.tsx + home/*.tsx    # 14 seções da landing
+├── programacao/page.tsx                        # redirect → /#programacao
+├── api/leads/expositor/route.ts                # POST formulário expositores
+lib/leads/                                      # validação, Sheets, e-mail, demo
+public/
+├── css/styles.css, premium.css                 # servidos em /css/…
+├── img/, videos/                               # assets estáticos
+scripts/                                        # check-images, smoke-home, lighthouse
+docs/                                           # estrutura, migração, analytics, baseline
+```
 
-**Paleta** (já em `tailwind.config.ts` como tokens):
+Textos e dados estão nos TSX de `app/_components/home/`. Mapa completo: [`docs/ESTRUTURA-PROJETO.md`](./docs/ESTRUTURA-PROJETO.md).
+
+**CSS:** `globals.css` importa `public/css/styles.css`, `public/css/premium.css`, `etapa4-performance.css` e `campoagro-standard.css`. Não consolidar num único ficheiro sem plano.
+
+---
+
+## Edição rápida
+
+**Imagens** — `public/img/`; URLs em TSX começam por `/img/`. Depois de alterar ficheiros: `npm run check:images`.
+
+**Textos e programação** — TSX em `app/_components/home/` (ex.: `ProgramacaoSection.tsx`, `SobreSection.tsx`).
+
+**Formulário de expositores** — `ExpositoresSection.tsx` → `POST /api/leads/expositor` (já implementado).
+
+---
+
+## Identidade visual
+
+**Tipografia (Google Fonts):**
+- **Bebas Neue** → títulos (display)
+- **Fraunces** → taglines / accents
+- **Manrope** → texto corrido
+
+**Paleta** (`tailwind.config.ts`):
 - `verde` `#0d3d1f` · `verde-medio` `#1a5c30` · `verde-claro` `#2d8a4e`
 - `dourado` `#c9a227` · `dourado-claro` `#e8c547`
 - `preto` `#0a0a0a` · `preto-fosco` `#111111`
 - `cinza-escuro` `#1c1c1c` · `creme` `#faf6ee`
 
-Use direto no Tailwind: `bg-verde`, `text-dourado`, `border-dourado/30`, etc.
+A UI usa sobretudo classes CSS legacy (`.hero`, `.container`); tokens Tailwind (`bg-verde`, `text-dourado`) estão disponíveis mas pouco usados nos TSX.
 
 ---
 
-## Trocar imagens
+## Deploy
 
-- Ficheiros físicos: `public/img/` (hero/section usam os mesmos PNG/JPG; URLs em TSX começam por `/img/`).
-- Depois de renomear ou adicionar ficheiros: `npm run check:images`.
+Build padrão Next.js: `npm run build` (saída em `.next/`).
 
-## Trocar textos e programação
+Recomendado: [Vercel](https://vercel.com) ligado ao repositório GitHub, com variáveis de `.env.example` no painel do projeto. Após o primeiro deploy, adicione a URL de produção no **About** do repositório GitHub (campo *Website*).
 
-Edite o TSX da secção em `app/_components/home/` (ex.: `ProgramacaoSection.tsx`, `SobreSection.tsx`).
-
-## Nota sobre documentação antiga
-
-[`IMAGE_GUIDE.md`](./IMAGE_GUIDE.md) pode ainda falar de estrutura `lib/site-data` — o projeto atual **não** usa esse ficheiro; trate o guia só como referência de briefing visual.
+Para métricas de performance em ambiente real, prefira `npm run build && npm run start` ou o preview de produção — dev local inflaciona LCP (ver `docs/lighthouse-baseline.md`).
 
 ---
 
-## 🔌 Próximos passos (TODOs sugeridos)
+## Próximos passos (conteúdo / produto)
 
-- [ ] Substituir as imagens placeholder por fotos reais das edições anteriores e do parque de exposições
-- [ ] Conectar o formulário de Expositor a um endpoint real (`/api/expositor` ou serviço como Resend, Formspree)
-- [ ] Trocar os links `href="#"` dos botões "Comprar" pelos da plataforma de bilheteria (Sympla, Bilheto, etc.)
-- [ ] Adicionar logos reais dos patrocinadores (substituir os textos por `<Image>`)
+- [ ] Substituir imagens placeholder por fotos reais das edições anteriores e do parque de exposições
+- [ ] Trocar links `href="#"` dos botões «Comprar» pelos da bilheteria (Sympla, Bilheto, etc.)
+- [ ] Logos reais dos patrocinadores (substituir placeholders por `<Image>` onde faltar)
 - [ ] Adicionar `og-image.jpg` em `public/img/` (1200×630) e referenciar em `app/layout.tsx`
-- [ ] Configurar Meta Pixel via `app/layout.tsx` (se necessário)
-- [ ] Adicionar página `/expositores` separada com mais detalhes (opcional)
+- [ ] Meta Pixel em `app/layout.tsx` (se a equipe de marketing solicitar)
+- [ ] Página `/expositores` dedicada (opcional)
+
+**Já feito (não repetir no backlog):** endpoint `POST /api/leads/expositor`, integração opcional Google Sheets + Resend, migração HTML → Next, seção de patrocinadores, Clarity com consentimento LGPD.
 
 ---
 
-## 🧱 Stack
+## Stack
 
-| Lib | Versão | Pra quê |
-|---|---|---|
-| `next` | 14.2 | Framework + SSR + App Router |
+| Lib | Versão | Uso |
+|-----|--------|-----|
+| `next` | 14.2 | Framework + App Router |
 | `react` | 18.3 | UI |
-| `tailwindcss` | 3.4 | Estilo |
-| `lucide-react` | 0.414 | Ícones (substitui emojis) |
-| `clsx` | 2 | Concatenação condicional de classes |
+| `tailwindcss` | 3.4 | Tokens (UI majoritariamente CSS legacy) |
+| `lucide-react` | 0.414 | Ícones |
+| `clsx` | 2 | Classes condicionais |
+| `googleapis` | — | Google Sheets (leads) |
+| `playwright` | dev | `npm run smoke:home` |
 
 ---
 
-## 📊 Analytics (Microsoft Clarity)
+## Analytics (Microsoft Clarity)
 
-O site usa **Microsoft Clarity** para heatmaps, gravações de sessão e eventos customizados, com consentimento LGPD obrigatório antes de qualquer coleta.
+Heatmaps, gravações e eventos customizados, **somente após consentimento LGPD**.
 
-**Setup (uma vez só):**
-1. Crie o projeto em [clarity.microsoft.com](https://clarity.microsoft.com)
-2. Copie o Project ID e adicione no `.env.local`:
-   ```
-   NEXT_PUBLIC_CLARITY_PROJECT_ID=seu_id_aqui
-   ```
+1. Projeto em [clarity.microsoft.com](https://clarity.microsoft.com) → Settings → Setup
+2. ID no `.env.local`: `NEXT_PUBLIC_CLARITY_PROJECT_ID=…`
 
-**Para a organização do evento:**
-→ [`docs/analytics-guide.md`](./docs/analytics-guide.md) — guia completo de como acessar os relatórios e usar os dados na captação de patrocinadores.
+**Organização do evento:** [`docs/analytics-guide.md`](./docs/analytics-guide.md)
 
-**Para desenvolvedores — adicionar novos eventos:**
+**Novos eventos (dev):**
 ```ts
-// Em qualquer Client Component:
 import { useClarityTrack } from '@/hooks/useClarityTrack';
 
 const track = useClarityTrack();
 track('meu_evento');
-track('expositor_destaque_click', { nome: 'FazendaX' }); // com tag
+track('expositor_destaque_click', { nome: 'FazendaX' });
 ```
-O hook verifica o consentimento automaticamente — sem disparo acidental.
 
 ---
 
-## 📝 Licença
+## Licença
 
 © 2026 CampoAgro · Prefeitura de Campo do Tenente · Todos os direitos reservados.

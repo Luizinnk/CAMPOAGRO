@@ -107,7 +107,7 @@ Use os checkboxes abaixo conforme for concluindo cada item.
 - [x] **Backdrop/blur:** valores mais baixos nos cards repetidos, modal e elementos-chave (mantém vidro, menos custo na GPU).
 - [x] **`prefers-reduced-motion`:** hero drift, sponsors, WhatsApp, loading bar, scroll cue, partículas (complementa `HeroParticles`).
 - [x] **Lighthouse / métricas:** baseline em `docs/lighthouse-baseline.md` (2026-05-20, dev local). Regenerar: `npm run lighthouse:baseline` com `npm run dev` ativo.
-- [ ] **README** ampliado no repo (opcional); fluxo mínimo já está neste checklist.
+- [x] **README** ampliado no repo (índice de docs, `.env.example`, estrutura atual, deploy, TODOs revistos).
 
 **Critério de pronto:** assets servidos pelo otimizador do Next onde aplicável; menos blur/agitação por defeito e com respeito à preferência do utilizador.
 
