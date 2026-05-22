@@ -3947,6 +3947,7 @@ body {
   font-size: 0.9rem;
   line-height: 1.45;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
@@ -4003,6 +4004,7 @@ body {
   min-height: 3.2em;
   overflow: hidden;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
@@ -4411,6 +4413,7 @@ body {
   .image-card-footer p,
   .editorial-card-footer p {
     -webkit-line-clamp: 1;
+    line-clamp: 1;
   }
 
   .map-actions .btn-outline {
@@ -4591,6 +4594,7 @@ section:not(.hero) {
   max-width: 100% !important;
   min-height: 2.75em;
   -webkit-line-clamp: 2 !important;
+  line-clamp: 2 !important;
 }
 
 .image-card-footer button {
@@ -4948,6 +4952,7 @@ section:not(.hero) {
   .image-card-footer p,
   .editorial-card-footer p {
     -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
   }
 
   .memory-feature-image {

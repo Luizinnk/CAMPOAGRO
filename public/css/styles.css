@@ -698,12 +698,6 @@ section { padding: 6rem 2rem; }
 .prog-content--bg-sexta::after {
   background: linear-gradient(to top, rgba(5,5,5,0.75) 0%, transparent 55%);
 }
-.prog-content--bg-sabado::before {
-  background-image: url('../img/joao-nelore-texano.jpg');
-}
-.prog-content--bg-domingo::before {
-  background-image: url('../img/luan-pereira-tvz-2024.png');
-}
 .prog-content--bg > .timeline {
   position: relative;
   z-index: 1;

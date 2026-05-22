@@ -20,6 +20,14 @@ async function waitForLoadingHidden(page) {
   );
 }
 
+async function dismissCookieBanner(page) {
+  const accept = page.getByRole('button', { name: 'Aceitar todos' });
+  if (await accept.isVisible().catch(() => false)) {
+    await accept.click();
+    await page.waitForTimeout(300);
+  }
+}
+
 async function main() {
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
@@ -29,6 +37,7 @@ async function main() {
   try {
     await page.goto(BASE_URL, { waitUntil: 'domcontentloaded', timeout: 30_000 });
     await waitForLoadingHidden(page);
+    await dismissCookieBanner(page);
 
     // --- Nav: hamburger + âncora ---
     const nav = page.locator('#navbar');
