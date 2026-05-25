@@ -2115,9 +2115,9 @@ button.btn-primary {
 .prog-tab.active { color: #080a05; background: linear-gradient(135deg, var(--cg-gold), var(--cg-gold-bright)); }
 .prog-content { display: none; }
 .prog-content.active { display: block; animation: contentFade .42s var(--cg-ease); }
-.timeline { display: grid; gap: 1rem; }
-.tl-item { position: relative; display: grid; grid-template-columns: 96px 1fr auto; gap: 1.2rem; align-items: center; border-radius: 24px; padding: 1.2rem; transition: transform .34s var(--cg-ease), border-color .34s var(--cg-ease); }
-.tl-time { color: var(--cg-gold-bright); font-family: "Barlow Condensed", sans-serif; font-size: 2.4rem; font-weight: 900; }
+.timeline { display: grid; gap: 1rem; --tl-time-col: 7.75rem; }
+.tl-item { position: relative; display: grid; grid-template-columns: var(--tl-time-col) minmax(0, 1fr) auto; gap: 1.2rem; align-items: center; border-radius: 24px; padding: 1.2rem; transition: transform .34s var(--cg-ease), border-color .34s var(--cg-ease); }
+.tl-time { color: var(--cg-gold-bright); font-family: "Barlow Condensed", sans-serif; font-size: 2.4rem; font-weight: 900; white-space: nowrap; }
 .tl-title { margin: 0; color: #fff; font-size: 1.15rem; }
 .tl-desc { margin: .35rem 0 0; color: var(--cg-muted); line-height: 1.65; }
 .tl-badge { justify-self: end; color: var(--cg-gold-bright); border: 1px solid rgba(212,166,58,.28); border-radius: 999px; padding: .55rem .8rem; font-size: .68rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
