@@ -67,9 +67,16 @@ Detalhe de cada seção e âncora: [`docs/ESTRUTURA-PROJETO.md`](./docs/ESTRUTUR
 
 ## Deploy
 
-`npm run build` → Vercel ou host Node com variáveis de `.env.example`.
+`npm run build` gera export estático em `out/`, pronto para hospedagem FTP comum.
 
-Para métricas fiéis, medir com `npm run build && npm run start` ou preview de produção (dev inflaciona LCP).
+### KingHost FTP
+
+1. Rode `npm install`.
+2. Rode `npm run build`.
+3. Envie o conteúdo de `out/` para a pasta pública do FTP (`www` ou `public_html`).
+4. Envie o conteúdo de `out/`, não a pasta `out` inteira.
+
+Importante: o endpoint `app/api/leads/expositor/route.ts` não roda em FTP estático. Para o formulário funcionar com API, use Vercel ou host Node com as variáveis de `.env.example`.
 
 ## Backlog de produto
 
