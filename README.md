@@ -76,6 +76,8 @@ Detalhe de cada seção e âncora: [`docs/ESTRUTURA-PROJETO.md`](./docs/ESTRUTUR
 3. Envie o conteúdo de `out/` para a pasta pública do FTP (`www` ou `public_html`).
 4. Envie o conteúdo de `out/`, não a pasta `out` inteira.
 
+Nesta configuração, a página principal do site oficial é exportada como `teste.html`.
+
 Importante: o endpoint `app/api/leads/expositor/route.ts` não roda em FTP estático. Para o formulário funcionar com API, use Vercel ou host Node com as variáveis de `.env.example`.
 
 ## Backlog de produto
